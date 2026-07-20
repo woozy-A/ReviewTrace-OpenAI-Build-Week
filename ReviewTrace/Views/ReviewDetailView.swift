@@ -529,7 +529,7 @@ private struct TimelineFramePreview: View {
                     .foregroundStyle(.secondary)
             }
         }
-        .frame(width: 72, height: 128)
+        .frame(width: 84, height: 128)
         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
         .accessibilityHidden(true)
         .task(id: taskID) {

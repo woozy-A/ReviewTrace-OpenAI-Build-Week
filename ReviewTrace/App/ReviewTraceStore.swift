@@ -1176,12 +1176,12 @@ struct AppCopy {
         switch sourceKind {
         case .screenRecording:
             return language == .korean
-                ? "화면 녹화 또는 최적화 분할 영상, 타임스탬프 정렬 전사, 직접 구현 지시문을 함께 전달합니다."
-                : "Share the screen recording or optimized video parts, timestamp-aligned transcript, and direct implementation instructions."
+                ? "영상, 타임스탬프 전사, 구현 지시문을 Codex에 전달합니다."
+                : "Share the video, timestamped transcript, and implementation instructions with Codex."
         case .audioFile:
             return language == .korean
-                ? "음성 녹음, 타임스탬프 정렬 전사, 직접 구현 지시문을 함께 전달합니다."
-                : "Share the audio recording, timestamp-aligned transcript, and direct implementation instructions."
+                ? "음성, 타임스탬프 전사, 구현 지시문을 Codex에 전달합니다."
+                : "Share the audio, timestamped transcript, and implementation instructions with Codex."
         }
     }
     var codexPromptTitle: String { language == .korean ? "직접 리뷰 전달" : "Direct Review Handoff" }
