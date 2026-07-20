@@ -23,8 +23,14 @@ This record separates compile/test evidence from UI, media, and release evidence
 
 - Device: iPhone 17 Pro Simulator
 - OS: iOS 26.5
-- Result: 22 passed, 0 failed, 0 skipped
-- Latest result bundle during this implementation run: `/tmp/OpenAiReviewTrace-P0EDocsTests/Logs/Test/Test-ReviewTrace-2026.07.21_02-49-33-+0900.xcresult`
+- Result: 25 passed, 0 failed, 0 skipped
+- Latest result bundle during this implementation run: `/tmp/ReviewTrace-English-FullTests/Logs/Test/Test-ReviewTrace-2026.07.21_03-27-35-+0900.xcresult`
+
+### Language-selection UI smoke check
+
+- Korean app UI: the separate `한국어 (ko-KR) / English (en-US)` spoken-language selector rendered without clipping.
+- English app UI: `English (en-US)` could be selected independently and the English helper copy rendered without clipping.
+- These checks prove layout and persistence wiring on Simulator, not a real Apple Speech transcription result.
 
 ### Physical iPhone build, install, launch, and XCTest
 
@@ -36,6 +42,7 @@ This record separates compile/test evidence from UI, media, and release evidence
 - Launch request: passed; the ReviewTrace process remained listed after launch
 - XCTest: 22 passed, 0 failed
 - Result bundle: `/tmp/OpenAiReviewTrace-DeviceTests/Logs/Test/Test-ReviewTrace-2026.07.21_02-53-15-+0900.xcresult`
+- This physical-device result predates commit `51ad510`; the current 25-test English-locale revision needs a fresh device run.
 
 Temporary result-bundle paths are local evidence from this run and are not committed artifacts.
 
@@ -44,6 +51,7 @@ Temporary result-bundle paths are local evidence from this run and are not commi
 - The connected phone was locked when a screenshot was requested, so no unlocked ReviewTrace UI screenshot was accepted as proof.
 - A privacy-safe 60–90 second real-iPhone recording with microphone narration has not been created.
 - Real-media import, Apple Speech completion, five or more correctly oriented timeline frames, and timestamp seek have not been manually verified end to end on the phone.
+- A real English recording has not yet been processed with the new `en-US` selector on the phone.
 - The ReviewTrace-to-Codex-to-ReviewTrace before/after loop has not been completed.
 - Sample processing time has not been measured.
 - Archive, TestFlight, public YouTube playback, `/feedback` session ID, and final Devpost submission have not been verified.

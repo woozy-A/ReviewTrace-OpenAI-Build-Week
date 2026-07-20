@@ -12,11 +12,13 @@
 - `befb088` — replaced analysis-first prompt generation with a direct Codex review handoff, added separate screen-recording/audio evidence rules, made Codex package sharing primary, and added prompt contract tests.
 - `7d3a2e6` — added bounded, transformed, cancellable timestamp frame extraction with a decisecond in-memory cache and unit tests.
 - `4f70285` — showed visual context only for readable screen-recording timeline rows while preserving audio/original layouts and timestamp seeking.
+- `51ad510` — added independent per-review Korean/English Speech locale selection, persisted retry behavior, locale-safe transcript caches, and compatibility tests for existing reviews.
 - Added the root setup, verification, sample protocol, privacy, limitation, and judge-path documentation.
 
 ### Verification at this point
 
 - Generic iOS Debug compile: passed with signing disabled.
-- iPhone 17 Pro Simulator, iOS 26.5: 22 XCTest cases passed, 0 failed.
+- iPhone 17 Pro Simulator, iOS 26.5: 25 XCTest cases passed, 0 failed.
 - iPhone 15 Pro, iOS 26.5.2: signed build, install, launch, and 22 XCTest cases passed.
-- Unlocked real-iPhone UI/media QA, narrated sample, processing benchmark, self-review before/after, Archive, and TestFlight: pending and not claimed as complete.
+- Korean and English language-selection layouts were visually checked on Simulator; real-English Apple Speech media processing still needs physical-device proof.
+- Latest-revision physical-device run, narrated sample, processing benchmark, self-review before/after, Archive, and TestFlight: pending and not claimed as complete.

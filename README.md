@@ -9,9 +9,9 @@ The app preserves the human review record; it does not replace the human reviewe
 ## Current verification status
 
 - The app and test targets build from `OpenAi_ReviewTrace.xcodeproj` with Xcode 26.6 (17F113).
-- The complete XCTest suite passes on an iPhone 17 Pro Simulator running iOS 26.5: 22 tests, 0 failures.
+- The complete XCTest suite passes on an iPhone 17 Pro Simulator running iOS 26.5: 25 tests, 0 failures.
 - An unsigned generic iOS build succeeds with `CODE_SIGNING_ALLOWED=NO`.
-- A signed Debug build installs and launches on an iPhone 15 Pro running iOS 26.5.2, and all 22 XCTest cases pass on that physical phone.
+- Before the selectable speech-locale addition, a signed Debug build installed and launched on an iPhone 15 Pro running iOS 26.5.2, and all 22 then-current XCTest cases passed on that physical phone. The latest 25-test revision still needs a new physical-device run.
 - Real-media processing, the public narrated sample, unlocked visual QA, processing-time measurement, and the final real-iPhone self-review loop still require device evidence. They are not claimed as complete here.
 
 See [Docs/Verification_2026-07-21.md](Docs/Verification_2026-07-21.md) for the exact proof boundary.
@@ -19,7 +19,7 @@ See [Docs/Verification_2026-07-21.md](Docs/Verification_2026-07-21.md) for the e
 ## What it does
 
 1. The developer records an iPhone app review with iOS Screen Recording and microphone audio enabled.
-2. ReviewTrace imports the selected video into app-local storage.
+2. The developer chooses the language actually spoken in that review (`ko-KR` or `en-US`) independently from the app display language, then ReviewTrace imports the selected video into app-local storage.
 3. AVFoundation extracts audio and divides it into silence-aware 45-second chunks with overlap.
 4. Apple Speech creates timestamped transcript segments.
 5. ReviewTrace presents readable and original timelines; a readable video row shows its matching frame and still seeks the player when tapped.
@@ -42,6 +42,7 @@ ReviewTrace began as a private exploratory prototype. During OpenAI Build Week, 
 - screen-recording and audio-only evidence rules were made explicit;
 - Codex package sharing became the primary export action;
 - readable screen-recording rows gained asynchronous, cached visual previews;
+- Korean and English speech recognition became a per-review choice, independent from the app display language and safe across retries and cached chunks;
 - prompt, cache, cancellation, and regression tests were added;
 - the supported build and judge paths were documented.
 
@@ -51,6 +52,7 @@ The final real-iPhone self-review and before/after evidence remain pending; see 
 
 ```text
 iOS Screen Recording with microphone ON
+  -> user-selected spoken locale (ko-KR or en-US)
   -> user-selected Photos import
   -> app Documents/Sessions storage
   -> AVFoundation audio extraction
@@ -148,14 +150,16 @@ The complete submission path should use the privacy-safe file described in [Samp
    xcrun simctl addmedia <AVAILABLE_UDID> Samples/reviewtrace-narrated-self-review.mov
    ```
 
-2. Launch ReviewTrace and choose **Import Screen Recording**.
-3. Select the recording and allow Photo Library and Speech Recognition access.
+2. Launch ReviewTrace and set **Language Spoken in This Review** to the language actually used in the recording. Use **English (en-US)** for the final hackathon recording.
+3. Choose **Import Screen Recording**, select the recording, and allow Photo Library and Speech Recognition access.
 4. Keep the app in the foreground until the review reaches **Ready**.
 5. In **Timeline → Readable**, confirm at least five correctly oriented previews and tap a row to seek to the matching video moment.
 6. Switch to **Original** and confirm the original transcript layout has no frame slots.
 7. In **Codex**, inspect **Direct Review Handoff** and use **Copy Review Instructions**.
 8. In **Export**, confirm **Share Review with Codex** is the primary action and that the package includes the recording or optimized parts, `full-transcript.md`, and `codex-prompt.md`.
 9. Run the XCTest command above.
+
+For the exact ReviewTrace-on-ReviewTrace screen route, Korean explanation, short English lines, and Korean pronunciation, follow [Docs/HackathonDemoRecordingGuide.md](Docs/HackathonDemoRecordingGuide.md).
 
 The expected processing time is intentionally not estimated. It must be measured with the committed sample on the target iPhone and recorded in `Samples/README.md` before submission.
 
@@ -176,7 +180,7 @@ Apple Speech is configured with `requiresOnDeviceRecognition = false`. Depending
 
 ## Known limitations
 
-- The current transcription locale is fixed to `ko-KR`; English is available for app and export copy, not as a per-review Speech locale selector.
+- Speech transcription currently supports `ko-KR` and `en-US`. The language is fixed for each imported review; changing it afterward does not retroactively re-transcribe a completed session.
 - ReviewTrace imports recordings; it does not include a ReplayKit recording extension.
 - Timeline thumbnails are memory-only previews for readable screen-recording rows and are not persistent exports.
 - Recordings that exceed the Codex compression threshold require the user to prepare optimized 540p parts before sharing the complete media package.
