@@ -42,7 +42,7 @@ ReviewTrace converts an imported screen recording into:
 - JSON structured export
 - Shareable review package
 
-Issue extraction, screenshot extraction, ReplayKit Broadcast Extension, and Control Center launchers are future features, not MVP scope.
+AI issue extraction, persistent screenshot export, ReplayKit Broadcast Extension, and Control Center launchers are future features, not MVP scope. Build Week adds only on-demand, memory-cached video frame previews beside readable screen-recording rows.
 
 ## MVP User Flow
 
@@ -53,7 +53,7 @@ Issue extraction, screenshot extraction, ReplayKit Broadcast Extension, and Cont
 5. User imports the screen recording video.
 6. ReviewTrace reads or extracts the video's audio track.
 7. ReviewTrace transcribes speech into timestamped segments.
-8. ReviewTrace shows video preview and transcript timeline.
+8. ReviewTrace shows video preview, a transcript timeline, and matching frame context beside readable screen-recording rows.
 9. User taps a timestamp to seek the video.
 10. ReviewTrace generates Codex prompt, Markdown, and JSON exports.
 11. User shares the review package.
@@ -72,4 +72,4 @@ The app defaults to Korean so the primary builder can review and QA the product 
 
 ## MVP Acceptance Summary
 
-The MVP is successful when the app builds, imports a screen recording video, shows an AVPlayer preview, generates a timestamped transcript timeline, seeks the video when a timeline row is tapped, generates a Codex prompt, exports Markdown and JSON, and shares the generated review package. No separate recording flow exists in the MVP.
+The MVP is successful when the app builds, imports a screen recording video, shows an AVPlayer preview, generates a timestamped transcript timeline with readable-row frame context, seeks the video when a timeline row is tapped, generates direct Codex review instructions, exports Markdown and JSON, and shares the generated review package. No separate recording flow exists in the MVP.

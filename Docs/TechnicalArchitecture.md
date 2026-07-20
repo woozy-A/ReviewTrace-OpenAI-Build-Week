@@ -11,7 +11,7 @@ The MVP architecture is imported-video post-processing:
 5. ReviewTrace splits extracted audio into small chunks.
 6. ReviewTrace transcribes each chunk sequentially and saves each chunk transcript.
 7. Transcript timestamps are offset back onto the original video timeline.
-8. ReviewTrace builds timeline, Codex prompt, Markdown export, JSON export, and review package sharing.
+8. ReviewTrace builds the timeline, extracts readable-row frame previews on demand, and prepares direct Codex instructions, Markdown/JSON exports, and review package sharing.
 
 An audio-file import follows the same chunk/transcript/export pipeline as a secondary workflow for development meetings or spoken reviews. Screen recordings remain the primary product flow and the source of truth for visual timestamp review.
 
@@ -44,8 +44,9 @@ Responsibilities:
 - Video preview with AVPlayer
 - Audio extraction or audio-track transcription
 - Timestamped timeline
+- On-demand transformed video frames for readable timeline rows, held in a bounded memory cache
 - Timestamp tap to seek video
-- Codex prompt generation
+- Direct Codex review instruction generation
 - Markdown and JSON exports
 - Share review package
 - Korean-first UI with English option
@@ -96,7 +97,8 @@ Existing issue-related models can remain as future code only if they do not driv
 ## Shared Processing Pipeline
 
 ```text
-imported video/audio -> audio extraction/read -> audio chunks -> chunk transcription -> timestamp merge -> timeline grouping -> Codex prompt -> exports -> ReviewDetailView
+imported video/audio -> audio extraction/read -> audio chunks -> chunk transcription -> timestamp merge -> timeline grouping -> direct Codex instructions -> exports -> ReviewDetailView
+```
 
 Video optimization is intentionally separate:
 
@@ -105,7 +107,8 @@ ready transcript -> user requests Codex package -> 540p transcode -> size check/
 ```
 
 Transcription never waits for video compression. Cancelling or failing compression preserves the completed transcript and the previous successful optimized-video set.
-```
+
+Readable screen-recording rows request their frame from `VideoFrameExtractionService` at `segment.startTime`. Each request owns an `AVAssetImageGenerator`, applies the preferred track transform, uses bounded output and a small time tolerance, and normalizes task cancellation. `TimelineFrameCache` keys images by standardized video path and rounded decisecond. Frame failure is a neutral UI state and never blocks the transcript or timestamp seek.
 
 ## Transcription
 

@@ -1,5 +1,7 @@
 # ReviewTrace Build Week 프로젝트 기획서
 
+> **2026-07-21 범위 안내:** 이 문서는 초기 조사안입니다. Build Week 구현 범위는 `ReviewTrace_OpenAI_Build_Week_Final_Plan.md`가 우선합니다. 아래의 OpenAI 런타임 API·프록시·AI 이슈 카드 계획은 현재 P0 구현 범위가 아닙니다.
+
 > 문서 상태: Build Week 실행 계획 1차안  
 > 작성일: 2026-07-21  
 > 실제 저장소 경로: `/Users/changwoo/Desktop/Codexin/ReviewTrace`  
