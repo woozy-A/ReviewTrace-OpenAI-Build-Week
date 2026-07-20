@@ -400,7 +400,11 @@ private struct TimelineTabView: View {
 
     var body: some View {
         let readableSegments = ReadableTimelineBuilder().build(from: session.transcriptSegments)
-        let displayedSegments = displayMode == .readable && !readableSegments.isEmpty ? readableSegments : session.transcriptSegments
+        let isReadableMode = displayMode == .readable && !readableSegments.isEmpty
+        let displayedSegments = isReadableMode ? readableSegments : session.transcriptSegments
+        let previewVideoURL = (
+            isReadableMode && session.resolvedSourceKind == .screenRecording
+        ) ? session.videoURL : nil
 
         VStack(alignment: .leading, spacing: 12) {
             if session.transcriptSegments.isEmpty {
@@ -421,9 +425,16 @@ private struct TimelineTabView: View {
                     .foregroundStyle(.secondary)
                     .lineSpacing(2)
 
-                ForEach(displayedSegments) { segment in
-                    TimelineRow(segment: segment, copy: copy, sourceKind: session.resolvedSourceKind) {
-                        onSeek(segment.startTime)
+                LazyVStack(spacing: 12) {
+                    ForEach(displayedSegments) { segment in
+                        TimelineRow(
+                            segment: segment,
+                            copy: copy,
+                            sourceKind: session.resolvedSourceKind,
+                            previewVideoURL: previewVideoURL
+                        ) {
+                            onSeek(segment.startTime)
+                        }
                     }
                 }
             }
@@ -435,11 +446,19 @@ private struct TimelineRow: View {
     var segment: TranscriptSegment
     var copy: AppCopy
     var sourceKind: ReviewSourceKind
+    var previewVideoURL: URL?
     var onSeek: () -> Void
 
     var body: some View {
         Button(action: onSeek) {
             HStack(alignment: .top, spacing: 12) {
+                if let previewVideoURL {
+                    TimelineFramePreview(
+                        videoURL: previewVideoURL,
+                        timestamp: segment.startTime
+                    )
+                }
+
                 VStack(alignment: .leading, spacing: 4) {
                     Text(ReviewTimeFormatter.clock(segment.startTime))
                         .font(.title3.weight(.semibold).monospacedDigit())
@@ -469,6 +488,68 @@ private struct TimelineRow: View {
         .buttonStyle(.plain)
         .accessibilityLabel("\(ReviewTimeFormatter.clock(segment.startTime)), \(segment.text)")
         .accessibilityHint(copy.jumpToSource(for: sourceKind))
+    }
+}
+
+private struct TimelineFramePreview: View {
+    let videoURL: URL
+    let timestamp: TimeInterval
+
+    @State private var image: UIImage?
+    @State private var isLoading = false
+    @State private var didFail = false
+
+    private var taskID: String {
+        let scaledTimestamp = max(0, timestamp) * 10
+        let timeKey: String
+        if timestamp.isFinite,
+           scaledTimestamp.isFinite,
+           scaledTimestamp <= Double(Int.max) {
+            timeKey = String(Int(scaledTimestamp.rounded()))
+        } else {
+            timeKey = "invalid"
+        }
+        return "\(videoURL.standardizedFileURL.path)#\(timeKey)"
+    }
+
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                .fill(.secondary.opacity(0.10))
+
+            if let image {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+            } else if isLoading {
+                ProgressView()
+                    .controlSize(.small)
+            } else {
+                Image(systemName: didFail ? "photo.badge.exclamationmark" : "photo")
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .frame(width: 72, height: 128)
+        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+        .accessibilityHidden(true)
+        .task(id: taskID) {
+            image = nil
+            isLoading = true
+            didFail = false
+
+            do {
+                image = try await TimelineFrameProvider().frame(
+                    from: videoURL,
+                    at: timestamp
+                )
+            } catch is CancellationError {
+                return
+            } catch {
+                didFail = true
+            }
+
+            isLoading = false
+        }
     }
 }
 
