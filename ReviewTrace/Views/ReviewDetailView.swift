@@ -560,7 +560,7 @@ private struct ExportTabView: View {
                         VStack(alignment: .leading, spacing: 4) {
                             Text(copy.shareOptionsTitle)
                                 .font(.headline)
-                            Text(copy.shareOptionsSummary)
+                            Text(copy.codexPackageSummary(for: sourceKind))
                                 .font(.footnote)
                                 .foregroundStyle(.secondary)
                                 .lineSpacing(2)
@@ -571,24 +571,24 @@ private struct ExportTabView: View {
                         optimizedVideoControl
                     }
 
-                    if let chatGPTReviewURL = session.chatGPTReviewURL {
-                        ShareLink(item: chatGPTReviewURL) {
-                            Label(copy.shareToChatGPT, systemImage: "message.fill")
-                                .frame(maxWidth: .infinity)
-                        }
-                        .buttonStyle(ReviewTracePrimaryButtonStyle())
-                    }
-
                     if packageIsReady {
                         ShareLink(items: codexPackageItems) {
                             Label(copy.shareVideoAndReview, systemImage: "paperplane")
                                 .frame(maxWidth: .infinity)
                         }
-                        .buttonStyle(ReviewTraceSecondaryButtonStyle())
+                        .buttonStyle(ReviewTracePrimaryButtonStyle())
                     } else if requiresOptimizedVideo {
                         Label(copy.optimizedVideoRequired, systemImage: "info.circle")
                             .font(.footnote)
                             .foregroundStyle(.secondary)
+                    }
+
+                    if let chatGPTReviewURL = session.chatGPTReviewURL {
+                        ShareLink(item: chatGPTReviewURL) {
+                            Label(copy.shareToChatGPT, systemImage: "doc.text")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(ReviewTraceSecondaryButtonStyle())
                     }
 
                     if packageIsReady {

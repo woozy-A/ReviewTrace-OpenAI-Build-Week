@@ -94,35 +94,15 @@ struct CodexPromptService {
         let timelineLines = readableSegments.map { segment in
             "[\(ReviewTimeFormatter.clock(segment.startTime))] \(segment.text)"
         }
-        let sourceIntro: String
-        let sourceCaution: String
-        let videoPartGuide = VideoPartTimelineGuide().promptBlock(for: session, language: .korean)
-        switch session.resolvedSourceKind {
-        case .screenRecording:
-            sourceIntro = "첨부된 앱 화면 녹화를 리뷰해 주세요."
-            sourceCaution = "말하는 사람이 헷갈림, 부족함, 깨짐, 안 보임, 너무 복잡함, 작동하지 않음 등을 언급한 순간을 우선적으로 봐주세요."
-        case .audioFile:
-            sourceIntro = "첨부된 음성 리뷰 전사를 기준으로 앱 개발 방향과 작업 목록을 정리해 주세요."
-            sourceCaution = "화면 영상은 없으므로, 발화 내용에서 확인 가능한 범위 안에서만 제안해 주세요."
-        }
 
         return """
-        \(sourceIntro)
-        아래 타임스탬프 전사는 사용자가 말한 내용을 읽기 좋게 묶은 타임라인입니다.
+        \(directReviewInstructions(for: session, language: .korean))
+
+        아래 타임스탬프 전사는 리뷰어가 말한 내용을 읽기 좋게 묶은 타임라인입니다.
         원문에 가까운 전사 행은 full-transcript.md의 "원문 타임라인" 섹션에 남아 있습니다.
-        \(sourceCaution)
-        \(videoPartGuide)
-        수정 제안은 현재 디자인 방향을 유지하고, 가장 안전한 최소 변경부터 제안해 주세요.
 
         읽기용 리뷰 타임라인:
         \(timelineLines.joined(separator: "\n"))
-
-        요청:
-        1. 주요 이슈를 정리해 주세요.
-        2. 반복되는 코멘트를 묶어 주세요.
-        3. 구현 수준의 수정 방향을 제안해 주세요.
-        4. 수정 가능성이 높은 화면/컴포넌트를 짚어 주세요.
-        5. Codex가 처리할 우선순위 작업 목록을 만들어 주세요.
         """
     }
 
@@ -131,59 +111,34 @@ struct CodexPromptService {
         let timelineLines = readableSegments.map { segment in
             "[\(ReviewTimeFormatter.clock(segment.startTime))] \(segment.text)"
         }
-        let sourceIntro: String
-        let sourceCaution: String
-        let videoPartGuide = VideoPartTimelineGuide().promptBlock(for: session, language: .english)
-        switch session.resolvedSourceKind {
-        case .screenRecording:
-            sourceIntro = "Use this review to improve the app shown in the attached screen recording."
-            sourceCaution = "Prioritize moments where the speaker says something is confusing, missing, broken, hard to see, too complex, or not working."
-        case .audioFile:
-            sourceIntro = "Use this audio review transcript to organize app development direction and implementation tasks."
-            sourceCaution = "No screen recording is attached, so only make suggestions that are supported by the spoken transcript."
-        }
 
         return """
-        \(sourceIntro)
-        The timestamped transcript below is a readable timeline grouped from the speaker's review.
+        \(directReviewInstructions(for: session, language: .english))
+
+        The timestamped transcript below is a readable timeline grouped from the reviewer's speech.
         The closer-to-original rows remain in the "Original Timeline" section of full-transcript.md.
-        \(sourceCaution)
-        \(videoPartGuide)
-        Preserve the current design direction and suggest minimal safe changes first.
 
         Readable review timeline:
         \(timelineLines.joined(separator: "\n"))
-
-        Please:
-        1. Identify the major issues.
-        2. Group repeated comments.
-        3. Suggest implementation-level fixes.
-        4. Identify likely screens/components to modify.
-        5. Give a prioritized task list for Codex.
         """
     }
 
     private func generateBriefKorean(for session: ReviewSession) -> String {
         let ranges = fiveMinuteRanges(for: session, language: .korean)
         let readableSegments = ReadableTimelineBuilder().build(from: session.transcriptSegments)
-        let candidateLines = issueCandidateLines(in: readableSegments, limit: 16)
-        let sourceLine = session.resolvedSourceKind == .audioFile
-            ? "첨부된 음성 파일과 전체 전사 파일을 함께 검토해 주세요. 화면 영상은 없으므로 발화 내용에서 확인 가능한 범위 안에서만 제안해 주세요."
-            : "첨부된 앱 화면 녹화와 전체 전사 파일을 함께 리뷰해 주세요."
         let recordingLine = session.resolvedSourceKind == .audioFile
-            ? "- audio 파일: 회의 녹음 또는 음성 리뷰 원본"
-            : "- recording 파일: 실제 앱 화면 흐름 확인용"
-        let videoPartGuide = VideoPartTimelineGuide().promptBlock(for: session, language: .korean)
+            ? "- audio 파일: 리뷰어가 말한 내용의 원본"
+            : "- recording 파일 또는 분할 영상: 실제 화면 상태와 조작 흐름 확인용"
 
         return """
-        \(sourceLine)
-        이 파일은 요약본이 아니라 Codex에게 작업 방향을 알려주는 프롬프트입니다.
+        \(directReviewInstructions(for: session, language: .korean))
+
+        이 프롬프트는 전체 전사를 중복해서 넣지 않는 긴 리뷰용 전달문입니다.
+        구현 전에 full-transcript.md 전체를 읽어 주세요.
 
         기본 첨부 파일:
         \(recordingLine)
         - full-transcript.md: 읽기용 타임라인과 원문 타임라인
-
-        \(videoPartGuide)
 
         선택 첨부 파일:
         - review-data.json: 자동화나 구조화 처리가 필요할 때 참고
@@ -194,40 +149,25 @@ struct CodexPromptService {
 
         주요 구간 index:
         \(ranges.joined(separator: "\n"))
-
-        사용자가 문제라고 말했을 가능성이 높은 문장 후보:
-        \(candidateLines.isEmpty ? "- 후보를 자동으로 고르지 못했습니다. 전체 transcript를 기준으로 검토해 주세요." : candidateLines.joined(separator: "\n"))
-
-        요청:
-        1. 전체 transcript 파일을 기준으로 주요 UX/UI/버그 이슈를 찾아 주세요.
-        2. 반복되는 코멘트를 묶어 주세요.
-        3. timestamp를 유지해서 근거를 표시해 주세요.
-        4. 구현 수준의 수정 방향을 제안해 주세요.
-        5. Codex가 처리할 우선순위 작업 목록을 만들어 주세요.
         """
     }
 
     private func generateBriefEnglish(for session: ReviewSession) -> String {
         let ranges = fiveMinuteRanges(for: session, language: .english)
         let readableSegments = ReadableTimelineBuilder().build(from: session.transcriptSegments)
-        let candidateLines = issueCandidateLines(in: readableSegments, limit: 16)
-        let sourceLine = session.resolvedSourceKind == .audioFile
-            ? "Review the attached audio file and full transcript. No screen recording is attached, so only make suggestions supported by the spoken transcript."
-            : "Review the attached app screen recording and the full transcript file."
         let recordingLine = session.resolvedSourceKind == .audioFile
-            ? "- audio file: original meeting recording or spoken review"
-            : "- recording file: use it to inspect the actual app flow"
-        let videoPartGuide = VideoPartTimelineGuide().promptBlock(for: session, language: .english)
+            ? "- audio file: the original record of what the reviewer said"
+            : "- recording file or split video parts: inspect the actual screen state and interaction flow"
 
         return """
-        \(sourceLine)
-        This file is not a summary. It is a prompt that tells Codex how to use the attached review materials.
+        \(directReviewInstructions(for: session, language: .english))
+
+        This handoff omits the full transcript body for a long review.
+        Read all of full-transcript.md before implementing changes.
 
         Default attached files:
         \(recordingLine)
         - full-transcript.md: readable timeline and original timeline
-
-        \(videoPartGuide)
 
         Optional attached files:
         - review-data.json: structured data for automation or deeper processing
@@ -238,17 +178,110 @@ struct CodexPromptService {
 
         Section index:
         \(ranges.joined(separator: "\n"))
-
-        Candidate sentences where the user likely mentioned problems:
-        \(candidateLines.isEmpty ? "- No automatic candidates were selected. Review the full transcript." : candidateLines.joined(separator: "\n"))
-
-        Please:
-        1. Identify major UX/UI/bug issues from the full transcript.
-        2. Group repeated comments.
-        3. Preserve timestamps as evidence.
-        4. Suggest implementation-level fixes.
-        5. Give a prioritized task list for Codex.
         """
+    }
+
+    // STUDY: 전체/긴 리뷰 경로가 갈라져도 근거와 최종 판단 계약은 한곳에서 공유합니다.
+    private func directReviewInstructions(for session: ReviewSession, language: AppLanguage) -> String {
+        let videoPartGuide = VideoPartTimelineGuide().promptBlock(for: session, language: language)
+
+        switch language {
+        case .korean:
+            let sourceContract: String
+            let visualReferenceRule: String
+            let ambiguityEvidence: String
+
+            switch session.resolvedSourceKind {
+            case .screenRecording:
+                sourceContract = """
+                첨부 자료는 하나의 실제 기기 리뷰입니다.
+                - 영상은 화면 상태와 조작 흐름의 기준입니다.
+                - 타임스탬프 전사는 리뷰어가 실제로 말한 내용의 기준입니다.
+                - 저장소는 구현 맥락의 기준입니다.
+                - 무엇을 최종 제품에 반영할지는 사람 리뷰어가 결정합니다.
+                """
+                visualReferenceRule = "“여기”, “이 버튼”, “아까 화면” 같은 표현은 같은 타임스탬프의 영상을 확인한 뒤 해석해 주세요."
+                ambiguityEvidence = "영상, 전사, 저장소"
+            case .audioFile:
+                sourceContract = """
+                첨부 자료는 화면 영상이 없는 음성 리뷰입니다.
+                - 첨부 음성과 타임스탬프 전사는 리뷰어가 실제로 말한 내용의 기준입니다.
+                - 저장소는 구현 맥락의 기준입니다.
+                - 화면 상태와 조작 흐름을 보여 주는 영상 근거는 없습니다. 이를 추정하지 마세요.
+                - 무엇을 최종 제품에 반영할지는 사람 리뷰어가 결정합니다.
+                """
+                visualReferenceRule = "“여기”, “이 버튼”, “아까 화면” 같은 시각적 표현은 전사와 저장소만으로 대상을 확정할 수 있을 때만 구현하고, 그렇지 않으면 모호한 항목으로 남겨 주세요."
+                ambiguityEvidence = "음성, 전사, 저장소"
+            }
+
+            return """
+            현재 열려 있는 저장소의 앱을 수정해 주세요.
+
+            \(sourceContract)
+
+            \(videoPartGuide)
+
+            작업 규칙:
+            1. 저장소의 AGENTS.md, README, 로컬 지침과 현재 아키텍처를 먼저 읽어 주세요.
+            2. \(visualReferenceRule)
+            3. 명확하게 요청된 수정은 직접 구현해 주세요.
+            4. 칭찬, 화면 설명, 단순 내레이션, 해결되지 않은 고민은 작업으로 만들지 마세요.
+            5. 모든 문장을 독립 작업으로 바꾸지 말고, 명확한 요청만 처리해 주세요.
+            6. 나중에 나온 명시적 정정은 앞선 요청보다 우선합니다.
+            7. 기존 디자인과 아키텍처 안에서 가장 작고 안전한 변경을 우선해 주세요.
+            8. \(ambiguityEvidence)를 확인해도 모호한 항목만 질문으로 남겨 주세요.
+            9. 수정 후 빌드와 관련 테스트를 실행해 주세요.
+            10. 완료 보고에는 대응한 타임스탬프, 변경 파일, 검증 결과, 남은 모호한 항목을 포함해 주세요.
+            """
+
+        case .english:
+            let sourceContract: String
+            let visualReferenceRule: String
+            let ambiguityEvidence: String
+
+            switch session.resolvedSourceKind {
+            case .screenRecording:
+                sourceContract = """
+                Treat the attachments as one real-device review record.
+                - The video is the source of truth for screen state and interaction flow.
+                - The timestamped transcript is the source of truth for what the reviewer said.
+                - The repository is the source of truth for implementation context.
+                - The human reviewer makes the final product decision.
+                """
+                visualReferenceRule = "Resolve phrases such as “this,” “here,” and “that button” by inspecting the video at the same timestamp."
+                ambiguityEvidence = "the video, transcript, and repository"
+            case .audioFile:
+                sourceContract = """
+                This is an audio-only review with no screen recording attached.
+                - The attached audio and timestamped transcript are the source of truth for what the reviewer said.
+                - The repository is the source of truth for implementation context.
+                - There is no visual evidence for screen state or interaction flow. Do not infer it.
+                - The human reviewer makes the final product decision.
+                """
+                visualReferenceRule = "For visual phrases such as “this,” “here,” and “that button,” implement only when the transcript and repository identify the target; otherwise report the item as ambiguous."
+                ambiguityEvidence = "the audio, transcript, and repository"
+            }
+
+            return """
+            Modify the app in the currently open repository using this review.
+
+            \(sourceContract)
+
+            \(videoPartGuide)
+
+            Working rules:
+            1. Read AGENTS.md, README, local instructions, and the existing architecture first.
+            2. \(visualReferenceRule)
+            3. Implement explicit requested changes directly.
+            4. Do not turn praise, screen description, narration, or unresolved brainstorming into tasks.
+            5. Do not convert every sentence into a separate task; act only on clear requests.
+            6. A later explicit correction overrides an earlier request.
+            7. Prefer the smallest safe change consistent with the current design and architecture.
+            8. Ask only about items that remain ambiguous after checking \(ambiguityEvidence).
+            9. Build and run relevant tests after editing.
+            10. In the final report, map addressed timestamps to changed files and verification results, and list anything still ambiguous.
+            """
+        }
     }
 
     private func fiveMinuteRanges(for session: ReviewSession, language: AppLanguage) -> [String] {
@@ -275,17 +308,4 @@ struct CodexPromptService {
         return lines
     }
 
-    private func issueCandidateLines(in segments: [TranscriptSegment], limit: Int) -> [String] {
-        let keywords = [
-            "문제", "안 ", "안되", "안 돼", "어색", "중복", "불편", "헷갈", "모르", "이상", "없애", "바꿔", "개선",
-            "missing", "broken", "confusing", "hard", "issue", "bug", "not working"
-        ]
-
-        return segments
-            .filter { segment in
-                keywords.contains { segment.text.localizedCaseInsensitiveContains($0) }
-            }
-            .prefix(limit)
-            .map { "- [\(ReviewTimeFormatter.clock($0.startTime))] \($0.text)" }
-    }
 }

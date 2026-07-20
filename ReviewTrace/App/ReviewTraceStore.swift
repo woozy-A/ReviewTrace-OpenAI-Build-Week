@@ -1127,44 +1127,44 @@ struct AppCopy {
     }
     var recommendedExport: String { language == .korean ? "추천" : "Recommended" }
     var otherExportFormats: String { language == .korean ? "다른 형식" : "Other Formats" }
-    var shareOptionsTitle: String { language == .korean ? "공유 방식 선택" : "Choose What to Share" }
+    var shareOptionsTitle: String { language == .korean ? "직접 리뷰 전달" : "Direct Review Handoff" }
     var shareOptionsSummary: String {
         language == .korean
-            ? "받는 앱에 맞게 단일 문서, 전체 작업 패키지, 미디어 파일 중에서 선택하세요."
-            : "Choose a single document, the complete work package, or media files for the receiving app."
+            ? "화면 녹화 또는 음성, 타임스탬프 정렬 전사, 직접 구현 지시문을 하나의 패키지로 전달합니다."
+            : "Share the recording or audio, timestamp-aligned transcript, and direct implementation instructions as one package."
     }
-    var codexPackageTitle: String { language == .korean ? "Codex 작업 패키지" : "Codex Work Package" }
+    var codexPackageTitle: String { language == .korean ? "직접 리뷰 전달" : "Direct Review Handoff" }
     func codexPackageSummary(for sourceKind: ReviewSourceKind) -> String {
         switch sourceKind {
         case .screenRecording:
             return language == .korean
-                ? "영상, Codex 프롬프트, 전체 전사를 공유합니다. 긴 영상은 압축본을 우선 사용합니다."
-                : "Share the video, Codex prompt, and full transcript. Long videos use an optimized copy first."
+                ? "화면 녹화 또는 최적화 분할 영상, 타임스탬프 정렬 전사, 직접 구현 지시문을 함께 전달합니다."
+                : "Share the screen recording or optimized video parts, timestamp-aligned transcript, and direct implementation instructions."
         case .audioFile:
             return language == .korean
-                ? "음성 파일, Codex 프롬프트, 전체 전사를 하나의 패키지로 공유합니다."
-                : "Share the audio file, Codex prompt, and full transcript together."
+                ? "음성 녹음, 타임스탬프 정렬 전사, 직접 구현 지시문을 함께 전달합니다."
+                : "Share the audio recording, timestamp-aligned transcript, and direct implementation instructions."
         }
     }
-    var codexPromptTitle: String { language == .korean ? "Codex 작업 프롬프트" : "Codex Work Prompt" }
+    var codexPromptTitle: String { language == .korean ? "직접 리뷰 전달" : "Direct Review Handoff" }
     func codexPromptSummary(for sourceKind: ReviewSourceKind) -> String {
         switch sourceKind {
         case .screenRecording:
             return language == .korean
-                ? "이 리뷰 영상과 타임라인을 기준으로 UX/UI/버그 문제를 찾도록 안내합니다."
-                : "Guides Codex to inspect UX, UI, and bug issues from this review timeline."
+                ? "녹화와 타임라인을 사용해 리뷰어가 명시한 요청을 코드에 직접 구현하도록 안내합니다."
+                : "Use the recording and timeline to implement the reviewer's explicit requests directly in code."
         case .audioFile:
             return language == .korean
-                ? "이 음성 리뷰 전사를 기준으로 개발 방향과 작업 목록을 정리하도록 안내합니다."
-                : "Guides Codex to organize development direction and tasks from this audio review transcript."
+                ? "음성 녹음과 타임스탬프 정렬 전사를 사용해 리뷰어가 명시한 요청을 코드에 직접 구현하도록 안내합니다."
+                : "Use the audio recording and timestamp-aligned transcript to implement the reviewer's explicit requests directly in code."
         }
     }
     var includedContents: String { language == .korean ? "포함 내용" : "Included" }
-    var includedVideo: String { language == .korean ? "영상 파일 또는 540p 분할 압축본" : "Video file or split 540p copies" }
-    var includedAudio: String { language == .korean ? "음성 파일" : "Audio file" }
-    var includedTimeline: String { language == .korean ? "타임라인 전사" : "Timeline transcript" }
-    var includedPrompt: String { language == .korean ? "Codex 프롬프트" : "Codex prompt" }
-    var fullPrompt: String { language == .korean ? "프롬프트 전문" : "Full Prompt" }
+    var includedVideo: String { language == .korean ? "화면 녹화 또는 최적화 분할 영상" : "Screen recording or optimized video parts" }
+    var includedAudio: String { language == .korean ? "음성 녹음" : "Audio recording" }
+    var includedTimeline: String { language == .korean ? "타임스탬프 정렬 전사" : "Timestamp-aligned transcript" }
+    var includedPrompt: String { language == .korean ? "직접 구현 지시문" : "Direct implementation instructions" }
+    var fullPrompt: String { language == .korean ? "리뷰 지시문 전문" : "Full Review Instructions" }
     var noTimeline: String { language == .korean ? "타임라인 없음" : "No Timeline" }
     func jumpToSource(for sourceKind: ReviewSourceKind) -> String {
         switch sourceKind {
@@ -1175,9 +1175,9 @@ struct AppCopy {
         }
     }
     var copied: String { language == .korean ? "복사됨" : "Copied" }
-    var copyCodexPrompt: String { language == .korean ? "Codex 프롬프트 복사" : "Copy Codex Prompt" }
-    var shareToChatGPT: String { language == .korean ? "ChatGPT로 보내기" : "Send to ChatGPT" }
-    var shareVideoAndReview: String { language == .korean ? "Codex 작업 패키지 공유" : "Share Codex Work Package" }
+    var copyCodexPrompt: String { language == .korean ? "리뷰 지시문 복사" : "Copy Review Instructions" }
+    var shareToChatGPT: String { language == .korean ? "ChatGPT에 단일 문서 공유" : "Share Single Document with ChatGPT" }
+    var shareVideoAndReview: String { language == .korean ? "Codex로 리뷰 전달" : "Share Review with Codex" }
     func shareMediaOnly(for sourceKind: ReviewSourceKind, partCount: Int) -> String {
         switch sourceKind {
         case .screenRecording:
