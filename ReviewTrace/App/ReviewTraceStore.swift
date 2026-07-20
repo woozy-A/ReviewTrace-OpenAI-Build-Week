@@ -9,6 +9,11 @@ final class ReviewTraceStore {
             UserDefaults.standard.set(appLanguage.rawValue, forKey: Self.appLanguageDefaultsKey)
         }
     }
+    var transcriptionLanguage: AppLanguage = .korean {
+        didSet {
+            UserDefaults.standard.set(transcriptionLanguage.rawValue, forKey: Self.transcriptionLanguageDefaultsKey)
+        }
+    }
     var sessions: [ReviewSession] = []
     var isProcessing = false
     var processingTitle = "리뷰 처리 중"
@@ -16,7 +21,6 @@ final class ReviewTraceStore {
     var processingSnapshot: ReviewProcessingSnapshot?
     var videoCompressionSnapshot: VideoCompressionSnapshot?
     var errorMessage: String?
-    var defaultLanguageIdentifier = AppConfiguration.defaultLanguageIdentifier
 
     private let metadataStore: BroadcastSessionMetadataStore
     private let persistence: ReviewSessionPersistence
@@ -28,6 +32,7 @@ final class ReviewTraceStore {
     private var deletedSessionIDs: Set<UUID> = []
     private var activeProcessingSessionID: UUID?
     private static let appLanguageDefaultsKey = "ReviewTrace.appLanguage"
+    private static let transcriptionLanguageDefaultsKey = "ReviewTrace.transcriptionLanguage"
 
     init(
         metadataStore: BroadcastSessionMetadataStore = BroadcastSessionMetadataStore(),
@@ -40,6 +45,10 @@ final class ReviewTraceStore {
         if let storedValue = UserDefaults.standard.string(forKey: Self.appLanguageDefaultsKey),
            let storedLanguage = AppLanguage(rawValue: storedValue) {
             self.appLanguage = storedLanguage
+        }
+        if let storedValue = UserDefaults.standard.string(forKey: Self.transcriptionLanguageDefaultsKey),
+           let storedLanguage = AppLanguage(rawValue: storedValue) {
+            self.transcriptionLanguage = storedLanguage
         }
         loadSessions()
     }
@@ -115,6 +124,8 @@ final class ReviewTraceStore {
             return
         }
 
+        // STUDY: Capture the choice now so later settings changes cannot alter this review mid-processing.
+        let selectedTranscriptionLanguage = transcriptionLanguage
         let operation = Task { @MainActor in
             await performImportMediaFile(
                 at: sourceURL,
@@ -123,7 +134,8 @@ final class ReviewTraceStore {
                 importingTitle: importingTitle,
                 destinationBaseName: destinationBaseName,
                 fallbackExtension: fallbackExtension,
-                ownsSourceFile: ownsSourceFile
+                ownsSourceFile: ownsSourceFile,
+                transcriptionLanguage: selectedTranscriptionLanguage
             )
         }
         processingOperationTask = operation
@@ -138,7 +150,8 @@ final class ReviewTraceStore {
         importingTitle: String,
         destinationBaseName: String,
         fallbackExtension: String,
-        ownsSourceFile: Bool
+        ownsSourceFile: Bool,
+        transcriptionLanguage: AppLanguage
     ) async {
         isProcessing = true
         if videoCompressionSnapshot?.isActive != true {
@@ -187,6 +200,7 @@ final class ReviewTraceStore {
                 id: metadata.sessionId,
                 title: defaultTitle,
                 sourceKind: sourceKind,
+                transcriptionLanguage: transcriptionLanguage,
                 createdAt: metadata.createdAt,
                 broadcastStartedAt: nil,
                 effectiveReviewStartedAt: nil,
@@ -901,6 +915,24 @@ struct AppCopy {
             ? "개발 회의 녹음이나 음성 메모를 타임라인 전사로 바꿉니다."
             : "Turn development meeting recordings or voice notes into a timeline transcript."
     }
+    var spokenReviewLanguage: String {
+        language == .korean ? "이번 리뷰에서 말한 언어" : "Language Spoken in This Review"
+    }
+    var spokenReviewLanguageHelp: String {
+        language == .korean
+            ? "가져올 영상이나 음성에서 실제로 말한 언어를 선택하세요. 앱 표시 언어와는 별개입니다."
+            : "Choose the language actually spoken in the video or audio. This is separate from the app language."
+    }
+    func transcriptionLanguageName(_ transcriptionLanguage: AppLanguage, includesLocale: Bool = false) -> String {
+        let name: String
+        switch transcriptionLanguage {
+        case .korean:
+            name = language == .korean ? "한국어" : "Korean"
+        case .english:
+            name = "English"
+        }
+        return includesLocale ? "\(name) (\(transcriptionLanguage.rawValue))" : name
+    }
     var recentReviews: String { language == .korean ? "최근 리뷰" : "Recent Reviews" }
     func recentReviewsLimit(_ count: Int) -> String {
         language == .korean ? "최근 리뷰 \(count)개" : "\(count) Recent Reviews"
@@ -990,7 +1022,12 @@ struct AppCopy {
     var processingTitle: String { language == .korean ? "처리 중..." : "Processing..." }
     var recordingFound: String { language == .korean ? "영상 가져오기 완료" : "Video imported" }
     var audioFound: String { language == .korean ? "오디오 읽는 중" : "Reading audio" }
-    var transcribingSpeech: String { language == .korean ? "음성 인식 중 (한국어)" : "Transcribing Korean speech..." }
+    func transcribingSpeech(_ transcriptionLanguage: AppLanguage) -> String {
+        let spokenLanguage = transcriptionLanguageName(transcriptionLanguage)
+        return language == .korean
+            ? "음성 인식 중 (\(spokenLanguage))"
+            : "Transcribing \(spokenLanguage) speech..."
+    }
     var buildingTimeline: String { language == .korean ? "타임라인 생성" : "Building timeline" }
     var creatingCodexPrompt: String { language == .korean ? "내보내기 파일 생성" : "Creating exports" }
     var progress: String { language == .korean ? "진행률" : "Progress" }
@@ -1055,12 +1092,13 @@ struct AppCopy {
         case .chunkingAudio:
             return language == .korean ? "오디오 구간 나누는 중" : "Splitting audio"
         case .transcribingChunks:
+            let spokenLanguage = transcriptionLanguageName(snapshot.resolvedTranscriptionLanguage)
             if snapshot.chunkCount > 0, let current = snapshot.currentChunkDisplayIndex {
                 return language == .korean
-                    ? "총 \(snapshot.chunkCount)개 구간 중 \(current)번째 전사 중"
-                    : "Transcribing chunk \(current) of \(snapshot.chunkCount)"
+                    ? "총 \(snapshot.chunkCount)개 구간 중 \(current)번째 \(spokenLanguage) 전사 중"
+                    : "Transcribing \(spokenLanguage) chunk \(current) of \(snapshot.chunkCount)"
             }
-            return transcribingSpeech
+            return transcribingSpeech(snapshot.resolvedTranscriptionLanguage)
         case .mergingTranscript:
             return buildingTimeline
         case .creatingExports:
@@ -1291,8 +1329,7 @@ struct AppCopy {
     var settingsTitle: String { language == .korean ? "설정" : "Settings" }
     var general: String { language == .korean ? "일반" : "General" }
     var appLanguage: String { language == .korean ? "앱 언어" : "App Language" }
-    var defaultLanguage: String { language == .korean ? "기본 언어" : "Default language" }
-    var secondaryLanguage: String { language == .korean ? "보조 언어" : "Secondary language" }
+    var defaultTranscriptionLanguage: String { language == .korean ? "기본 전사 언어" : "Default Transcription Language" }
     var exportDefaultFormat: String { language == .korean ? "내보내기 기본 형식" : "Default export format" }
     var privacy: String { language == .korean ? "개인정보" : "Privacy" }
     var localFileStorage: String { language == .korean ? "파일은 앱 내부에 저장" : "Files Stay in the App" }

@@ -18,8 +18,16 @@ struct SettingsView: View {
                     }
                 }
 
-                LabeledContent(copy.defaultLanguage, value: store.defaultLanguageIdentifier)
-                LabeledContent(copy.secondaryLanguage, value: AppConfiguration.secondaryLanguageIdentifier)
+                Picker(copy.defaultTranscriptionLanguage, selection: Binding(
+                    get: { store.transcriptionLanguage },
+                    set: { store.transcriptionLanguage = $0 }
+                )) {
+                    ForEach(AppLanguage.allCases) { language in
+                        Text(copy.transcriptionLanguageName(language, includesLocale: true)).tag(language)
+                    }
+                }
+                .disabled(store.isBackgroundWorkActive)
+
                 LabeledContent(copy.exportDefaultFormat, value: copy.shareVideoAndReview)
             }
 

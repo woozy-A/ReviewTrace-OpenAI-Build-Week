@@ -12,6 +12,7 @@ struct HomeView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 header
+                spokenLanguagePicker
                 primaryActions
                 howToRecord
                 recentReviews
@@ -22,6 +23,17 @@ struct HomeView: View {
         .background(ReviewTraceStyle.screenBackground.ignoresSafeArea())
         .navigationTitle("ReviewTrace")
         .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private var spokenLanguagePicker: some View {
+        SpokenLanguagePicker(
+            selection: Binding(
+                get: { store.transcriptionLanguage },
+                set: { store.transcriptionLanguage = $0 }
+            ),
+            copy: store.copy
+        )
+        .disabled(store.isBackgroundWorkActive)
     }
 
     @ViewBuilder
@@ -181,6 +193,33 @@ struct HomeView: View {
         }
     }
 
+}
+
+struct SpokenLanguagePicker: View {
+    @Binding var selection: AppLanguage
+    var copy: AppCopy
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(copy.spokenReviewLanguage)
+                .font(.headline)
+
+            Picker(copy.spokenReviewLanguage, selection: $selection) {
+                ForEach(AppLanguage.allCases) { language in
+                    Text(copy.transcriptionLanguageName(language, includesLocale: true))
+                        .tag(language)
+                }
+            }
+            .pickerStyle(.segmented)
+
+            Text(copy.spokenReviewLanguageHelp)
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .padding(14)
+        .reviewTraceCard()
+    }
 }
 
 struct ReviewRow: View {

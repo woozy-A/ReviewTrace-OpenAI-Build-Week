@@ -104,7 +104,18 @@ struct AudioChunkingService {
         return url
     }
 
-    func transcriptURL(for chunk: AudioChunk, in sessionDirectory: URL) throws -> URL {
+    func transcriptURL(
+        for chunk: AudioChunk,
+        in sessionDirectory: URL,
+        localeIdentifier: String
+    ) throws -> URL {
+        let normalizedLocale = localeIdentifier.replacingOccurrences(of: "_", with: "-")
+        return try chunksDirectory(in: sessionDirectory)
+            .appendingPathComponent(String(format: "chunk-%03d-transcript-%@", chunk.index, normalizedLocale))
+            .appendingPathExtension("json")
+    }
+
+    func legacyTranscriptURL(for chunk: AudioChunk, in sessionDirectory: URL) throws -> URL {
         try chunksDirectory(in: sessionDirectory)
             .appendingPathComponent(String(format: "chunk-%03d-transcript", chunk.index))
             .appendingPathExtension("json")
@@ -229,11 +240,13 @@ struct AudioChunkingService {
     }
 
     private func removeCachedTranscript(index: Int, chunksDirectory: URL) throws {
-        let transcriptURL = chunksDirectory
-            .appendingPathComponent(String(format: "chunk-%03d-transcript", index))
-            .appendingPathExtension("json")
-        if FileManager.default.fileExists(atPath: transcriptURL.path) {
-            try FileManager.default.removeItem(at: transcriptURL)
+        let prefix = String(format: "chunk-%03d-transcript", index)
+        let cachedURLs = try FileManager.default.contentsOfDirectory(
+            at: chunksDirectory,
+            includingPropertiesForKeys: nil
+        )
+        for cachedURL in cachedURLs where cachedURL.pathExtension == "json" && cachedURL.lastPathComponent.hasPrefix(prefix) {
+            try FileManager.default.removeItem(at: cachedURL)
         }
     }
 }

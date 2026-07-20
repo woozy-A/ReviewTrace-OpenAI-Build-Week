@@ -4,6 +4,7 @@ struct ReviewSession: Identifiable, Codable, Hashable {
     var id: UUID
     var title: String
     var sourceKind: ReviewSourceKind?
+    var transcriptionLanguage: AppLanguage?
     var createdAt: Date
     var broadcastStartedAt: Date?
     var effectiveReviewStartedAt: Date?
@@ -32,6 +33,7 @@ struct ReviewSession: Identifiable, Codable, Hashable {
         id: UUID = UUID(),
         title: String,
         sourceKind: ReviewSourceKind = .screenRecording,
+        transcriptionLanguage: AppLanguage = .korean,
         createdAt: Date = Date(),
         broadcastStartedAt: Date? = nil,
         effectiveReviewStartedAt: Date? = nil,
@@ -59,6 +61,7 @@ struct ReviewSession: Identifiable, Codable, Hashable {
         self.id = id
         self.title = title
         self.sourceKind = sourceKind
+        self.transcriptionLanguage = transcriptionLanguage
         self.createdAt = createdAt
         self.broadcastStartedAt = broadcastStartedAt
         self.effectiveReviewStartedAt = effectiveReviewStartedAt
@@ -86,6 +89,14 @@ struct ReviewSession: Identifiable, Codable, Hashable {
 
     var resolvedSourceKind: ReviewSourceKind {
         sourceKind ?? .screenRecording
+    }
+
+    var resolvedTranscriptionLanguage: AppLanguage {
+        transcriptionLanguage ?? .korean
+    }
+
+    var transcriptionLocaleIdentifier: String {
+        resolvedTranscriptionLanguage.rawValue
     }
 
     var primaryMediaURL: URL? {
@@ -312,6 +323,7 @@ struct ReviewProcessingSnapshot: Codable, Hashable {
     var sessionID: UUID
     var stage: ReviewProcessingStage
     var sourceKind: ReviewSourceKind?
+    var transcriptionLanguage: AppLanguage?
     var videoDuration: TimeInterval
     var extractedAudioDuration: TimeInterval?
     var extractedAudioFileSize: Int64?
@@ -333,6 +345,7 @@ struct ReviewProcessingSnapshot: Codable, Hashable {
         sessionID: UUID,
         stage: ReviewProcessingStage,
         sourceKind: ReviewSourceKind = .screenRecording,
+        transcriptionLanguage: AppLanguage = .korean,
         videoDuration: TimeInterval = 0,
         extractedAudioDuration: TimeInterval? = nil,
         extractedAudioFileSize: Int64? = nil,
@@ -353,6 +366,7 @@ struct ReviewProcessingSnapshot: Codable, Hashable {
         self.sessionID = sessionID
         self.stage = stage
         self.sourceKind = sourceKind
+        self.transcriptionLanguage = transcriptionLanguage
         self.videoDuration = videoDuration
         self.extractedAudioDuration = extractedAudioDuration
         self.extractedAudioFileSize = extractedAudioFileSize
@@ -369,6 +383,10 @@ struct ReviewProcessingSnapshot: Codable, Hashable {
         self.chunkURLs = chunkURLs
         self.startedAt = startedAt
         self.updatedAt = updatedAt
+    }
+
+    var resolvedTranscriptionLanguage: AppLanguage {
+        transcriptionLanguage ?? .korean
     }
 
     var progress: Double {

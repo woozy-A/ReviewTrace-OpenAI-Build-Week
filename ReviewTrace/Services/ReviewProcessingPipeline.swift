@@ -26,6 +26,7 @@ struct ReviewProcessingPipeline {
             sessionID: session.id,
             stage: sourceKind == .audioFile ? .importingAudio : .importingVideo,
             sourceKind: sourceKind,
+            transcriptionLanguage: working.resolvedTranscriptionLanguage,
             startedAt: startedAt,
             updatedAt: startedAt
         )
@@ -89,7 +90,12 @@ struct ReviewProcessingPipeline {
                 }
 
                 do {
-                    let localSegments = try await transcriptSegments(for: chunk, sessionDirectory: outputDirectory, warmUpDelay: working.warmUpDelay)
+                    let localSegments = try await transcriptSegments(
+                        for: chunk,
+                        sessionDirectory: outputDirectory,
+                        localeIdentifier: working.transcriptionLocaleIdentifier,
+                        warmUpDelay: working.warmUpDelay
+                    )
                     collectedRawSegments.append(contentsOf: applyOffset(to: localSegments, chunk: chunk))
                     await updateSnapshot {
                         $0.completedChunkCount += 1
@@ -204,21 +210,36 @@ struct ReviewProcessingPipeline {
     private func transcriptSegments(
         for chunk: AudioChunk,
         sessionDirectory: URL,
+        localeIdentifier: String,
         warmUpDelay: TimeInterval
     ) async throws -> [TranscriptSegment] {
-        let transcriptURL = try audioChunkingService.transcriptURL(for: chunk, in: sessionDirectory)
-        if FileManager.default.fileExists(atPath: transcriptURL.path) {
+        let transcriptURL = try audioChunkingService.transcriptURL(
+            for: chunk,
+            in: sessionDirectory,
+            localeIdentifier: localeIdentifier
+        )
+        // STUDY: Locale-specific caches keep an English retry from reusing Korean recognition results.
+        var cacheCandidates = [transcriptURL]
+        if localeIdentifier == AppConfiguration.defaultLanguageIdentifier {
+            cacheCandidates.append(try audioChunkingService.legacyTranscriptURL(for: chunk, in: sessionDirectory))
+        }
+
+        for cachedURL in cacheCandidates where FileManager.default.fileExists(atPath: cachedURL.path) {
             do {
-                return try readChunkTranscript(at: transcriptURL)
+                let cachedSegments = try readChunkTranscript(at: cachedURL)
+                if cachedURL != transcriptURL {
+                    try writeChunkTranscript(cachedSegments, to: transcriptURL)
+                }
+                return cachedSegments
             } catch {
-                try? FileManager.default.removeItem(at: transcriptURL)
+                try? FileManager.default.removeItem(at: cachedURL)
             }
         }
 
         try Task.checkCancellation()
         let localSegments = try await primaryTranscriptionService.transcribeAudio(
             at: chunk.url,
-            localeIdentifier: AppConfiguration.defaultLanguageIdentifier,
+            localeIdentifier: localeIdentifier,
             contextualStrings: transcriptCorrectionService.contextualStrings,
             warmUpDelay: chunk.index == 0 ? warmUpDelay : 0,
             chunkIndex: chunk.index,

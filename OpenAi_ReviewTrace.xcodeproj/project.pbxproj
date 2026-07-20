@@ -35,6 +35,7 @@
 		100000000000000000000031 /* TranscriptTimelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000031 /* TranscriptTimelineTests.swift */; };
 		100000000000000000000032 /* CodexPromptServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000032 /* CodexPromptServiceTests.swift */; };
 		100000000000000000000033 /* VideoFrameExtractionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000033 /* VideoFrameExtractionServiceTests.swift */; };
+		100000000000000000000034 /* ReviewSessionLanguageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000034 /* ReviewSessionLanguageTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		200000000000000000000031 /* TranscriptTimelineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptTimelineTests.swift; sourceTree = "<group>"; };
 		200000000000000000000032 /* CodexPromptServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexPromptServiceTests.swift; sourceTree = "<group>"; };
 		200000000000000000000033 /* VideoFrameExtractionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFrameExtractionServiceTests.swift; sourceTree = "<group>"; };
+		200000000000000000000034 /* ReviewSessionLanguageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSessionLanguageTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 				200000000000000000000031 /* TranscriptTimelineTests.swift */,
 				200000000000000000000032 /* CodexPromptServiceTests.swift */,
 				200000000000000000000033 /* VideoFrameExtractionServiceTests.swift */,
+				200000000000000000000034 /* ReviewSessionLanguageTests.swift */,
 			);
 			path = ReviewTraceTests;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				100000000000000000000031 /* TranscriptTimelineTests.swift in Sources */,
 				100000000000000000000032 /* CodexPromptServiceTests.swift in Sources */,
 				100000000000000000000033 /* VideoFrameExtractionServiceTests.swift in Sources */,
+				100000000000000000000034 /* ReviewSessionLanguageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,6 +20,15 @@ struct ImportVideoView: View {
                         .foregroundStyle(.secondary)
                 }
 
+                SpokenLanguagePicker(
+                    selection: Binding(
+                        get: { store.transcriptionLanguage },
+                        set: { store.transcriptionLanguage = $0 }
+                    ),
+                    copy: copy
+                )
+                .disabled(isImporting || store.isBackgroundWorkActive)
+
                 PhotosPicker(selection: $selectedVideoItem, matching: .videos) {
                     Label(isImporting ? copy.importing : copy.selectVideo, systemImage: "video.badge.plus")
                         .font(.headline)
