@@ -18,4 +18,5 @@
 
 - Generic iOS Debug compile: passed with signing disabled.
 - iPhone 17 Pro Simulator, iOS 26.5: 22 XCTest cases passed, 0 failed.
-- Real-iPhone narrated sample, processing benchmark, self-review before/after, Archive, and TestFlight: pending and not claimed as complete.
+- iPhone 15 Pro, iOS 26.5.2: signed build, install, launch, and 22 XCTest cases passed.
+- Unlocked real-iPhone UI/media QA, narrated sample, processing benchmark, self-review before/after, Archive, and TestFlight: pending and not claimed as complete.

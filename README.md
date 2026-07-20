@@ -11,7 +11,10 @@ The app preserves the human review record; it does not replace the human reviewe
 - The app and test targets build from `OpenAi_ReviewTrace.xcodeproj` with Xcode 26.6 (17F113).
 - The complete XCTest suite passes on an iPhone 17 Pro Simulator running iOS 26.5: 22 tests, 0 failures.
 - An unsigned generic iOS build succeeds with `CODE_SIGNING_ALLOWED=NO`.
-- Real-media processing, the public narrated sample, processing-time measurement, and the final real-iPhone self-review loop still require device evidence. They are not claimed as complete here.
+- A signed Debug build installs and launches on an iPhone 15 Pro running iOS 26.5.2, and all 22 XCTest cases pass on that physical phone.
+- Real-media processing, the public narrated sample, unlocked visual QA, processing-time measurement, and the final real-iPhone self-review loop still require device evidence. They are not claimed as complete here.
+
+See [Docs/Verification_2026-07-21.md](Docs/Verification_2026-07-21.md) for the exact proof boundary.
 
 ## What it does
 
@@ -178,7 +181,7 @@ Apple Speech is configured with `requiresOnDeviceRecognition = false`. Depending
 - Timeline thumbnails are memory-only previews for readable screen-recording rows and are not persistent exports.
 - Recordings that exceed the Codex compression threshold require the user to prepare optimized 540p parts before sharing the complete media package.
 - The app does not modify a repository itself, summarize issues with an OpenAI API, or make product decisions for the reviewer.
-- Real-iPhone sample processing time, end-to-end dogfooding, Archive, TestFlight, and public demo playback are not yet verified.
+- Real-iPhone sample processing time, unlocked end-to-end media dogfooding, Archive, TestFlight, and public demo playback are not yet verified.
 - No public project license has been selected in this repository.
 
 ## Build Week changelog
