@@ -44,6 +44,13 @@ This record separates compile/test evidence from UI, media, and release evidence
 - Result bundle: `/tmp/OpenAiReviewTrace-DeviceTests/Logs/Test/Test-ReviewTrace-2026.07.21_02-53-15-+0900.xcresult`
 - This physical-device result predates commit `51ad510`; the current 25-test English-locale revision needs a fresh device run.
 
+### Latest-revision physical-device attempt
+
+- The paired iPhone 15 Pro was available and Xcode compiled the latest revision for `iphoneos`.
+- Final signing stopped at `ReviewTrace.debug.dylib` with `errSecInternalComponent`.
+- `security find-identity -v -p codesigning` still reported the Apple Development identity as valid, so this is classified as a local keychain/private-key access blocker rather than a source compile failure.
+- Because signing did not finish, the latest revision was not installed or launched on the phone in this attempt.
+
 Temporary result-bundle paths are local evidence from this run and are not committed artifacts.
 
 ## Not yet proven
