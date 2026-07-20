@@ -22,7 +22,7 @@ Target characteristics:
 
 ## Recording procedure
 
-1. Install the near-final build on the target iPhone.
+1. Preserve the completed production branch, then install the intentionally regressed build from the disposable demo worktree on the target iPhone.
 2. Enable Do Not Disturb and close screens that contain personal data.
 3. Create one short completed seed review first; it supplies the Timeline and Export screens used in the final self-review.
 4. Set **Settings → App Language → English** and **Home → Language Spoken in This Review → English (en-US)**.
@@ -40,12 +40,12 @@ These are safe prompts, not fixed timestamps. Replace the timestamp column with 
 | --- | --- | --- |
 | TBD | Open a completed review from **Reviews** | “I am opening a completed review.” |
 | TBD | Open **Timeline → Readable** | “This is the readable timeline.” |
-| TBD | Keep a left-side preview image visible | “Please make the preview image on the left a little wider.” |
+| TBD | Keep the intentionally narrowed left-side preview image visible | “The timeline preview image is too narrow. Please make it wider.” |
 | TBD | Open **Export** | “This is the Export screen.” |
-| TBD | Keep **Direct Review Handoff** and its description visible | “Please shorten the description under Direct Review Handoff.” |
+| TBD | Keep the intentionally reduced **Direct Review Handoff** title visible | “The Direct Review Handoff title is too small. Please make it larger and bold.” |
 | TBD | Pause on the same card | “Please keep everything else unchanged.” |
 
-The final two lines are the explicit implementation requests. A later sentence should correct an earlier one only if the demo intentionally proves the “later correction wins” rule.
+The two UI repair lines are the explicit implementation requests. They are recommended examples and may be replaced before recording. Create intentional regressions only in the disposable demo worktree; never leave the production branch incomplete for the recording.
 
 ## Metadata to fill after recording
 
@@ -77,7 +77,7 @@ shasum -a 256 Samples/reviewtrace-narrated-self-review.mov
 - Original timeline mode has no frame slots.
 - An audio-only session has no image placeholders.
 - The direct Codex package includes the recording or optimized parts, `full-transcript.md`, and `codex-prompt.md`.
-- At least one of the two explicit requests is implemented by Codex and verified on the same iPhone.
+- Both explicit requests are implemented by Codex in the disposable demo worktree and verified on the same iPhone.
 
 ## Processing benchmark
 
