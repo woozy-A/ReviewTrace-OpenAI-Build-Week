@@ -3,23 +3,88 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 56;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		100000000000000000000001 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000001 /* AppConfiguration.swift */; };
+		100000000000000000000002 /* ReviewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000002 /* ReviewModels.swift */; };
+		100000000000000000000003 /* ReviewTimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000003 /* ReviewTimeFormatter.swift */; };
+		100000000000000000000004 /* BroadcastSessionMetadataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000004 /* BroadcastSessionMetadataStore.swift */; };
+		100000000000000000000005 /* ReviewTraceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000005 /* ReviewTraceApp.swift */; };
+		100000000000000000000006 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000006 /* AppView.swift */; };
+		100000000000000000000007 /* ReviewTraceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000007 /* ReviewTraceStore.swift */; };
+		100000000000000000000009 /* CodexPromptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000009 /* CodexPromptService.swift */; };
+		10000000000000000000000A /* ExportServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000A /* ExportServices.swift */; };
+		10000000000000000000000B /* SpeechTranscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000B /* SpeechTranscriptionService.swift */; };
+		10000000000000000000000C /* AudioExtractionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000C /* AudioExtractionService.swift */; };
+		10000000000000000000000D /* ReviewProcessingPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000D /* ReviewProcessingPipeline.swift */; };
+		10000000000000000000000F /* ReviewSessionPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000F /* ReviewSessionPersistence.swift */; };
+		100000000000000000000010 /* ReviewFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000010 /* ReviewFixtures.swift */; };
+		100000000000000000000020 /* AudioChunkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000020 /* AudioChunkingService.swift */; };
+		100000000000000000000021 /* TranscriptSegmentGrouper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000021 /* TranscriptSegmentGrouper.swift */; };
+		100000000000000000000011 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000011 /* HomeView.swift */; };
+		100000000000000000000012 /* StartReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000012 /* StartReviewView.swift */; };
+		100000000000000000000013 /* ProcessingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000013 /* ProcessingView.swift */; };
+		100000000000000000000014 /* ReviewListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000014 /* ReviewListView.swift */; };
+		100000000000000000000015 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000015 /* SettingsView.swift */; };
+		100000000000000000000016 /* ReviewDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000016 /* ReviewDetailView.swift */; };
+		100000000000000000000017 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000017 /* Assets.xcassets */; };
+		100000000000000000000030 /* VideoCompressionPolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000030 /* VideoCompressionPolicyTests.swift */; };
+		100000000000000000000031 /* TranscriptTimelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000031 /* TranscriptTimelineTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		600000000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 500000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 400000000000000000000001;
+			remoteInfo = ReviewTrace;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		DBB4B368300E8DCD00A694C2 /* ReviewTrace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReviewTrace.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		200000000000000000000001 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		200000000000000000000002 /* ReviewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewModels.swift; sourceTree = "<group>"; };
+		200000000000000000000003 /* ReviewTimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTimeFormatter.swift; sourceTree = "<group>"; };
+		200000000000000000000004 /* BroadcastSessionMetadataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastSessionMetadataStore.swift; sourceTree = "<group>"; };
+		200000000000000000000005 /* ReviewTraceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTraceApp.swift; sourceTree = "<group>"; };
+		200000000000000000000006 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		200000000000000000000007 /* ReviewTraceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTraceStore.swift; sourceTree = "<group>"; };
+		200000000000000000000009 /* CodexPromptService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexPromptService.swift; sourceTree = "<group>"; };
+		20000000000000000000000A /* ExportServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportServices.swift; sourceTree = "<group>"; };
+		20000000000000000000000B /* SpeechTranscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechTranscriptionService.swift; sourceTree = "<group>"; };
+		20000000000000000000000C /* AudioExtractionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioExtractionService.swift; sourceTree = "<group>"; };
+		20000000000000000000000D /* ReviewProcessingPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewProcessingPipeline.swift; sourceTree = "<group>"; };
+		20000000000000000000000E /* ReviewSessionImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSessionImporter.swift; sourceTree = "<group>"; };
+		20000000000000000000000F /* ReviewSessionPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSessionPersistence.swift; sourceTree = "<group>"; };
+		200000000000000000000010 /* ReviewFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFixtures.swift; sourceTree = "<group>"; };
+		200000000000000000000020 /* AudioChunkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioChunkingService.swift; sourceTree = "<group>"; };
+		200000000000000000000021 /* TranscriptSegmentGrouper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptSegmentGrouper.swift; sourceTree = "<group>"; };
+		200000000000000000000011 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		200000000000000000000012 /* StartReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartReviewView.swift; sourceTree = "<group>"; };
+		200000000000000000000013 /* ProcessingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingView.swift; sourceTree = "<group>"; };
+		200000000000000000000014 /* ReviewListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewListView.swift; sourceTree = "<group>"; };
+		200000000000000000000015 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		200000000000000000000016 /* ReviewDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailView.swift; sourceTree = "<group>"; };
+		200000000000000000000017 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		200000000000000000000018 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20000000000000000000001A /* ReviewTrace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReviewTrace.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20000000000000000000001B /* ReviewTraceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReviewTraceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		200000000000000000000030 /* VideoCompressionPolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCompressionPolicyTests.swift; sourceTree = "<group>"; };
+		200000000000000000000031 /* TranscriptTimelineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptTimelineTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		DBB4B36A300E8DCD00A694C2 /* ReviewTrace */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ReviewTrace;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
-		DBB4B365300E8DCD00A694C2 /* Frameworks */ = {
+		700000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		700000000000000000000002 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -29,107 +94,245 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DBB4B35F300E8DCD00A694C2 = {
+		800000000000000000000001 = {
 			isa = PBXGroup;
 			children = (
-				DBB4B36A300E8DCD00A694C2 /* ReviewTrace */,
-				DBB4B369300E8DCD00A694C2 /* Products */,
+				800000000000000000000002 /* Shared */,
+				800000000000000000000003 /* ReviewTrace */,
+				80000000000000000000000A /* ReviewTraceTests */,
+				800000000000000000000005 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		DBB4B369300E8DCD00A694C2 /* Products */ = {
+		800000000000000000000002 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				DBB4B368300E8DCD00A694C2 /* ReviewTrace.app */,
+				200000000000000000000001 /* AppConfiguration.swift */,
+				200000000000000000000002 /* ReviewModels.swift */,
+				200000000000000000000003 /* ReviewTimeFormatter.swift */,
+				200000000000000000000004 /* BroadcastSessionMetadataStore.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		800000000000000000000003 /* ReviewTrace */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000005 /* ReviewTraceApp.swift */,
+				800000000000000000000006 /* App */,
+				800000000000000000000007 /* Services */,
+				800000000000000000000008 /* Views */,
+				800000000000000000000009 /* Resources */,
+			);
+			path = ReviewTrace;
+			sourceTree = "<group>";
+		};
+		800000000000000000000005 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20000000000000000000001A /* ReviewTrace.app */,
+				20000000000000000000001B /* ReviewTraceTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		800000000000000000000006 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000006 /* AppView.swift */,
+				200000000000000000000007 /* ReviewTraceStore.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		800000000000000000000007 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000009 /* CodexPromptService.swift */,
+				20000000000000000000000A /* ExportServices.swift */,
+				20000000000000000000000B /* SpeechTranscriptionService.swift */,
+				20000000000000000000000C /* AudioExtractionService.swift */,
+				20000000000000000000000D /* ReviewProcessingPipeline.swift */,
+				20000000000000000000000E /* ReviewSessionImporter.swift */,
+				20000000000000000000000F /* ReviewSessionPersistence.swift */,
+				200000000000000000000010 /* ReviewFixtures.swift */,
+				200000000000000000000020 /* AudioChunkingService.swift */,
+				200000000000000000000021 /* TranscriptSegmentGrouper.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		800000000000000000000008 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000011 /* HomeView.swift */,
+				200000000000000000000012 /* StartReviewView.swift */,
+				200000000000000000000013 /* ProcessingView.swift */,
+				200000000000000000000014 /* ReviewListView.swift */,
+				200000000000000000000015 /* SettingsView.swift */,
+				200000000000000000000016 /* ReviewDetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		800000000000000000000009 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000018 /* Info.plist */,
+				200000000000000000000017 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		80000000000000000000000A /* ReviewTraceTests */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000030 /* VideoCompressionPolicyTests.swift */,
+				200000000000000000000031 /* TranscriptTimelineTests.swift */,
+			);
+			path = ReviewTraceTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DBB4B367300E8DCD00A694C2 /* ReviewTrace */ = {
+		400000000000000000000001 /* ReviewTrace */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DBB4B373300E8DCE00A694C2 /* Build configuration list for PBXNativeTarget "ReviewTrace" */;
+			buildConfigurationList = 900000000000000000000002 /* Build configuration list for PBXNativeTarget "ReviewTrace" */;
 			buildPhases = (
-				DBB4B364300E8DCD00A694C2 /* Sources */,
-				DBB4B365300E8DCD00A694C2 /* Frameworks */,
-				DBB4B366300E8DCD00A694C2 /* Resources */,
+				A00000000000000000000001 /* Sources */,
+				700000000000000000000001 /* Frameworks */,
+				A00000000000000000000002 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				DBB4B36A300E8DCD00A694C2 /* ReviewTrace */,
-			);
 			name = ReviewTrace;
-			packageProductDependencies = (
-			);
 			productName = ReviewTrace;
-			productReference = DBB4B368300E8DCD00A694C2 /* ReviewTrace.app */;
+			productReference = 20000000000000000000001A /* ReviewTrace.app */;
 			productType = "com.apple.product-type.application";
+		};
+		400000000000000000000002 /* ReviewTraceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 900000000000000000000003 /* Build configuration list for PBXNativeTarget "ReviewTraceTests" */;
+			buildPhases = (
+				A00000000000000000000003 /* Sources */,
+				700000000000000000000002 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				600000000000000000000002 /* PBXTargetDependency */,
+			);
+			name = ReviewTraceTests;
+			productName = ReviewTraceTests;
+			productReference = 20000000000000000000001B /* ReviewTraceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		DBB4B360300E8DCD00A694C2 /* Project object */ = {
+		500000000000000000000001 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2660;
-				LastUpgradeCheck = 2660;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2650;
 				TargetAttributes = {
-					DBB4B367300E8DCD00A694C2 = {
-						CreatedOnToolsVersion = 26.6;
+					400000000000000000000001 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					400000000000000000000002 = {
+						CreatedOnToolsVersion = 26.0;
+						TestTargetID = 400000000000000000000001;
 					};
 				};
 			};
-			buildConfigurationList = DBB4B363300E8DCD00A694C2 /* Build configuration list for PBXProject "ReviewTrace" */;
+			buildConfigurationList = 900000000000000000000001 /* Build configuration list for PBXProject "ReviewTrace" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = DBB4B35F300E8DCD00A694C2;
-			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
-			productRefGroup = DBB4B369300E8DCD00A694C2 /* Products */;
+			mainGroup = 800000000000000000000001;
+			productRefGroup = 800000000000000000000005 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DBB4B367300E8DCD00A694C2 /* ReviewTrace */,
+				400000000000000000000001 /* ReviewTrace */,
+				400000000000000000000002 /* ReviewTraceTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		DBB4B366300E8DCD00A694C2 /* Resources */ = {
+		A00000000000000000000002 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				100000000000000000000017 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		DBB4B364300E8DCD00A694C2 /* Sources */ = {
+		A00000000000000000000001 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				100000000000000000000001 /* AppConfiguration.swift in Sources */,
+				100000000000000000000002 /* ReviewModels.swift in Sources */,
+				100000000000000000000003 /* ReviewTimeFormatter.swift in Sources */,
+				100000000000000000000004 /* BroadcastSessionMetadataStore.swift in Sources */,
+				100000000000000000000005 /* ReviewTraceApp.swift in Sources */,
+				100000000000000000000006 /* AppView.swift in Sources */,
+				100000000000000000000007 /* ReviewTraceStore.swift in Sources */,
+				100000000000000000000009 /* CodexPromptService.swift in Sources */,
+				10000000000000000000000A /* ExportServices.swift in Sources */,
+				10000000000000000000000B /* SpeechTranscriptionService.swift in Sources */,
+				10000000000000000000000C /* AudioExtractionService.swift in Sources */,
+				10000000000000000000000D /* ReviewProcessingPipeline.swift in Sources */,
+				10000000000000000000000F /* ReviewSessionPersistence.swift in Sources */,
+				100000000000000000000010 /* ReviewFixtures.swift in Sources */,
+				100000000000000000000020 /* AudioChunkingService.swift in Sources */,
+				100000000000000000000021 /* TranscriptSegmentGrouper.swift in Sources */,
+				100000000000000000000011 /* HomeView.swift in Sources */,
+				100000000000000000000012 /* StartReviewView.swift in Sources */,
+				100000000000000000000013 /* ProcessingView.swift in Sources */,
+				100000000000000000000014 /* ReviewListView.swift in Sources */,
+				100000000000000000000015 /* SettingsView.swift in Sources */,
+				100000000000000000000016 /* ReviewDetailView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A00000000000000000000003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000030 /* VideoCompressionPolicyTests.swift in Sources */,
+				100000000000000000000031 /* TranscriptTimelineTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		600000000000000000000002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 400000000000000000000001 /* ReviewTrace */;
+			targetProxy = 600000000000000000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		DBB4B371300E8DCE00A694C2 /* Debug */ = {
+		C00000000000000000000001 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -178,22 +381,21 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		DBB4B372300E8DCE00A694C2 /* Release */ = {
+		C00000000000000000000002 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -236,31 +438,26 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		DBB4B374300E8DCE00A694C2 /* Debug */ = {
+		C00000000000000000000003 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A7Z474KMS6;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ReviewTrace/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -268,31 +465,22 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = woozyLAB.ReviewTrace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
-		DBB4B375300E8DCE00A694C2 /* Release */ = {
+		C00000000000000000000004 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = A7Z474KMS6;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ReviewTrace/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,38 +488,77 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = woozyLAB.ReviewTrace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C00000000000000000000005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = woozyLAB.ReviewTraceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReviewTrace.app/ReviewTrace";
+			};
+			name = Debug;
+		};
+		C00000000000000000000006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = woozyLAB.ReviewTraceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReviewTrace.app/ReviewTrace";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DBB4B363300E8DCD00A694C2 /* Build configuration list for PBXProject "ReviewTrace" */ = {
+		900000000000000000000001 /* Build configuration list for PBXProject "ReviewTrace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DBB4B371300E8DCE00A694C2 /* Debug */,
-				DBB4B372300E8DCE00A694C2 /* Release */,
+				C00000000000000000000001 /* Debug */,
+				C00000000000000000000002 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DBB4B373300E8DCE00A694C2 /* Build configuration list for PBXNativeTarget "ReviewTrace" */ = {
+		900000000000000000000002 /* Build configuration list for PBXNativeTarget "ReviewTrace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DBB4B374300E8DCE00A694C2 /* Debug */,
-				DBB4B375300E8DCE00A694C2 /* Release */,
+				C00000000000000000000003 /* Debug */,
+				C00000000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		900000000000000000000003 /* Build configuration list for PBXNativeTarget "ReviewTraceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C00000000000000000000005 /* Debug */,
+				C00000000000000000000006 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = DBB4B360300E8DCD00A694C2 /* Project object */;
+	rootObject = 500000000000000000000001 /* Project object */;
 }
