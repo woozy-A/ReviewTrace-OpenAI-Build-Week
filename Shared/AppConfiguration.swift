@@ -6,7 +6,23 @@ enum AppConfiguration {
     static let defaultWarmUpDelay: TimeInterval = 0
     static let defaultLanguageIdentifier = "ko-KR"
     static let secondaryLanguageIdentifier = "en-US"
-    static let defaultAppLanguage: AppLanguage = .korean
+
+    // STUDY: Xcode's Scheme language is exposed as the process's first preferred language.
+    static var defaultAppLanguage: AppLanguage {
+        appLanguage(forPreferredLanguageIdentifier: Locale.preferredLanguages.first)
+    }
+
+    static func appLanguage(forPreferredLanguageIdentifier identifier: String?) -> AppLanguage {
+        let normalizedIdentifier = identifier?
+            .replacingOccurrences(of: "_", with: "-")
+            .lowercased()
+
+        if normalizedIdentifier == "ko" || normalizedIdentifier?.hasPrefix("ko-") == true {
+            return .korean
+        }
+
+        return .english
+    }
 }
 
 enum AppLanguage: String, Codable, CaseIterable, Identifiable, Hashable {

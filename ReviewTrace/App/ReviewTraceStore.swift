@@ -32,7 +32,8 @@ final class ReviewTraceStore {
         metadataStore: BroadcastSessionMetadataStore = BroadcastSessionMetadataStore(),
         persistence: ReviewSessionPersistence = ReviewSessionPersistence(),
         pipeline: ReviewProcessingPipeline = ReviewProcessingPipeline(),
-        userDefaults: UserDefaults = .standard
+        userDefaults: UserDefaults = .standard,
+        defaultAppLanguage: AppLanguage = AppConfiguration.defaultAppLanguage
     ) {
         self.metadataStore = metadataStore
         self.persistence = persistence
@@ -41,7 +42,7 @@ final class ReviewTraceStore {
 
         let storedAppLanguage = userDefaults.string(forKey: Self.appLanguageDefaultsKey)
             .flatMap(AppLanguage.init(rawValue:))
-        let resolvedAppLanguage = storedAppLanguage ?? AppConfiguration.defaultAppLanguage
+        let resolvedAppLanguage = storedAppLanguage ?? defaultAppLanguage
         self.appLanguage = resolvedAppLanguage
 
         let storedTranscriptionLanguage = userDefaults.string(forKey: Self.transcriptionLanguageDefaultsKey)

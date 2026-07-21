@@ -3,6 +3,70 @@ import XCTest
 @testable import ReviewTrace
 
 final class ReviewSessionLanguageTests: XCTestCase {
+    func testDefaultAppLanguageUsesKoreanOnlyForKoreanPreferredLanguage() {
+        XCTAssertEqual(
+            AppConfiguration.appLanguage(forPreferredLanguageIdentifier: "ko"),
+            .korean
+        )
+        XCTAssertEqual(
+            AppConfiguration.appLanguage(forPreferredLanguageIdentifier: "ko-KR"),
+            .korean
+        )
+        XCTAssertEqual(
+            AppConfiguration.appLanguage(forPreferredLanguageIdentifier: "ko_KR"),
+            .korean
+        )
+    }
+
+    func testDefaultAppLanguageUsesEnglishForEveryOtherPreferredLanguage() {
+        XCTAssertEqual(
+            AppConfiguration.appLanguage(forPreferredLanguageIdentifier: "en-US"),
+            .english
+        )
+        XCTAssertEqual(
+            AppConfiguration.appLanguage(forPreferredLanguageIdentifier: "ja-JP"),
+            .english
+        )
+        XCTAssertEqual(
+            AppConfiguration.appLanguage(forPreferredLanguageIdentifier: nil),
+            .english
+        )
+    }
+
+    @MainActor
+    func testStoreUsesPreferredLanguageDefaultWhenNoAppLanguageWasSaved() throws {
+        let (userDefaults, suiteName) = try makeIsolatedUserDefaults()
+        defer { userDefaults.removePersistentDomain(forName: suiteName) }
+
+        let store = ReviewTraceStore(
+            userDefaults: userDefaults,
+            defaultAppLanguage: .english
+        )
+
+        XCTAssertEqual(store.appLanguage, .english)
+        XCTAssertEqual(store.transcriptionLanguage, .english)
+        XCTAssertNil(userDefaults.string(forKey: "ReviewTrace.appLanguage"))
+        XCTAssertNil(userDefaults.string(forKey: "ReviewTrace.transcriptionLanguage"))
+    }
+
+    @MainActor
+    func testSavedAppLanguageStillOverridesThePreferredLanguageDefault() throws {
+        let (userDefaults, suiteName) = try makeIsolatedUserDefaults()
+        defer { userDefaults.removePersistentDomain(forName: suiteName) }
+        userDefaults.set(
+            AppLanguage.korean.rawValue,
+            forKey: "ReviewTrace.appLanguage"
+        )
+
+        let store = ReviewTraceStore(
+            userDefaults: userDefaults,
+            defaultAppLanguage: .english
+        )
+
+        XCTAssertEqual(store.appLanguage, .korean)
+        XCTAssertEqual(store.transcriptionLanguage, .korean)
+    }
+
     @MainActor
     func testReviewLanguageFollowsAppLanguageUntilTheUserChoosesAnOverride() throws {
         let (userDefaults, suiteName) = try makeIsolatedUserDefaults()
