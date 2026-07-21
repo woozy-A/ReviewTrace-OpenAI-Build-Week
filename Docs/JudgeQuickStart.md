@@ -36,6 +36,8 @@ xcrun simctl launch <AVAILABLE_UDID> woozyLAB.ReviewTrace
 
 The prebuilt app is intended for navigation, English/Korean localization, persisted sessions, export layout, and judge-path inspection. Simulator behavior is not presented as proof of real-iPhone Apple Speech performance.
 
+The published artifact was rebuilt from final app commit `76c1581`, checksum-verified, installed, and launched on an iPhone 17 Pro Simulator before publication.
+
 The release artifact is reproducible with:
 
 ```sh
@@ -53,9 +55,10 @@ Scripts/package-simulator-app.sh
 Verified source checks at the Build Week handoff:
 
 - unsigned generic iOS Debug build: passed;
-- iPhone 17 Pro Simulator on iOS 26.5: 28 tests passed, 0 failed;
+- iPhone 17 Pro Simulator on iOS 26.3.1: 30 tests passed, 0 failed;
 - English and Korean display languages: switched through the actual Settings UI;
-- latest signed physical-device build: not claimed because the latest signing attempt was blocked by local keychain access.
+- signed Archive, Apple Distribution IPA export, and internal TestFlight processing for `1.0 (1)`: complete;
+- installation and real-media smoke testing of the final TestFlight build on a physical iPhone: not yet claimed.
 
 ## Test the primary workflow
 

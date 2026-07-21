@@ -1,18 +1,18 @@
 # ReviewTrace Devpost Submission Working Copy
 
-> 이 문서는 제출 준비용 원본입니다. 영어 문구를 이해하기 쉽게 한국어 확인 항목과 함께 저장합니다. Devpost 안내에 따라 프로젝트 설명은 그대로 복사해 제출하지 말고, 아래 `OWNER EDIT` 문장만큼은 본인의 말투로 한 번 고친 뒤 소리 내어 읽어보세요.
+> 이 문서는 제출 준비용 원본입니다. 영어 문구를 이해하기 쉽게 한국어 확인 항목과 함께 저장합니다. Devpost 안내에 따라 저장된 프로젝트 설명을 소리 내어 한 번 읽고, 본인의 말투와 다른 문장이 있다면 제출 전에 직접 고쳐 주세요.
 
 ## Live submission status
 
 - Hackathon: OpenAI Build Week
 - Devpost project ID: `1355065`
-- Current project name: `Untitled`
-- Current state: `submission_pre_draft`
-- Project URL: <https://devpost.com/software/1355065>
+- Current project name: `ReviewTrace`
+- Current project state: `published` (project page saved; hackathon submission is not final)
+- Project URL: <https://devpost.com/software/reviewtrace>
 - Submission deadline: **2026-07-22 09:00 KST** (`2026-07-21 17:00 PT`)
 - Recommended category: **Developer Tools**
 
-Do not create a second Devpost project. Update project `1355065` after every owner-only field below is complete.
+Do not create a second Devpost project. Continue using project `1355065` for the final hackathon submission.
 
 ## Core project fields
 
@@ -52,9 +52,7 @@ Swift, SwiftUI, AVFoundation, AVKit, PhotosUI, Apple Speech, XCTest, Xcode, Code
 
 Codex can already understand natural product feedback and modify a repository. The remaining friction appears after I test an app on a real iPhone. I notice a problem while using the app, explain it out loud, and record the screen, but later I still have to rewatch the recording and type the same feedback again.
 
-**OWNER EDIT:** Rewrite the next sentence in your own words before submission.
-
-> I built ReviewTrace to preserve what I said and what I was seeing at the same moment, so Codex can act on the original review context.
+I built ReviewTrace because I wanted my spoken feedback and the exact screen moment to stay together, so Codex could work from the review I actually made instead of a summary I rewrote later.
 
 ### What it does
 
@@ -127,9 +125,9 @@ I also learned to separate implementation proof from device proof. A successful 
 
 ### What's next
 
-The immediate next step is to finish the privacy-safe real-iPhone demonstration: process an English narrated ReviewTrace recording, verify its timestamps and previews, pass the package to Codex, and show a visible before-and-after repair.
+The immediate next step is to install TestFlight `1.0 (1)` and finish the privacy-safe real-iPhone demonstration: process an English narrated ReviewTrace recording, verify its timestamps and previews, pass the package to Codex, and show a visible before-and-after repair.
 
-After that, I want to measure processing performance on more devices, validate TestFlight distribution, and consider additional speech locales only after the core workflow is proven reliable.
+After that, I want to validate ReviewTrace across more iPhone models, longer recordings, and more reviewers. I also want to measure Korean and English transcription performance before adding more speech locales, and expand the TestFlight beta only after the current real-device workflow is verified.
 
 Add this sentence only after the real iPhone → ReviewTrace → Codex → repaired app loop has actually succeeded and appears in the final video:
 
@@ -150,9 +148,11 @@ Add this sentence only after the real iPhone → ReviewTrace → Codex → repai
 ### Field `27949`: project/test link and instructions
 
 ```text
-No credentials are required. Start with Docs/JudgeQuickStart.md in the repository.
+No credentials are required.
 
-Public demo: OWNER_TODO_YOUTUBE_URL
+Demo video (publicly accessible, under three minutes; unlisted is allowed): OWNER_TODO_YOUTUBE_URL
+Public repository and README: https://github.com/woozy-A/ReviewTrace-OpenAI-Build-Week
+Judge quick start: https://github.com/woozy-A/ReviewTrace-OpenAI-Build-Week/blob/main/Docs/JudgeQuickStart.md
 Prebuilt universal Simulator app: https://github.com/woozy-A/ReviewTrace-OpenAI-Build-Week/releases/tag/build-week-demo
 
 For the source path, open OpenAi_ReviewTrace.xcodeproj, select the shared ReviewTrace scheme, and run on an iOS 17+ iPhone Simulator. For the primary media path, use a privacy-safe 60–90 second portrait iPhone screen recording with microphone audio and select the actual spoken locale before import.
@@ -167,16 +167,18 @@ No-rebuild route: download ReviewTrace-Simulator.app.zip from the Build Week Git
 xcrun simctl install <UDID> ReviewTrace.app
 xcrun simctl launch <UDID> woozyLAB.ReviewTrace
 
-Source route: open OpenAi_ReviewTrace.xcodeproj, select the shared ReviewTrace scheme, choose an iOS 17+ iPhone Simulator, and press Command-R. The root README contains unsigned generic-build and XCTest commands. The current suite contains 28 tests.
+Source route: open OpenAi_ReviewTrace.xcodeproj, select the shared ReviewTrace scheme, choose an iOS 17+ iPhone Simulator, and press Command-R. The root README contains unsigned generic-build and XCTest commands. The current suite contains 30 tests.
 
 Primary workflow: Settings > App Language > English; Home > Language Spoken in This Review > English (en-US); import a narrated portrait screen recording; inspect Timeline > Readable; tap a timestamp to seek; inspect Codex > Direct Review Handoff; inspect Export > Share Review with Codex.
 
-The Simulator route verifies the UI and judge path but is not claimed as real-device Apple Speech performance evidence. See Docs/Verification_2026-07-21.md for the exact boundary.
+The Simulator route verifies the UI and judge path but is not claimed as real-device Apple Speech performance evidence. Version `1.0 (1)` was archived, exported with Apple Distribution signing, uploaded to App Store Connect, and processed for the connected internal TestFlight group. It is Ready to Test there, but TestFlight distribution does not replace real-device media verification. See Docs/Verification_2026-07-21.md for the exact boundary.
 ```
 
 ## Under-three-minute demo plan
 
-Target length: **2:40–2:50**. Keep every actual product claim visible on screen. Cut loading and typing. A public **unlisted** YouTube link is acceptable, but verify it while signed out.
+Target length: **2:40–2:50**. Keep every actual product claim visible on screen. Cut loading and typing. The latest official announcement says a publicly accessible **unlisted** YouTube video is allowed; verify it while signed out.
+
+If a friend records the English voiceover, use neutral narration such as “ReviewTrace was built…” or say once that they are narrating the creator's script. Add English subtitles, and keep the creator's real screen recording and product actions visible throughout.
 
 | Time | Screen | Short English narration |
 | --- | --- | --- |
@@ -203,7 +205,8 @@ The Korean meaning and pronunciation guide for every spoken repair request is in
 ## Final owner checklist
 
 - [ ] Confirm Submitter Type and Country of Residence.
-- [ ] Personalize the `OWNER EDIT` sentence and read the English description aloud.
+- [x] Replace the `OWNER EDIT` placeholder with a personal sentence.
+- [ ] Read the English description once and adjust any phrase that does not sound like the owner.
 - [x] Choose a public repository and add the MIT license.
 - [x] Rewrite the existing commit email to GitHub `noreply` before the first public push.
 - [x] Authenticate GitHub CLI.
@@ -211,9 +214,10 @@ The Korean meaning and pronunciation guide for every spoken repair request is in
 - [x] Upload `ReviewTrace-Simulator.app.zip` and its checksum as release assets.
 - [ ] Record the privacy-safe real-iPhone sample and fill every `TBD` in `Samples/README.md`.
 - [ ] Complete the ReviewTrace → Codex → repaired ReviewTrace proof before claiming it.
-- [ ] Upload the final video to YouTube, keep it under three minutes, and verify it while signed out.
+- [ ] Upload the final video to YouTube as public or unlisted, keep it under three minutes, and verify it while signed out.
 - [ ] Run `/feedback` in the primary Codex task and copy the session ID.
 - [ ] Replace every `OWNER_TODO_*` token in this document and the judge guide.
-- [ ] Add a thumbnail and screenshots on Devpost.
-- [ ] Update Devpost project `1355065`, save it, and verify the project page.
+- [x] Upload the production app icon as the Devpost thumbnail.
+- [ ] Add final product screenshots on Devpost.
+- [x] Update Devpost project `1355065`, save it, and verify the project page.
 - [ ] Submit—not only save as draft—and verify the green `Submitted` state before **2026-07-22 09:00 KST**.

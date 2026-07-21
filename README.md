@@ -9,10 +9,11 @@ The app preserves the human review record; it does not replace the human reviewe
 ## Current verification status
 
 - The app and test targets build from `OpenAi_ReviewTrace.xcodeproj` with Xcode 26.6 (17F113).
-- The complete XCTest suite passes on an iPhone 17 Pro Simulator running iOS 26.5: 28 tests, 0 failures.
+- The final submission XCTest run passes on an iPhone 17 Pro Simulator running iOS 26.3.1: 30 tests, 0 failures.
 - An unsigned generic iOS build succeeds with `CODE_SIGNING_ALLOWED=NO`.
-- Before the selectable speech-locale and String Catalog additions, a signed Debug build installed and launched on an iPhone 15 Pro running iOS 26.5.2, and all 22 then-current XCTest cases passed on that physical phone. The latest 28-test revision still needs a new physical-device run.
-- Real-media processing, the public narrated sample, unlocked visual QA, processing-time measurement, and the final real-iPhone self-review loop still require device evidence. They are not claimed as complete here.
+- A signed `1.0 (1)` archive was created, an App Store IPA was exported with Apple Distribution signing, and TestFlight build `1.0 (1)` finished processing and is **Ready to Test** in the connected internal testing group.
+- Before the selectable speech-locale and String Catalog additions, a signed Debug build installed and launched on an iPhone 15 Pro running iOS 26.5.2, and all 22 then-current XCTest cases passed on that physical phone. The latest 30-test revision still needs a new physical-device run.
+- The final TestFlight build has not yet been installed or smoke-tested on a physical iPhone. Real-media import, English transcription, timestamp seeking, export, processing-time measurement, and the final real-iPhone self-review loop still require device evidence.
 
 See [Docs/Verification_2026-07-21.md](Docs/Verification_2026-07-21.md) for the exact proof boundary.
 Judges can start with [Docs/JudgeQuickStart.md](Docs/JudgeQuickStart.md).
@@ -71,7 +72,9 @@ All core processing is implemented with SwiftUI, AVFoundation, PhotosUI, and Spe
 
 ## How GPT-5.6 and Codex were used
 
-GPT-5.6 was used to narrow the final Build Week scope and implementation plan. Codex inspected the existing prototype, preserved its working import/transcription/export path, implemented the focused Build Week additions, wrote tests, and ran build/test checks.
+GPT-5.6 was used to separate the pre-existing prototype from the Build Week scope and challenge the product boundary: video should remain the source of truth, human judgment should remain explicit, and the app should prepare evidence for Codex instead of generating another automatic issue summary.
+
+Codex audited the existing pipeline, preserved its working import/transcription/export path, implemented the direct handoff, timestamped frame previews, English transcription and localization, added regression tests, and completed build, Archive, export, and TestFlight preparation. `CHANGELOG.md` and the focused commit history record those decisions and implementation steps.
 
 ReviewTrace itself makes no OpenAI runtime API calls. The app prepares evidence for Codex and exposes normal copy/share controls; the user chooses when and where to send it.
 
@@ -145,7 +148,7 @@ An unsigned generic build proves compilation only. It is not Simulator, real-dev
 
 ## Judge test path
 
-For the fastest source, prebuilt-Simulator, and real-device routes, start with [Docs/JudgeQuickStart.md](Docs/JudgeQuickStart.md). The complete media path below uses the privacy-safe file described in [Samples/README.md](Samples/README.md).
+For the fastest source and prebuilt-Simulator routes, start with [Docs/JudgeQuickStart.md](Docs/JudgeQuickStart.md). The final demo video is the real-device media evidence; the complete repeatable media path below uses the privacy-safe file described in [Samples/README.md](Samples/README.md).
 
 Until that real sample is recorded and committed, judges can use their own 60–90 second vertical iPhone screen recording with microphone narration.
 
@@ -191,7 +194,7 @@ Apple Speech is configured with `requiresOnDeviceRecognition = false`. Depending
 - Timeline thumbnails are memory-only previews for readable screen-recording rows and are not persistent exports.
 - Recordings that exceed the Codex compression threshold require the user to prepare optimized 540p parts before sharing the complete media package.
 - The app does not modify a repository itself, summarize issues with an OpenAI API, or make product decisions for the reviewer.
-- Real-iPhone sample processing time, unlocked end-to-end media dogfooding, Archive, TestFlight, and public demo playback are not yet verified.
+- Signed Archive creation, Apple Distribution IPA export, and TestFlight processing for `1.0 (1)` are complete. Installation and end-to-end smoke testing of that TestFlight build on a real iPhone remain pending.
 
 ## Build Week changelog
 
@@ -200,8 +203,9 @@ See [CHANGELOG.md](CHANGELOG.md) for the dated baseline and feature commits. Git
 ## Submission checklist still requiring owner action
 
 - Record and commit the real narrated sample, then measure its processing time.
+- Install TestFlight `1.0 (1)` on a real iPhone and complete the short smoke-test checklist.
 - Complete the ReviewTrace-on-ReviewTrace real-iPhone loop and capture before/after evidence.
-- Record a public YouTube demo under three minutes and verify it while logged out.
+- Record a publicly accessible YouTube demo under three minutes (unlisted is allowed) and verify it while logged out.
 - Paste the prepared repository, release, and source-build test paths into the Devpost project.
 - Run `/feedback` in the primary Codex task and enter the actual session ID.
 - Choose the Developer Tools category and move the Devpost project from pre-draft to submitted.
