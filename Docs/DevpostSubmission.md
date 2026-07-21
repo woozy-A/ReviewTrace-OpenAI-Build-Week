@@ -31,7 +31,7 @@ Review on iPhone. Fix with Codex.
 ### One-sentence summary
 
 ```text
-ReviewTrace turns a narrated iPhone app review into a timestamp-aligned handoff that Codex can use to modify the real repository.
+I speak while testing my app on an iPhone. ReviewTrace keeps my words connected to the exact screen moment so Codex can make the changes later.
 ```
 
 ### Category
@@ -46,92 +46,100 @@ Developer Tools
 Swift, SwiftUI, AVFoundation, AVKit, PhotosUI, Apple Speech, XCTest, Xcode, Codex, GPT-5.6
 ```
 
-## English project description draft
+## Owner-edited English project description
 
 ### Inspiration
 
-Codex can already understand natural product feedback and modify a repository. The remaining friction appears after I test an app on a real iPhone. I notice a problem while using the app, explain it out loud, and record the screen, but later I still have to rewatch the recording and type the same feedback again.
+I do not know how to code in the traditional sense.
 
-I built ReviewTrace because I wanted my spoken feedback and the exact screen moment to stay together, so Codex could work from the review I actually made instead of a summary I rewrote later.
+But with Codex, I have been able to publish an app and start building several more in only two months. It changed the way I think about everyday problems. Instead of simply accepting an inconvenience, I now think, “Maybe I can build something for that.”
+
+ReviewTrace came from one of those small frustrations.
+
+After testing an app on a real iPhone, I would record the screen and explain problems out loud. But later, I still had to watch the recording again and type the same feedback into Codex.
+
+I wanted a simple tool that could preserve what I said and when I said it, so I would not have to rewrite the same review twice.
 
 ### What it does
 
-ReviewTrace imports an iPhone screen recording with microphone audio and transcribes the spoken review with Apple Speech. It keeps each transcript segment aligned to the original video timeline.
+ReviewTrace imports an iPhone screen recording with microphone audio and turns the spoken review into a timestamped timeline.
 
-The developer can:
+Each comment stays connected to the moment it was spoken. I can tap a comment to return to that point in the video, see the matching screen frame, and export a Codex-ready package containing the recording, transcript, and implementation requests.
 
-- choose Korean or English as the spoken language for each review;
-- use the interface in English or Korean independently from the spoken language;
-- inspect readable and original transcript timelines;
-- see a matching video frame beside each readable screen-recording row;
-- tap a row to seek to the corresponding moment in the recording;
-- export Markdown, JSON, SRT, and VTT files; and
-- explicitly share the recording, timestamped transcript, and direct implementation instructions with Codex.
+ReviewTrace does not replace my judgment with an automatic issue summary. It simply preserves the review I already made so Codex can work from the original context.
 
-ReviewTrace does not generate an automatic issue summary or make product decisions for the developer. The recording shows what happened, the transcript preserves what the reviewer said, the repository explains how the app is built, and the human remains the final decision-maker.
+The app supports Korean and English speech transcription, and its interface can also be used in Korean or English independently from the spoken language.
 
-Large videos can be prepared separately from transcription using a cancellable optimization flow. The policy targets 540p, 30 fps, 2.7 Mbps video, and 128 kbps audio; output is split by timestamp when necessary so each part remains at or below 280 MB. Every split part includes both its original-recording range and its file-local time range for Codex.
+Large recordings can be optimized separately from transcription with progress, cancellation, and retry. The export policy targets 540p, 30 fps, 2.7 Mbps video, and 128 kbps audio. When a recording must be split to stay at or below 280 MB per file, every part includes both its original-recording time range and its file-local time range for Codex.
 
 ### How I built it
 
-ReviewTrace is an iPhone SwiftUI app with no third-party package dependencies and no OpenAI runtime API call.
+ReviewTrace is a native SwiftUI iPhone app built with Apple Speech, AVFoundation, AVKit, PhotosUI, and XCTest.
 
-AVFoundation extracts audio from the selected recording. The audio is divided into silence-aware chunks with overlap, Apple Speech transcribes each chunk, and ReviewTrace maps chunk-local timestamps back to the original video time. Completed chunk results can be reused during retry.
+It extracts audio from a screen recording, divides longer audio into silence-aware overlapping chunks, transcribes each chunk, and maps every timestamp back to the original video timeline.
 
-For visual context, AVFoundation extracts a transformed frame at each readable timeline row's start time. Frames load asynchronously and use a bounded memory cache. Cancellation or a failed frame never blocks the transcript or timestamp seeking.
+For visual context, it extracts the video frame that matches each readable transcript row. Frames load asynchronously and are cached to avoid blocking the timeline while scrolling.
 
-The handoff generator creates direct instructions for Codex. It tells Codex to inspect the repository, use the recording and transcript as evidence, implement only explicit requests, respect later corrections, make focused changes, and run relevant verification.
+The export flow creates a Codex-ready review package with the recording, timestamped transcript, and clear implementation instructions.
 
-Apple String Catalogs provide English and Korean app copy plus localized permission descriptions. The app display language is independent from the spoken language selected for transcription.
+ReviewTrace itself makes no OpenAI runtime API calls. GPT-5.6 and Codex were used to shape and build the developer workflow, while runtime media processing stays in the Apple-platform app.
 
-GPT-5.6 helped me narrow the product scope and define the Build Week plan. Codex inspected the existing code, preserved the working pipeline, implemented the focused additions, added tests, and ran build, test, and Simulator checks.
+ReviewTrace began as a private experimental prototype. Before Build Week, it already included media import, Apple Speech transcription, chunk processing, retry, transcript timelines, export formats, and large-video optimization.
 
-### Pre-existing work and Build Week work
+During Build Week, GPT-5.6 helped me clarify the product idea and reduce it to one focused workflow. Codex inspected my experimental code, preserved the working pipeline, and added the direct Codex handoff, timestamped visual timeline, Korean and English localization, regression tests, build verification, and release preparation.
 
-ReviewTrace began as a private exploratory prototype. Before Build Week, it already contained media import, local session persistence, Apple Speech transcription, chunk processing, retry, transcript timelines, export formats, and large-video optimization.
-
-During Build Week, I extended that baseline with:
-
-- a direct, implementation-first Codex handoff;
-- timestamp-matched visual previews in the readable timeline;
-- frame caching, orientation handling, and cancellation behavior;
-- independent Korean and English speech selection for each review;
-- English and Korean String Catalog localization;
-- Codex-first sharing and product copy;
-- focused prompt, frame, locale, cache, compression-policy, and regression tests; and
-- a documented judge path and safe demo-workspace workflow.
-
-The baseline and new work are separated in the Git commit history and `CHANGELOG.md`.
+The Build Week version came together in one focused day because Codex allowed me to turn that experiment into a coherent, testable developer tool.
 
 ### Challenges I ran into
 
-The hardest technical challenge was preserving accurate time across multiple audio chunks. Each transcript begins with chunk-local timestamps, while the final result must point to the exact moment in the original recording. Overlap protects words spoken near a chunk boundary, but it also requires duplicate reduction during timeline merging.
+The main technical challenge was keeping speech, video, and timestamps synchronized, especially when longer recordings were divided into multiple audio chunks.
 
-Video frames introduced a different set of problems: portrait orientation, asynchronous scrolling, repeated extraction, cancellation, and corrupt or missing media. The preview had to remain useful without becoming a dependency for transcript completion.
+Each chunk produces its own local timestamps, but the final transcript must still point to the exact moment in the original recording. Overlapping chunks also help preserve words near a boundary, but they require duplicate reduction when the timeline is merged.
 
-The product challenge was equally important. I chose not to add another AI-generated issue layer. ReviewTrace needed to preserve human intent and supply Codex with evidence, not replace the reviewer's judgment.
+The more important product challenge was deciding what not to add.
+
+Codex already understands natural product feedback well, so ReviewTrace did not need another AI layer to rewrite my words into issues, priorities, or summaries. It only needed to preserve the original evidence reliably.
 
 ### Accomplishments that I am proud of
 
-I am proud that ReviewTrace connects spoken human feedback to the exact screen moment without hiding the original evidence. The Build Week version gives Codex a direct implementation contract instead of forcing every spoken sentence into an issue, severity, or priority.
+I am proud that the Build Week version turned a private experiment into a focused developer workflow without hiding the original evidence.
 
-I am also proud that English transcription and English UI are separate, explicit choices. This lets a Korean-speaking developer use a familiar interface while recording an English review and English hackathon demo.
+ReviewTrace now keeps the recording, timestamped speech, screen frames, and implementation instructions together while leaving the final judgment with me.
+
+I am also proud that a small personal experiment became a working iPhone developer tool during one focused day of Build Week work with Codex.
 
 ### What I learned
 
-I learned that multimodal developer tools do not always need more model-generated interpretation. Sometimes the most useful layer is reliable synchronization: what was visible, what was said, and where the code lives.
+I learned that Codex does more than help me write code. It expands the range of problems I believe I can solve.
 
-I also learned to separate implementation proof from device proof. A successful compile or unit test does not prove real-media transcription, device performance, signing, or a complete before-and-after workflow. Those claims need their own evidence.
+Before Codex, building an app was something I could only imagine. Now, when I encounter an inconvenience, I can consider making a small tool for myself.
+
+ReviewTrace may not be needed forever. I expect Codex will eventually understand a review video directly and apply the requested changes without an intermediate app. That is fine. ReviewTrace is a simple bridge for the tools we have today.
+
+What matters more is the change in mindset. Codex is allowing a non-developer like me to create, experiment, and enter areas that were previously inaccessible.
+
+Codex did not just help me build ReviewTrace. It changed me from someone who accepts inconveniences into someone who tries to build solutions for them.
 
 ### What's next
 
-The immediate next step is to install TestFlight `1.0 (1)` and finish the privacy-safe real-iPhone demonstration: process an English narrated ReviewTrace recording, verify its timestamps and previews, pass the package to Codex, and show a visible before-and-after repair.
+I want to keep using Codex to build tools for problems and subjects that interest me.
 
-After that, I want to validate ReviewTrace across more iPhone models, longer recordings, and more reviewers. I also want to measure Korean and English transcription performance before adding more speech locales, and expand the TestFlight beta only after the current real-device workflow is verified.
+I am already experimenting with a Morse code learning app and an app for learning Braille. They are more ambitious and not easy to build, but before Codex I would not have believed I could attempt them at all.
 
-Add this sentence only after the real iPhone → ReviewTrace → Codex → repaired app loop has actually succeeded and appears in the final video:
+Next, I also want to test ReviewTrace with longer recordings, more iPhone models, and additional reviewers. I plan to measure Korean and English transcription quality before expanding to more speech languages.
 
-> For the final Build Week proof, I used ReviewTrace to review ReviewTrace itself, handed two timestamped English requests to Codex, and verified the repaired interface with a new build.
+ReviewTrace is a practical bridge for today's development workflow, and the lessons from building it will shape the tools I create next.
+
+### Try it out
+
+- [GitHub Repository](https://github.com/woozy-A/ReviewTrace-OpenAI-Build-Week)
+- [Prebuilt Simulator Demo Release](https://github.com/woozy-A/ReviewTrace-OpenAI-Build-Week/releases/tag/build-week-demo)
+
+## Conditional post-demo replacement — not part of the current Devpost description
+
+실제 iPhone 녹화 처리, Codex 전달, UI 복구, 새 빌드 검증까지 성공한 뒤에는 `Accomplishments that I am proud of`의 첫 두 문단을 아래 문장으로 교체할 수 있습니다.
+
+> I am proud that I used ReviewTrace to finish ReviewTrace itself. I reviewed the near-final app on a real iPhone, processed that recording with ReviewTrace, gave the resulting package to Codex, and used Codex to make the final visible improvement. The tool completed the same development loop it was created to support.
 
 ## Devpost custom fields
 
