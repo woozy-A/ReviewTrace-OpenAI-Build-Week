@@ -6,7 +6,7 @@ ReviewTrace is an iPhone developer tool. It does not require an account, API key
 
 ### 1. Watch the complete product flow
 
-- Public YouTube demo: `OWNER_TODO_YOUTUBE_URL`
+- Public YouTube demo: https://youtu.be/X_OToLfUBK4
 - Maximum length: under three minutes
 - The final video must show a real working flow and explain how Codex and GPT-5.6 were used.
 

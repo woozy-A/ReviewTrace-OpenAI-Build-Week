@@ -205,7 +205,7 @@ See [CHANGELOG.md](CHANGELOG.md) for the dated baseline and feature commits. Git
 - Record and commit the real narrated sample, then measure its processing time.
 - Install TestFlight `1.0 (1)` on a real iPhone and complete the short smoke-test checklist.
 - Complete the ReviewTrace-on-ReviewTrace real-iPhone loop and capture before/after evidence.
-- Record a publicly accessible YouTube demo under three minutes (unlisted is allowed) and verify it while logged out.
+- Publish a public YouTube demo under three minutes and verify it while logged out.
 - Paste the prepared repository, release, and source-build test paths into the Devpost project.
 - Run `/feedback` in the primary Codex task and enter the actual session ID.
 - Choose the Developer Tools category and move the Devpost project from pre-draft to submitted.

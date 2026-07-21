@@ -158,7 +158,7 @@ ReviewTrace is a practical bridge for today's development workflow, and the less
 ```text
 No credentials are required.
 
-Demo video (publicly accessible, under three minutes; unlisted is allowed): OWNER_TODO_YOUTUBE_URL
+Demo video (public, under three minutes): https://youtu.be/X_OToLfUBK4
 Public repository and README: https://github.com/woozy-A/ReviewTrace-OpenAI-Build-Week
 Judge quick start: https://github.com/woozy-A/ReviewTrace-OpenAI-Build-Week/blob/main/Docs/JudgeQuickStart.md
 Prebuilt universal Simulator app: https://github.com/woozy-A/ReviewTrace-OpenAI-Build-Week/releases/tag/build-week-demo
