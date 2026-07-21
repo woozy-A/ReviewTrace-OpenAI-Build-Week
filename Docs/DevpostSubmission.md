@@ -207,8 +207,8 @@ The Korean meaning and pronunciation guide for every spoken repair request is in
 - [x] Choose a public repository and add the MIT license.
 - [x] Rewrite the existing commit email to GitHub `noreply` before the first public push.
 - [x] Authenticate GitHub CLI.
-- [ ] Create and push the public repository.
-- [ ] Upload `ReviewTrace-Simulator.app.zip` and its checksum as release assets.
+- [x] Create and push the public repository.
+- [x] Upload `ReviewTrace-Simulator.app.zip` and its checksum as release assets.
 - [ ] Record the privacy-safe real-iPhone sample and fill every `TBD` in `Samples/README.md`.
 - [ ] Complete the ReviewTrace → Codex → repaired ReviewTrace proof before claiming it.
 - [ ] Upload the final video to YouTube, keep it under three minutes, and verify it while signed out.

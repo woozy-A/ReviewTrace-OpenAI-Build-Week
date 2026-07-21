@@ -40,7 +40,7 @@ This record separates compile/test evidence from UI, media, and release evidence
 
 - `Scripts/package-simulator-app.sh` completed a Release build for `generic/platform=iOS Simulator` with signing disabled.
 - The packaged executable contains both `arm64` and `x86_64` Simulator slices.
-- Local release asset: `dist/ReviewTrace-Simulator.app.zip` (1.5 MB; ignored by Git until uploaded as a GitHub Release asset).
+- Public release asset: [ReviewTrace-Simulator.app.zip](https://github.com/woozy-A/ReviewTrace-OpenAI-Build-Week/releases/download/build-week-demo/ReviewTrace-Simulator.app.zip) (1.5 MB; the local `dist/` copy remains ignored by Git).
 - SHA-256: `a852e4bba976cec2b1bb86940bc49b31d3729b45e151e6ed1bc10fe08cded0fe`
 - `shasum -a 256 -c` passed.
 - A fresh extraction installed and launched successfully on the dedicated iPhone 17 Pro Simulator.

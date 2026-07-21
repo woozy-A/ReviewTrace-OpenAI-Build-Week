@@ -202,7 +202,7 @@ See [CHANGELOG.md](CHANGELOG.md) for the dated baseline and feature commits. Git
 - Record and commit the real narrated sample, then measure its processing time.
 - Complete the ReviewTrace-on-ReviewTrace real-iPhone loop and capture before/after evidence.
 - Record a public YouTube demo under three minutes and verify it while logged out.
-- Add the repository URL and source-build test path to the Devpost submission.
+- Paste the prepared repository, release, and source-build test paths into the Devpost project.
 - Run `/feedback` in the primary Codex task and enter the actual session ID.
 - Choose the Developer Tools category and move the Devpost project from pre-draft to submitted.
 
