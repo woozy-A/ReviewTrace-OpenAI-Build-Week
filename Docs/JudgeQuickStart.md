@@ -14,7 +14,7 @@ This is the only route that should be treated as final real-media evidence after
 
 ### 2. Run the prebuilt Simulator app without compiling
 
-Download these assets from the repository's Build Week release after they are uploaded:
+Download these assets from the [Build Week release](https://github.com/woozy-A/ReviewTrace-OpenAI-Build-Week/releases/tag/build-week-demo):
 
 - `ReviewTrace-Simulator.app.zip`
 - `ReviewTrace-Simulator.app.zip.sha256`

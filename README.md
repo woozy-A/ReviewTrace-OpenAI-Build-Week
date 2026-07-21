@@ -192,7 +192,6 @@ Apple Speech is configured with `requiresOnDeviceRecognition = false`. Depending
 - Recordings that exceed the Codex compression threshold require the user to prepare optimized 540p parts before sharing the complete media package.
 - The app does not modify a repository itself, summarize issues with an OpenAI API, or make product decisions for the reviewer.
 - Real-iPhone sample processing time, unlocked end-to-end media dogfooding, Archive, TestFlight, and public demo playback are not yet verified.
-- No public project license has been selected in this repository.
 
 ## Build Week changelog
 
@@ -205,7 +204,10 @@ See [CHANGELOG.md](CHANGELOG.md) for the dated baseline and feature commits. Git
 - Record a public YouTube demo under three minutes and verify it while logged out.
 - Add the repository URL and source-build test path to the Devpost submission.
 - Run `/feedback` in the primary Codex task and enter the actual session ID.
-- Confirm whether the repository will be public with a license or private with both required judge accounts invited.
 - Choose the Developer Tools category and move the Devpost project from pre-draft to submitted.
 
 The prepared English field copy, short demo script, custom-field map, and final owner checklist are in [Docs/DevpostSubmission.md](Docs/DevpostSubmission.md).
+
+## License
+
+ReviewTrace is available under the [MIT License](LICENSE).

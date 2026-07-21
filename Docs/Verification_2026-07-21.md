@@ -56,7 +56,7 @@ This record separates compile/test evidence from UI, media, and release evidence
 - Launch request: passed; the ReviewTrace process remained listed after launch
 - XCTest: 22 passed, 0 failed
 - Result bundle: `/tmp/OpenAiReviewTrace-DeviceTests/Logs/Test/Test-ReviewTrace-2026.07.21_02-53-15-+0900.xcresult`
-- This physical-device result predates commits `51ad510` and `3ec84d6`; the current 28-test English-locale and String Catalog revision needs a fresh device run.
+- This physical-device result predates commits `5c0394c` and `91a378c`; the current 28-test English-locale and String Catalog revision needs a fresh device run.
 
 ### Latest-revision physical-device attempt
 
@@ -79,4 +79,4 @@ Temporary result-bundle paths are local evidence from this run and are not commi
 
 ## Interpretation
 
-The earlier physical-device results prove that the pre-`51ad510` revision signed, installed, launched, and ran its then-current unit tests on the connected iPhone. The latest source compiles and passes all Simulator tests, but the latest physical-device signing attempt did not finish. Neither result proves the pending real-media workflow or release readiness. Follow `Samples/README.md` after the device owner unlocks the phone and records the final sample.
+The earlier physical-device results prove that the pre-`5c0394c` revision signed, installed, launched, and ran its then-current unit tests on the connected iPhone. The latest source compiles and passes all Simulator tests, but the latest physical-device signing attempt did not finish. Neither result proves the pending real-media workflow or release readiness. Follow `Samples/README.md` after the device owner unlocks the phone and records the final sample.

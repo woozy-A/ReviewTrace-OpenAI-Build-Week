@@ -142,7 +142,7 @@ Add this sentence only after the real iPhone → ReviewTrace → Codex → repai
 | `27945` | Submitter Type | `OWNER CONFIRM`: likely `Individual` |
 | `27946` | Country of Residence | `OWNER CONFIRM`: likely `Korea Republic of` |
 | `27947` | Category | `Developer Tools` |
-| `27948` | Code repository URL | `OWNER_TODO_REPOSITORY_URL` |
+| `27948` | Code repository URL | <https://github.com/woozy-A/ReviewTrace-OpenAI-Build-Week> |
 | `27949` | Project/test link and instructions | Use the prepared text below after adding the video/release URLs |
 | `27950` | `/feedback` Session ID | `OWNER_TODO_FEEDBACK_SESSION_ID` |
 | `27951` | Developer-tool installation/testing | Use the prepared text below |
@@ -153,7 +153,7 @@ Add this sentence only after the real iPhone → ReviewTrace → Codex → repai
 No credentials are required. Start with Docs/JudgeQuickStart.md in the repository.
 
 Public demo: OWNER_TODO_YOUTUBE_URL
-Prebuilt universal Simulator app: OWNER_TODO_GITHUB_RELEASE_URL
+Prebuilt universal Simulator app: https://github.com/woozy-A/ReviewTrace-OpenAI-Build-Week/releases/tag/build-week-demo
 
 For the source path, open OpenAi_ReviewTrace.xcodeproj, select the shared ReviewTrace scheme, and run on an iOS 17+ iPhone Simulator. For the primary media path, use a privacy-safe 60–90 second portrait iPhone screen recording with microphone audio and select the actual spoken locale before import.
 ```
@@ -195,20 +195,19 @@ The Korean meaning and pronunciation guide for every spoken repair request is in
 
 ## Repository publication decision
 
-Choose exactly one before upload:
-
-1. **Public repository:** add an owner-approved open-source license. This is easiest for judges, but the current Git history contains the existing commit author email and Apple development-team metadata.
-2. **Private repository:** invite both `testing@devpost.com` and `build-week-event@openai.com` before the deadline and verify access.
-
-Do not publish until the owner confirms visibility and whether the existing Git commit email should remain or be rewritten to a GitHub `noreply` address.
+- Public repository: <https://github.com/woozy-A/ReviewTrace-OpenAI-Build-Week>
+- License: MIT
+- Git history: all author and committer emails were rewritten to the authenticated GitHub `noreply` address before the first public push.
+- The pre-existing private `woozy-A/ReviewTrace` repository was not overwritten.
 
 ## Final owner checklist
 
 - [ ] Confirm Submitter Type and Country of Residence.
 - [ ] Personalize the `OWNER EDIT` sentence and read the English description aloud.
-- [ ] Decide public + license or private + two judge invitations.
-- [ ] Decide whether to preserve or rewrite the existing commit email before the first push.
-- [ ] Authenticate GitHub CLI and create the repository.
+- [x] Choose a public repository and add the MIT license.
+- [x] Rewrite the existing commit email to GitHub `noreply` before the first public push.
+- [x] Authenticate GitHub CLI.
+- [ ] Create and push the public repository.
 - [ ] Upload `ReviewTrace-Simulator.app.zip` and its checksum as release assets.
 - [ ] Record the privacy-safe real-iPhone sample and fill every `TBD` in `Samples/README.md`.
 - [ ] Complete the ReviewTrace → Codex → repaired ReviewTrace proof before claiming it.

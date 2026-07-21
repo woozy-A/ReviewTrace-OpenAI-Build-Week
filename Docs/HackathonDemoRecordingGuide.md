@@ -26,7 +26,7 @@
 완성 브랜치에서 아래처럼 별도 작업공간을 만들 수 있습니다.
 
 ```sh
-git worktree add ../OpenAi_ReviewTrace_Demo -b demo/ui-regression codex/openai-build-week
+git worktree add ../OpenAi_ReviewTrace_Demo -b demo/ui-regression main
 ```
 
 의도적인 UI 변경, 데모용 빌드, Codex 복구 작업은 모두 `OpenAi_ReviewTrace_Demo`에서만 진행합니다. 프로덕션 작업공간에는 촬영용 회귀를 커밋하지 않습니다.
