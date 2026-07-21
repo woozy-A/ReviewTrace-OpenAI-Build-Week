@@ -4,7 +4,7 @@
 
 > 문서 상태: Build Week 실행 계획 1차안  
 > 작성일: 2026-07-21  
-> 실제 저장소 경로: `/Users/changwoo/Desktop/Codexin/ReviewTrace`  
+> 실제 저장소: 이 문서를 포함한 Git 저장소의 루트
 > 권장 출품 트랙: **Developer Tools**
 
 ## 0. 문서 표기 규칙

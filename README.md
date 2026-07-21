@@ -9,12 +9,13 @@ The app preserves the human review record; it does not replace the human reviewe
 ## Current verification status
 
 - The app and test targets build from `OpenAi_ReviewTrace.xcodeproj` with Xcode 26.6 (17F113).
-- The complete XCTest suite passes on an iPhone 17 Pro Simulator running iOS 26.5: 25 tests, 0 failures.
+- The complete XCTest suite passes on an iPhone 17 Pro Simulator running iOS 26.5: 28 tests, 0 failures.
 - An unsigned generic iOS build succeeds with `CODE_SIGNING_ALLOWED=NO`.
-- Before the selectable speech-locale addition, a signed Debug build installed and launched on an iPhone 15 Pro running iOS 26.5.2, and all 22 then-current XCTest cases passed on that physical phone. The latest 25-test revision still needs a new physical-device run.
+- Before the selectable speech-locale and String Catalog additions, a signed Debug build installed and launched on an iPhone 15 Pro running iOS 26.5.2, and all 22 then-current XCTest cases passed on that physical phone. The latest 28-test revision still needs a new physical-device run.
 - Real-media processing, the public narrated sample, unlocked visual QA, processing-time measurement, and the final real-iPhone self-review loop still require device evidence. They are not claimed as complete here.
 
 See [Docs/Verification_2026-07-21.md](Docs/Verification_2026-07-21.md) for the exact proof boundary.
+Judges can start with [Docs/JudgeQuickStart.md](Docs/JudgeQuickStart.md).
 
 ## What it does
 
@@ -43,6 +44,7 @@ ReviewTrace began as a private exploratory prototype. During OpenAI Build Week, 
 - Codex package sharing became the primary export action;
 - readable screen-recording rows gained asynchronous, cached visual previews;
 - Korean and English speech recognition became a per-review choice, independent from the app display language and safe across retries and cached chunks;
+- all app and permission copy moved to Apple String Catalogs, with an in-app English/Korean display-language switch;
 - prompt, cache, cancellation, and regression tests were added;
 - the supported build and judge paths were documented.
 
@@ -91,6 +93,7 @@ Other Xcode versions may work, but are not claimed as verified.
 4. Choose an iOS 17+ iPhone Simulator or a connected iPhone.
 5. For a physical device, select your development team and use a bundle identifier available to that team.
 6. Build and run with Command-R.
+7. For an English judge or demo path, choose **Settings → App Language → English**. This is independent from the spoken language selected on Home.
 
 The app requests:
 
@@ -142,7 +145,9 @@ An unsigned generic build proves compilation only. It is not Simulator, real-dev
 
 ## Judge test path
 
-The complete submission path should use the privacy-safe file described in [Samples/README.md](Samples/README.md). Until that real sample is recorded and committed, judges can use their own 60–90 second vertical iPhone screen recording with microphone narration.
+For the fastest source, prebuilt-Simulator, and real-device routes, start with [Docs/JudgeQuickStart.md](Docs/JudgeQuickStart.md). The complete media path below uses the privacy-safe file described in [Samples/README.md](Samples/README.md).
+
+Until that real sample is recorded and committed, judges can use their own 60–90 second vertical iPhone screen recording with microphone narration.
 
 1. Add the sample recording to Photos. For Simulator testing:
 
@@ -181,6 +186,7 @@ Apple Speech is configured with `requiresOnDeviceRecognition = false`. Depending
 ## Known limitations
 
 - Speech transcription currently supports `ko-KR` and `en-US`. The language is fixed for each imported review; changing it afterward does not retroactively re-transcribe a completed session.
+- App and permission copy is maintained in `Localizable.xcstrings` and `InfoPlist.xcstrings`; Apple-provided runtime error text may still follow the device language.
 - ReviewTrace imports recordings; it does not include a ReplayKit recording extension.
 - Timeline thumbnails are memory-only previews for readable screen-recording rows and are not persistent exports.
 - Recordings that exceed the Codex compression threshold require the user to prepare optimized 540p parts before sharing the complete media package.
@@ -199,4 +205,7 @@ See [CHANGELOG.md](CHANGELOG.md) for the dated baseline and feature commits. Git
 - Record a public YouTube demo under three minutes and verify it while logged out.
 - Add the repository URL and source-build test path to the Devpost submission.
 - Run `/feedback` in the primary Codex task and enter the actual session ID.
+- Confirm whether the repository will be public with a license or private with both required judge accounts invited.
 - Choose the Developer Tools category and move the Devpost project from pre-draft to submitted.
+
+The prepared English field copy, short demo script, custom-field map, and final owner checklist are in [Docs/DevpostSubmission.md](Docs/DevpostSubmission.md).

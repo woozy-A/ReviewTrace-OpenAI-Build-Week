@@ -23,14 +23,28 @@ This record separates compile/test evidence from UI, media, and release evidence
 
 - Device: iPhone 17 Pro Simulator
 - OS: iOS 26.5
-- Result: 25 passed, 0 failed, 0 skipped
-- Latest result bundle during this implementation run: `/tmp/ReviewTrace-English-FullTests/Logs/Test/Test-ReviewTrace-2026.07.21_03-27-35-+0900.xcresult`
+- Result: 28 passed, 0 failed, 0 skipped
+- Latest result bundle during this implementation run: `/tmp/ReviewTrace-Submission-Tests/Logs/Test/Test-ReviewTrace-2026.07.21_09-55-28-+0900.xcresult`
 
-### Language-selection UI smoke check
+### English/Korean String Catalog UI smoke check
 
-- Korean app UI: the separate `한국어 (ko-KR) / English (en-US)` spoken-language selector rendered without clipping.
-- English app UI: `English (en-US)` could be selected independently and the English helper copy rendered without clipping.
-- These checks prove layout and persistence wiring on Simulator, not a real Apple Speech transcription result.
+- The app was installed and launched on the dedicated iPhone 17 Pro Simulator.
+- Settings changed the app display language from English to Korean and back to English through the actual language picker.
+- Home and Settings headings, privacy text, buttons, tab labels, and the per-review spoken-language helper changed immediately from `Localizable.xcstrings`.
+- The spoken-review selector remained an independent `한국어 (ko-KR) / English (en-US)` choice.
+- `Localizable.xcstrings` contains 194 source keys with 194 Korean localizations; static source lookup found 177 referenced keys and 0 missing keys.
+- `InfoPlist.xcstrings` compiled English and Korean purpose strings for Photo Library read/add and Speech Recognition permissions.
+- These checks prove String Catalog compilation, layout, and persistence wiring on Simulator, not a real Apple Speech transcription result.
+
+### Prebuilt Simulator judge artifact
+
+- `Scripts/package-simulator-app.sh` completed a Release build for `generic/platform=iOS Simulator` with signing disabled.
+- The packaged executable contains both `arm64` and `x86_64` Simulator slices.
+- Local release asset: `dist/ReviewTrace-Simulator.app.zip` (1.5 MB; ignored by Git until uploaded as a GitHub Release asset).
+- SHA-256: `a852e4bba976cec2b1bb86940bc49b31d3729b45e151e6ed1bc10fe08cded0fe`
+- `shasum -a 256 -c` passed.
+- A fresh extraction installed and launched successfully on the dedicated iPhone 17 Pro Simulator.
+- This proves that the no-rebuild Simulator artifact is installable; it is not physical-device or real-media proof.
 
 ### Physical iPhone build, install, launch, and XCTest
 
@@ -42,7 +56,7 @@ This record separates compile/test evidence from UI, media, and release evidence
 - Launch request: passed; the ReviewTrace process remained listed after launch
 - XCTest: 22 passed, 0 failed
 - Result bundle: `/tmp/OpenAiReviewTrace-DeviceTests/Logs/Test/Test-ReviewTrace-2026.07.21_02-53-15-+0900.xcresult`
-- This physical-device result predates commit `51ad510`; the current 25-test English-locale revision needs a fresh device run.
+- This physical-device result predates commits `51ad510` and `3ec84d6`; the current 28-test English-locale and String Catalog revision needs a fresh device run.
 
 ### Latest-revision physical-device attempt
 
@@ -65,4 +79,4 @@ Temporary result-bundle paths are local evidence from this run and are not commi
 
 ## Interpretation
 
-The physical-device results prove that the current source signs, installs, launches, and runs its unit tests on the connected iPhone. They do not prove the pending real-media workflow or release readiness. Follow `Samples/README.md` after the device owner unlocks the phone and records the final sample.
+The earlier physical-device results prove that the pre-`51ad510` revision signed, installed, launched, and ran its then-current unit tests on the connected iPhone. The latest source compiles and passes all Simulator tests, but the latest physical-device signing attempt did not finish. Neither result proves the pending real-media workflow or release readiness. Follow `Samples/README.md` after the device owner unlocks the phone and records the final sample.

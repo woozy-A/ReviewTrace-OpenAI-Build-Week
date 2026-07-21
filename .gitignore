@@ -7,3 +7,20 @@ xcuserdata/
 *.xcuserstate
 *.xcresult
 
+# Local configuration and signing material must never be published.
+.env
+.env.*
+!.env.example
+Secrets.xcconfig
+*.p12
+*.pem
+*.key
+*.cer
+*.mobileprovision
+*.provisionprofile
+*.ipa
+*.xcarchive
+*.dSYM
+
+# Reproducible judge artifacts are generated locally and uploaded as release assets.
+dist/
