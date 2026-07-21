@@ -3,6 +3,49 @@ import XCTest
 @testable import ReviewTrace
 
 final class ReviewSessionLanguageTests: XCTestCase {
+    @MainActor
+    func testReviewLanguageFollowsAppLanguageUntilTheUserChoosesAnOverride() throws {
+        let (userDefaults, suiteName) = try makeIsolatedUserDefaults()
+        defer { userDefaults.removePersistentDomain(forName: suiteName) }
+
+        let store = ReviewTraceStore(userDefaults: userDefaults)
+        XCTAssertEqual(store.transcriptionLanguage, store.appLanguage)
+        XCTAssertNil(userDefaults.string(forKey: "ReviewTrace.transcriptionLanguage"))
+
+        store.setAppLanguage(.english)
+
+        XCTAssertEqual(store.appLanguage, .english)
+        XCTAssertEqual(store.transcriptionLanguage, .english)
+        XCTAssertNil(userDefaults.string(forKey: "ReviewTrace.transcriptionLanguage"))
+
+        let restoredStore = ReviewTraceStore(userDefaults: userDefaults)
+        XCTAssertEqual(restoredStore.appLanguage, .english)
+        XCTAssertEqual(restoredStore.transcriptionLanguage, .english)
+    }
+
+    @MainActor
+    func testExplicitReviewLanguageIsPreservedWhenAppLanguageChanges() throws {
+        let (userDefaults, suiteName) = try makeIsolatedUserDefaults()
+        defer { userDefaults.removePersistentDomain(forName: suiteName) }
+
+        let store = ReviewTraceStore(userDefaults: userDefaults)
+        store.setAppLanguage(.english)
+        store.setTranscriptionLanguage(.korean)
+        store.setAppLanguage(.korean)
+        store.setAppLanguage(.english)
+
+        XCTAssertEqual(store.appLanguage, .english)
+        XCTAssertEqual(store.transcriptionLanguage, .korean)
+        XCTAssertEqual(
+            userDefaults.string(forKey: "ReviewTrace.transcriptionLanguage"),
+            AppLanguage.korean.rawValue
+        )
+
+        let restoredStore = ReviewTraceStore(userDefaults: userDefaults)
+        XCTAssertEqual(restoredStore.appLanguage, .english)
+        XCTAssertEqual(restoredStore.transcriptionLanguage, .korean)
+    }
+
     func testLegacySessionWithoutTranscriptionLanguageDefaultsToKorean() throws {
         let session = ReviewSession(title: "Legacy Review")
         let encoded = try JSONEncoder().encode(session)
@@ -61,5 +104,12 @@ final class ReviewSessionLanguageTests: XCTestCase {
         XCTAssertNotEqual(koreanURL, englishURL)
         XCTAssertEqual(koreanURL.lastPathComponent, "chunk-003-transcript-ko-KR.json")
         XCTAssertEqual(englishURL.lastPathComponent, "chunk-003-transcript-en-US.json")
+    }
+
+    private func makeIsolatedUserDefaults() throws -> (UserDefaults, String) {
+        let suiteName = "ReviewSessionLanguageTests.\(UUID().uuidString)"
+        let userDefaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))
+        userDefaults.removePersistentDomain(forName: suiteName)
+        return (userDefaults, suiteName)
     }
 }

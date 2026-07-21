@@ -9,26 +9,43 @@ struct SettingsView: View {
 
         Form {
             Section(copy.general) {
-                Picker(copy.appLanguage, selection: Binding(
-                    get: { store.appLanguage },
-                    set: { store.appLanguage = $0 }
-                )) {
-                    ForEach(AppLanguage.allCases) { language in
-                        Text(language.shortDisplayName).tag(language)
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(copy.appLanguage)
+
+                    Picker(copy.appLanguage, selection: Binding(
+                        get: { store.appLanguage },
+                        set: { store.setAppLanguage($0) }
+                    )) {
+                        ForEach(AppLanguage.allCases) { language in
+                            Text(copy.transcriptionLanguageName(language)).tag(language)
+                        }
                     }
+                    .pickerStyle(.segmented)
+                    .labelsHidden()
                 }
 
-                Picker(copy.defaultTranscriptionLanguage, selection: Binding(
-                    get: { store.transcriptionLanguage },
-                    set: { store.transcriptionLanguage = $0 }
-                )) {
-                    ForEach(AppLanguage.allCases) { language in
-                        Text(copy.transcriptionLanguageName(language, includesLocale: true)).tag(language)
-                    }
-                }
-                .disabled(store.isBackgroundWorkActive)
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(copy.defaultTranscriptionLanguage)
 
-                LabeledContent(copy.exportDefaultFormat, value: copy.shareVideoAndReview)
+                    Picker(copy.defaultTranscriptionLanguage, selection: Binding(
+                        get: { store.transcriptionLanguage },
+                        set: { store.setTranscriptionLanguage($0) }
+                    )) {
+                        ForEach(AppLanguage.allCases) { language in
+                            Text(copy.transcriptionLanguageName(language)).tag(language)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    .labelsHidden()
+                    .disabled(store.isBackgroundWorkActive)
+                }
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(copy.exportDefaultFormat)
+                    Text(copy.shareVideoAndReview)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
             }
 
             Section(copy.privacy) {

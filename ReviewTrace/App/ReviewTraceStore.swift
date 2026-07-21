@@ -4,16 +4,8 @@ import Observation
 @MainActor
 @Observable
 final class ReviewTraceStore {
-    var appLanguage: AppLanguage = AppConfiguration.defaultAppLanguage {
-        didSet {
-            UserDefaults.standard.set(appLanguage.rawValue, forKey: Self.appLanguageDefaultsKey)
-        }
-    }
-    var transcriptionLanguage: AppLanguage = .korean {
-        didSet {
-            UserDefaults.standard.set(transcriptionLanguage.rawValue, forKey: Self.transcriptionLanguageDefaultsKey)
-        }
-    }
+    private(set) var appLanguage: AppLanguage
+    private(set) var transcriptionLanguage: AppLanguage
     var sessions: [ReviewSession] = []
     var isProcessing = false
     var processingTitle = "리뷰 처리 중"
@@ -25,6 +17,8 @@ final class ReviewTraceStore {
     private let metadataStore: BroadcastSessionMetadataStore
     private let persistence: ReviewSessionPersistence
     private let pipeline: ReviewProcessingPipeline
+    @ObservationIgnored private let userDefaults: UserDefaults
+    @ObservationIgnored private var transcriptionLanguageFollowsAppLanguage: Bool
     @ObservationIgnored private let videoCompressionService = VideoCompressionService()
     @ObservationIgnored private var processingOperationTask: Task<Void, Never>?
     @ObservationIgnored private var videoCompressionTask: Task<[OptimizedVideoPart], Error>?
@@ -37,20 +31,45 @@ final class ReviewTraceStore {
     init(
         metadataStore: BroadcastSessionMetadataStore = BroadcastSessionMetadataStore(),
         persistence: ReviewSessionPersistence = ReviewSessionPersistence(),
-        pipeline: ReviewProcessingPipeline = ReviewProcessingPipeline()
+        pipeline: ReviewProcessingPipeline = ReviewProcessingPipeline(),
+        userDefaults: UserDefaults = .standard
     ) {
         self.metadataStore = metadataStore
         self.persistence = persistence
         self.pipeline = pipeline
-        if let storedValue = UserDefaults.standard.string(forKey: Self.appLanguageDefaultsKey),
-           let storedLanguage = AppLanguage(rawValue: storedValue) {
-            self.appLanguage = storedLanguage
-        }
-        if let storedValue = UserDefaults.standard.string(forKey: Self.transcriptionLanguageDefaultsKey),
-           let storedLanguage = AppLanguage(rawValue: storedValue) {
-            self.transcriptionLanguage = storedLanguage
+        self.userDefaults = userDefaults
+
+        let storedAppLanguage = userDefaults.string(forKey: Self.appLanguageDefaultsKey)
+            .flatMap(AppLanguage.init(rawValue:))
+        let resolvedAppLanguage = storedAppLanguage ?? AppConfiguration.defaultAppLanguage
+        self.appLanguage = resolvedAppLanguage
+
+        let storedTranscriptionLanguage = userDefaults.string(forKey: Self.transcriptionLanguageDefaultsKey)
+            .flatMap(AppLanguage.init(rawValue:))
+        self.transcriptionLanguage = storedTranscriptionLanguage ?? resolvedAppLanguage
+        self.transcriptionLanguageFollowsAppLanguage = storedTranscriptionLanguage == nil
+
+        if storedTranscriptionLanguage == nil {
+            userDefaults.removeObject(forKey: Self.transcriptionLanguageDefaultsKey)
         }
         loadSessions()
+    }
+
+    func setAppLanguage(_ language: AppLanguage) {
+        guard appLanguage != language else { return }
+
+        appLanguage = language
+        userDefaults.set(language.rawValue, forKey: Self.appLanguageDefaultsKey)
+
+        if transcriptionLanguageFollowsAppLanguage {
+            transcriptionLanguage = language
+        }
+    }
+
+    func setTranscriptionLanguage(_ language: AppLanguage) {
+        transcriptionLanguageFollowsAppLanguage = false
+        transcriptionLanguage = language
+        userDefaults.set(language.rawValue, forKey: Self.transcriptionLanguageDefaultsKey)
     }
 
     var copy: AppCopy {

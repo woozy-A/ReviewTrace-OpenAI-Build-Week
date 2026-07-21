@@ -23,7 +23,7 @@ struct ImportVideoView: View {
                 SpokenLanguagePicker(
                     selection: Binding(
                         get: { store.transcriptionLanguage },
-                        set: { store.transcriptionLanguage = $0 }
+                        set: { store.setTranscriptionLanguage($0) }
                     ),
                     copy: copy
                 )
