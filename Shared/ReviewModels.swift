@@ -229,18 +229,7 @@ enum ReviewSessionStatus: String, Codable, CaseIterable, Hashable {
     }
 
     func displayName(language: AppLanguage) -> String {
-        switch language {
-        case .english:
-            displayName
-        case .korean:
-            switch self {
-            case .recording: "녹화 중"
-            case .pendingProcessing: "처리 대기"
-            case .processing: "처리 중"
-            case .ready: "완료"
-            case .failed: "실패"
-            }
-        }
+        AppLocalization.string(displayName, language: language)
     }
 }
 
@@ -474,22 +463,7 @@ enum IssueCategory: String, Codable, CaseIterable, Hashable {
     }
 
     func displayName(language: AppLanguage) -> String {
-        switch language {
-        case .english:
-            displayName
-        case .korean:
-            switch self {
-            case .ux: "UX"
-            case .ui: "UI"
-            case .bug: "버그"
-            case .navigation: "화면 이동"
-            case .copywriting: "문구"
-            case .accessibility: "접근성"
-            case .performance: "성능"
-            case .onboarding: "온보딩"
-            case .unknown: "미분류"
-            }
-        }
+        AppLocalization.string(displayName, language: language)
     }
 }
 
@@ -507,16 +481,7 @@ enum Severity: String, Codable, CaseIterable, Hashable, Comparable {
     }
 
     func displayName(language: AppLanguage) -> String {
-        switch language {
-        case .english:
-            displayName
-        case .korean:
-            switch self {
-            case .low: "낮음"
-            case .medium: "중간"
-            case .high: "높음"
-            }
-        }
+        AppLocalization.string(displayName, language: language)
     }
 
     private var rank: Int {

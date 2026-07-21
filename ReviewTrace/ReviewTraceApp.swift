@@ -8,6 +8,8 @@ struct ReviewTraceApp: App {
         WindowGroup {
             AppView()
                 .environment(store)
+                // STUDY: This updates SwiftUI system-provided labels and formatting with the in-app language picker.
+                .environment(\.locale, store.appLanguage.locale)
         }
     }
 }

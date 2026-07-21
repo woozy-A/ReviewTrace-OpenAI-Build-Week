@@ -890,195 +890,199 @@ private struct ReviewTitleGenerator {
 struct AppCopy {
     let language: AppLanguage
 
-    var homeTab: String { language == .korean ? "홈" : "Home" }
-    var reviewsTab: String { language == .korean ? "리뷰" : "Reviews" }
-    var settingsTab: String { language == .korean ? "설정" : "Settings" }
-
-    var checkingPendingBroadcasts: String { language == .korean ? "대기 중인 방송 확인" : "Checking pending broadcasts" }
-    var importingRecording: String { language == .korean ? "녹화 파일 가져오는 중" : "Importing recording" }
-    var importingAudioFile: String { language == .korean ? "음성 파일 가져오는 중" : "Importing audio file" }
-    var importedReviewTitle: String { language == .korean ? "화면 녹화 리뷰" : "Screen Recording Review" }
-    var importedAudioReviewTitle: String { language == .korean ? "음성 리뷰" : "Audio Review" }
-
-    var homeHeroTitle: String { language == .korean ? "앱 리뷰 영상을\nCodex 작업 문서로" : "Turn app review videos\ninto Codex work documents" }
-    var homeHeroSubtitle: String {
-        language == .korean
-            ? "말하면서 남긴 피드백을 영상 타임라인에 맞춰 전사합니다."
-            : "Transcribe spoken feedback against the video timeline."
+    private func localized(_ key: String) -> String {
+        AppLocalization.string(key, language: language)
     }
-    var startReview: String { language == .korean ? "화면 녹화 가져오기" : "Import Screen Recording" }
-    var importing: String { language == .korean ? "가져오는 중..." : "Importing..." }
-    var importExistingRecording: String { language == .korean ? "화면 녹화 가져오기" : "Import Screen Recording" }
-    var importAudioFile: String { language == .korean ? "음성 파일 가져오기" : "Import Audio File" }
+
+    private func formatted(_ key: String, _ arguments: CVarArg...) -> String {
+        String(
+            format: localized(key),
+            locale: language.locale,
+            arguments: arguments
+        )
+    }
+
+    var homeTab: String { localized("Home") }
+    var reviewsTab: String { localized("Reviews") }
+    var settingsTab: String { localized("Settings") }
+
+    var checkingPendingBroadcasts: String { localized("Checking pending broadcasts") }
+    var importingRecording: String { localized("Importing recording") }
+    var importingAudioFile: String { localized("Importing audio file") }
+    var importedReviewTitle: String { localized("Screen Recording Review") }
+    var importedAudioReviewTitle: String { localized("Audio Review") }
+
+    var homeHeroTitle: String { localized("Turn app review videos\ninto Codex work documents") }
+    var homeHeroSubtitle: String {
+        localized("Transcribe spoken feedback against the video timeline.")
+    }
+    var startReview: String { localized("Import Screen Recording") }
+    var importing: String { localized("Importing...") }
+    var importExistingRecording: String { localized("Import Screen Recording") }
+    var importAudioFile: String { localized("Import Audio File") }
     var importAudioFileDescription: String {
-        language == .korean
-            ? "개발 회의 녹음이나 음성 메모를 타임라인 전사로 바꿉니다."
-            : "Turn development meeting recordings or voice notes into a timeline transcript."
+        localized("Turn development meeting recordings or voice notes into a timeline transcript.")
     }
     var spokenReviewLanguage: String {
-        language == .korean ? "이번 리뷰에서 말한 언어" : "Language Spoken in This Review"
+        localized("Language Spoken in This Review")
     }
     var spokenReviewLanguageHelp: String {
-        language == .korean
-            ? "가져올 영상이나 음성에서 실제로 말한 언어를 선택하세요. 앱 표시 언어와는 별개입니다."
-            : "Choose the language actually spoken in the video or audio. This is separate from the app language."
+        localized("Choose the language actually spoken in the video or audio. This is separate from the app language.")
     }
-    func transcriptionLanguageName(_ transcriptionLanguage: AppLanguage, includesLocale: Bool = false) -> String {
+    func transcriptionLanguageName(
+        _ transcriptionLanguage: AppLanguage,
+        includesLocale: Bool = false
+    ) -> String {
         let name: String
         switch transcriptionLanguage {
         case .korean:
-            name = language == .korean ? "한국어" : "Korean"
+            name = localized("Korean")
         case .english:
-            name = "English"
+            name = localized("English")
         }
-        return includesLocale ? "\(name) (\(transcriptionLanguage.rawValue))" : name
+        return includesLocale
+            ? formatted("%1$@ (%2$@)", name, transcriptionLanguage.rawValue)
+            : name
     }
-    var recentReviews: String { language == .korean ? "최근 리뷰" : "Recent Reviews" }
+    var recentReviews: String { localized("Recent Reviews") }
     func recentReviewsLimit(_ count: Int) -> String {
-        language == .korean ? "최근 리뷰 \(count)개" : "\(count) Recent Reviews"
+        formatted("%@ Recent Reviews", String(count))
     }
     func recentReviewsDescription(_ count: Int) -> String {
-        language == .korean
-            ? "최신순 최대 \(count)개만 홈에 보여줍니다."
-            : "Home shows the latest \(count) reviews."
+        formatted("Home shows the latest %@ reviews.", String(count))
     }
-    var noReviewsTitle: String { language == .korean ? "아직 리뷰가 없어요" : "No Reviews Yet" }
+    var noReviewsTitle: String { localized("No Reviews Yet") }
     var noReviewsDescription: String {
-        language == .korean
-            ? "마이크를 켠 화면 녹화 영상이나 개발 회의 음성 파일을 가져오세요."
-            : "Import a screen recording with microphone audio or a development meeting audio file."
+        localized("Import a screen recording with microphone audio or a development meeting audio file.")
     }
 
     func sourceLabel(for sourceKind: ReviewSourceKind) -> String {
         switch sourceKind {
         case .screenRecording:
-            return language == .korean ? "영상" : "Video"
+            return localized("Video")
         case .audioFile:
-            return language == .korean ? "음성" : "Audio"
+            return localized("Audio")
         }
     }
 
     func transcriptCount(_ count: Int) -> String {
-        language == .korean ? "전사 \(count)개" : "\(count) transcript segments"
+        formatted("%@ transcript segments", String(count))
     }
 
     func displayTitle(_ title: String) -> String {
-        guard language == .korean else { return title }
         switch title {
         case "Screen Recording Review":
             return importedReviewTitle
+        case "Audio Review":
+            return importedAudioReviewTitle
         default:
             return title
         }
     }
 
-    var howToRecord: String { language == .korean ? "녹화 방법 안내" : "How to record" }
-    var quickRecordStep1: String { language == .korean ? "마이크 켜고 화면 녹화" : "Record with microphone on" }
-    var quickRecordStep2: String { language == .korean ? "앱을 사용하며 말로 리뷰" : "Use the app while speaking feedback" }
-    var quickRecordStep3: String { language == .korean ? "녹화 종료 후 가져오기" : "Import after recording" }
-    var recordStep1: String { language == .korean ? "제어 센터 열기" : "Open Control Center" }
-    var recordStep2: String { language == .korean ? "화면 기록 시작" : "Start Screen Recording" }
-    var recordStep3: String { language == .korean ? "마이크 오디오 켜기" : "Turn Microphone On" }
-    var recordStep4: String { language == .korean ? "앱을 사용하며 말로 피드백 남기기" : "Test your app while speaking feedback" }
-    var recordStep5: String { language == .korean ? "녹화 종료 후 이 앱에서 가져오기" : "Import the video here after recording" }
+    var howToRecord: String { localized("How to record") }
+    var quickRecordStep1: String { localized("Record with microphone on") }
+    var quickRecordStep2: String { localized("Use the app while speaking feedback") }
+    var quickRecordStep3: String { localized("Import after recording") }
+    var recordStep1: String { localized("Open Control Center") }
+    var recordStep2: String { localized("Start Screen Recording") }
+    var recordStep3: String { localized("Turn Microphone On") }
+    var recordStep4: String { localized("Test your app while speaking feedback") }
+    var recordStep5: String { localized("Import the video here after recording") }
 
-    var importVideoTitle: String { language == .korean ? "화면 녹화 선택" : "Select Screen Recording" }
+    var importVideoTitle: String { localized("Select Screen Recording") }
     var importVideoSubtitle: String {
-        language == .korean
-            ? "마이크를 켠 상태로 녹화한 영상을 선택하세요. 영상 시간이 타임라인 기준이 됩니다."
-            : "Choose a screen recording with microphone audio. The video timeline becomes the review timeline."
+        localized("Choose a screen recording with microphone audio. The video timeline becomes the review timeline.")
     }
-    var selectVideo: String { language == .korean ? "비디오 선택하기" : "Select Video" }
+    var selectVideo: String { localized("Select Video") }
     var importPrivacyCopy: String {
-        language == .korean
-            ? "ReviewTrace는 가져온 화면 녹화를 로컬에서 처리합니다. 민감한 정보가 포함된 영상은 신중하게 가져오세요."
-            : "ReviewTrace processes imported screen recordings locally. Only import recordings you intend to review."
+        localized("ReviewTrace processes imported screen recordings locally. Only import recordings you intend to review.")
     }
 
     var startReviewTitle: String { importVideoTitle }
-    var openControlCenter: String { language == .korean ? "제어 센터 열기" : "Open Control Center" }
-    var longPressScreenRecording: String { language == .korean ? "화면 녹화 길게 누르기" : "Long press Screen Recording" }
-    var selectReviewTrace: String { language == .korean ? "ReviewTrace 선택" : "Select ReviewTrace" }
+    var openControlCenter: String { localized("Open Control Center") }
+    var longPressScreenRecording: String { localized("Long press Screen Recording") }
+    var selectReviewTrace: String { localized("Select ReviewTrace") }
     var turnMicrophoneOn: String { recordStep3 }
-    var tapStartBroadcast: String { language == .korean ? "방송 시작" : "Tap Start Broadcast" }
-    var warmUpDelay: String { language == .korean ? "웜업 시간 설정" : "Warm-up Delay" }
+    var tapStartBroadcast: String { localized("Tap Start Broadcast") }
+    var warmUpDelay: String { localized("Warm-up Delay") }
     func seconds(_ value: TimeInterval) -> String {
-        language == .korean ? "\(Int(value))초" : "\(Int(value)) seconds"
+        formatted("%@ seconds", String(Int(value)))
     }
-    var reviewLanguage: String { language == .korean ? "언어 설정" : "Review Language" }
-    var whenRecordingStarts: String { language == .korean ? "녹화가 시작되면" : "When recording starts" }
+    var reviewLanguage: String { localized("Review Language") }
+    var whenRecordingStarts: String { localized("When recording starts") }
     func warmUpInstruction(_ delay: TimeInterval) -> String {
-        language == .korean
-            ? "녹화가 시작되면 \(Int(delay))초 뒤부터 리뷰 타임라인이 시작됩니다. 그 후 테스트할 앱으로 이동해서 말하면서 사용하세요."
-            : "When recording starts, the review timeline begins after \(Int(delay)) seconds. Then switch to the app you want to test and speak naturally."
+        formatted(
+            "When recording starts, the review timeline begins after %@ seconds. Then switch to the app you want to test and speak naturally.",
+            String(Int(delay))
+        )
     }
-    var openBroadcastPicker: String { language == .korean ? "방송 선택기 열기" : "Open Broadcast Picker" }
+    var openBroadcastPicker: String { localized("Open Broadcast Picker") }
     var sensitiveRecordingWarning: String {
-        language == .korean
-            ? "화면 녹화에는 민감한 정보가 포함될 수 있어요. 녹화 시작과 중지는 항상 iOS 시스템 화면에서 직접 확인하세요."
-            : "Screen recordings may include sensitive information. Start and stop recording only through the visible iOS system controls."
+        localized("Screen recordings may include sensitive information. Start and stop recording only through the visible iOS system controls.")
     }
 
-    var processingTitle: String { language == .korean ? "처리 중..." : "Processing..." }
-    var recordingFound: String { language == .korean ? "영상 가져오기 완료" : "Video imported" }
-    var audioFound: String { language == .korean ? "오디오 읽는 중" : "Reading audio" }
+    var processingTitle: String { localized("Processing...") }
+    var recordingFound: String { localized("Video imported") }
+    var audioFound: String { localized("Reading audio") }
     func transcribingSpeech(_ transcriptionLanguage: AppLanguage) -> String {
-        let spokenLanguage = transcriptionLanguageName(transcriptionLanguage)
-        return language == .korean
-            ? "음성 인식 중 (\(spokenLanguage))"
-            : "Transcribing \(spokenLanguage) speech..."
+        formatted(
+            "Transcribing %@ speech...",
+            transcriptionLanguageName(transcriptionLanguage)
+        )
     }
-    var buildingTimeline: String { language == .korean ? "타임라인 생성" : "Building timeline" }
-    var creatingCodexPrompt: String { language == .korean ? "내보내기 파일 생성" : "Creating exports" }
-    var progress: String { language == .korean ? "진행률" : "Progress" }
-    var retryFailedChunk: String { language == .korean ? "실패 구간 재시도" : "Retry Failed Chunk" }
-    var close: String { language == .korean ? "닫기" : "Close" }
-    var closeAndSelectAgain: String { language == .korean ? "닫고 다른 파일 선택" : "Close and Choose Another File" }
-    var failureReason: String { language == .korean ? "실패 이유" : "Failure reason" }
-    var processingFailed: String { language == .korean ? "처리 실패" : "Processing Failed" }
-    var errorTitle: String { language == .korean ? "오류" : "Error" }
+    var buildingTimeline: String { localized("Building timeline") }
+    var creatingCodexPrompt: String { localized("Creating exports") }
+    var progress: String { localized("Progress") }
+    var retryFailedChunk: String { localized("Retry Failed Chunk") }
+    var close: String { localized("Close") }
+    var closeAndSelectAgain: String { localized("Close and Choose Another File") }
+    var failureReason: String { localized("Failure reason") }
+    var processingFailed: String { localized("Processing Failed") }
+    var errorTitle: String { localized("Error") }
     var anotherTaskInProgress: String {
-        language == .korean
-            ? "다른 가져오기 또는 영상 준비 작업이 진행 중입니다. 완료하거나 취소한 뒤 다시 시도해 주세요."
-            : "Another import or video preparation task is running. Finish or cancel it before trying again."
+        localized("Another import or video preparation task is running. Finish or cancel it before trying again.")
     }
     var processingCompletedDescription: String {
-        language == .korean
-            ? "전사와 Codex 작업 패키지가 준비되었습니다. 리뷰 상세 화면에서 추천 패키지를 공유하세요."
-            : "The transcript and Codex work package are ready. Share the recommended package from the review detail screen."
+        localized("The transcript and Codex work package are ready. Share the recommended package from the review detail screen.")
     }
     var processingFailedDescription: String {
-        language == .korean
-            ? "완료된 구간은 보존됩니다. 실패 구간만 다시 시도하거나 닫고 다른 영상을 선택할 수 있습니다."
-            : "Completed chunks are preserved. Retry the failed chunk or close this and choose another video."
+        localized("Completed chunks are preserved. Retry the failed chunk or close this and choose another video.")
     }
-    var extractedAudio: String { language == .korean ? "추출된 오디오" : "Extracted audio" }
-    var failedChunk: String { language == .korean ? "실패한 구간" : "Failed chunk" }
-    var videoLength: String { language == .korean ? "영상 길이" : "Video length" }
+    var extractedAudio: String { localized("Extracted audio") }
+    var failedChunk: String { localized("Failed chunk") }
+    var videoLength: String { localized("Video length") }
     func sourceLength(for sourceKind: ReviewSourceKind) -> String {
         switch sourceKind {
         case .screenRecording:
             return videoLength
         case .audioFile:
-            return language == .korean ? "음성 길이" : "Audio length"
+            return localized("Audio length")
         }
     }
-    var totalChunks: String { language == .korean ? "총 구간" : "Total chunks" }
-    var completedChunks: String { language == .korean ? "완료 구간" : "Completed chunks" }
-    var currentChunk: String { language == .korean ? "현재 구간" : "Current chunk" }
-    var rawSegments: String { language == .korean ? "원본 전사 조각" : "Raw segments" }
-    var timelineRows: String { language == .korean ? "타임라인 행" : "Timeline rows" }
+    var totalChunks: String { localized("Total chunks") }
+    var completedChunks: String { localized("Completed chunks") }
+    var currentChunk: String { localized("Current chunk") }
+    var rawSegments: String { localized("Raw segments") }
+    var timelineRows: String { localized("Timeline rows") }
+    var audioProcessing: String { localized("audio processing") }
+    var videoProcessing: String { localized("video processing") }
 
     func chunkProgress(_ snapshot: ReviewProcessingSnapshot) -> String {
         let completedPercent = Int(snapshot.progress * 100)
         if let current = snapshot.currentChunkDisplayIndex {
-            return language == .korean
-                ? "총 \(snapshot.chunkCount)개 구간 중 \(current)번째 전사 중 · 완료 \(completedPercent)%"
-                : "Chunk \(current) of \(snapshot.chunkCount) · \(completedPercent)% complete"
+            return formatted(
+                "Chunk %1$@ of %2$@ · %3$@%% complete",
+                String(current),
+                String(snapshot.chunkCount),
+                String(completedPercent)
+            )
         }
-        return language == .korean
-            ? "총 \(snapshot.chunkCount)개 구간 · 완료 \(snapshot.completedChunkCount)개"
-            : "\(snapshot.chunkCount) chunks · \(snapshot.completedChunkCount) complete"
+        return formatted(
+            "%1$@ chunks · %2$@ complete",
+            String(snapshot.chunkCount),
+            String(snapshot.completedChunkCount)
+        )
     }
 
     func processingTitle(for snapshot: ReviewProcessingSnapshot) -> String {
@@ -1088,15 +1092,18 @@ struct AppCopy {
         case .importingAudio:
             return importingAudioFile
         case .extractingAudio:
-            return language == .korean ? "영상 오디오 추출 중" : "Extracting audio"
+            return localized("Extracting audio")
         case .chunkingAudio:
-            return language == .korean ? "오디오 구간 나누는 중" : "Splitting audio"
+            return localized("Splitting audio")
         case .transcribingChunks:
             let spokenLanguage = transcriptionLanguageName(snapshot.resolvedTranscriptionLanguage)
             if snapshot.chunkCount > 0, let current = snapshot.currentChunkDisplayIndex {
-                return language == .korean
-                    ? "총 \(snapshot.chunkCount)개 구간 중 \(current)번째 \(spokenLanguage) 전사 중"
-                    : "Transcribing \(spokenLanguage) chunk \(current) of \(snapshot.chunkCount)"
+                return formatted(
+                    "Transcribing %1$@ chunk %2$@ of %3$@",
+                    spokenLanguage,
+                    String(current),
+                    String(snapshot.chunkCount)
+                )
             }
             return transcribingSpeech(snapshot.resolvedTranscriptionLanguage)
         case .mergingTranscript:
@@ -1104,7 +1111,7 @@ struct AppCopy {
         case .creatingExports:
             return creatingCodexPrompt
         case .completed:
-            return language == .korean ? "전사 패키지 준비 완료" : "Transcript package ready"
+            return localized("Transcript package ready")
         case .failed:
             return processingFailed
         }
@@ -1112,145 +1119,118 @@ struct AppCopy {
 
     func lengthWarning(for duration: TimeInterval) -> String? {
         if duration > 3600 {
-            return language == .korean
-                ? "1시간이 넘는 리뷰입니다. 정확도와 처리 속도를 위해 여러 파일로 나누는 것을 권장합니다."
-                : "This review is longer than 1 hour. Splitting it into multiple files is recommended for accuracy and speed."
+            return localized("This review is longer than 1 hour. Splitting it into multiple files is recommended for accuracy and speed.")
         }
         if duration > 1800 {
-            return language == .korean
-                ? "긴 리뷰 모드입니다. 처리 중 앱을 열어두는 것을 권장합니다."
-                : "Long review mode. Keeping the app open during processing is recommended."
+            return localized("Long review mode. Keeping the app open during processing is recommended.")
         }
         if duration > 600 {
-            return language == .korean
-                ? "긴 리뷰입니다. 처리 시간이 조금 걸릴 수 있습니다."
-                : "This is a long review. Processing may take a while."
+            return localized("This is a long review. Processing may take a while.")
         }
         return nil
     }
 
-    var reviewNotFound: String { language == .korean ? "리뷰를 찾을 수 없어요" : "Review Not Found" }
+    var reviewNotFound: String { localized("Review Not Found") }
     var reviewNotFoundDescription: String {
-        language == .korean
-            ? "선택한 리뷰가 삭제되었을 수 있어요."
-            : "The selected review may have been deleted."
+        localized("The selected review may have been deleted.")
     }
-    var reviewNavigationTitle: String { language == .korean ? "리뷰" : "Review" }
-    var timeline: String { language == .korean ? "타임라인" : "Timeline" }
-    var readableTimeline: String { language == .korean ? "읽기용" : "Readable" }
-    var originalTimeline: String { language == .korean ? "원문" : "Original" }
+    var reviewNavigationTitle: String { localized("Review") }
+    var timeline: String { localized("Timeline") }
+    var readableTimeline: String { localized("Readable") }
+    var originalTimeline: String { localized("Original") }
     var readableTimelineDescription: String {
-        language == .korean
-            ? "짧은 전사 행을 자연스럽게 묶고, 점 하나 같은 잡음은 제외한 보기입니다."
-            : "Short rows are grouped for readability, and punctuation-only noise is hidden."
+        localized("Short rows are grouped for readability, and punctuation-only noise is hidden.")
     }
     var originalTimelineDescription: String {
-        language == .korean
-            ? "전사 결과를 시간순으로 최대한 보존한 보기입니다. 자막/검증에는 이 기준이 더 가깝습니다."
-            : "Keeps transcript rows closer to the original timing. This is better for subtitles and verification."
+        localized("Keeps transcript rows closer to the original timing. This is better for subtitles and verification.")
     }
-    var export: String { language == .korean ? "내보내기" : "Export" }
-    var codex: String { "Codex" }
+    var export: String { localized("Export") }
+    var codex: String { localized("Codex") }
     var videoUnavailable: String {
-        language == .korean
-            ? "영상 미리보기를 불러오지 못했습니다. 전사 결과는 계속 사용할 수 있습니다."
-            : "Video preview could not be loaded. The transcript is still available."
+        localized("Video preview could not be loaded. The transcript is still available.")
     }
-    var videoPreview: String { language == .korean ? "영상 미리보기" : "Video Preview" }
-    var audioPreview: String { language == .korean ? "음성 파일" : "Audio File" }
+    var videoPreview: String { localized("Video Preview") }
+    var audioPreview: String { localized("Audio File") }
     var audioUnavailable: String {
-        language == .korean
-            ? "음성 파일을 불러오지 못했습니다. 전사 결과는 계속 사용할 수 있습니다."
-            : "Audio file could not be loaded. The transcript is still available."
+        localized("Audio file could not be loaded. The transcript is still available.")
     }
-    var recommendedExport: String { language == .korean ? "추천" : "Recommended" }
-    var otherExportFormats: String { language == .korean ? "다른 형식" : "Other Formats" }
-    var shareOptionsTitle: String { language == .korean ? "직접 리뷰 전달" : "Direct Review Handoff" }
+    var recommendedExport: String { localized("Recommended") }
+    var otherExportFormats: String { localized("Other Formats") }
+    var shareOptionsTitle: String { localized("Direct Review Handoff") }
     var shareOptionsSummary: String {
-        language == .korean
-            ? "화면 녹화 또는 음성, 타임스탬프 정렬 전사, 직접 구현 지시문을 하나의 패키지로 전달합니다."
-            : "Share the recording or audio, timestamp-aligned transcript, and direct implementation instructions as one package."
+        localized("Share the recording or audio, timestamp-aligned transcript, and direct implementation instructions as one package.")
     }
-    var codexPackageTitle: String { language == .korean ? "직접 리뷰 전달" : "Direct Review Handoff" }
+    var codexPackageTitle: String { localized("Direct Review Handoff") }
     func codexPackageSummary(for sourceKind: ReviewSourceKind) -> String {
         switch sourceKind {
         case .screenRecording:
-            return language == .korean
-                ? "영상, 타임스탬프 전사, 구현 지시문을 Codex에 전달합니다."
-                : "Share the video, timestamped transcript, and implementation instructions with Codex."
+            return localized("Share the video, timestamped transcript, and implementation instructions with Codex.")
         case .audioFile:
-            return language == .korean
-                ? "음성, 타임스탬프 전사, 구현 지시문을 Codex에 전달합니다."
-                : "Share the audio, timestamped transcript, and implementation instructions with Codex."
+            return localized("Share the audio, timestamped transcript, and implementation instructions with Codex.")
         }
     }
-    var codexPromptTitle: String { language == .korean ? "직접 리뷰 전달" : "Direct Review Handoff" }
+    var codexPromptTitle: String { localized("Direct Review Handoff") }
     func codexPromptSummary(for sourceKind: ReviewSourceKind) -> String {
         switch sourceKind {
         case .screenRecording:
-            return language == .korean
-                ? "녹화와 타임라인을 사용해 리뷰어가 명시한 요청을 코드에 직접 구현하도록 안내합니다."
-                : "Use the recording and timeline to implement the reviewer's explicit requests directly in code."
+            return localized("Use the recording and timeline to implement the reviewer's explicit requests directly in code.")
         case .audioFile:
-            return language == .korean
-                ? "음성 녹음과 타임스탬프 정렬 전사를 사용해 리뷰어가 명시한 요청을 코드에 직접 구현하도록 안내합니다."
-                : "Use the audio recording and timestamp-aligned transcript to implement the reviewer's explicit requests directly in code."
+            return localized("Use the audio recording and timestamp-aligned transcript to implement the reviewer's explicit requests directly in code.")
         }
     }
-    var includedContents: String { language == .korean ? "포함 내용" : "Included" }
-    var includedVideo: String { language == .korean ? "화면 녹화 또는 최적화 분할 영상" : "Screen recording or optimized video parts" }
-    var includedAudio: String { language == .korean ? "음성 녹음" : "Audio recording" }
-    var includedTimeline: String { language == .korean ? "타임스탬프 정렬 전사" : "Timestamp-aligned transcript" }
-    var includedPrompt: String { language == .korean ? "직접 구현 지시문" : "Direct implementation instructions" }
-    var fullPrompt: String { language == .korean ? "리뷰 지시문 전문" : "Full Review Instructions" }
-    var noTimeline: String { language == .korean ? "타임라인 없음" : "No Timeline" }
+    var includedContents: String { localized("Included") }
+    var includedVideo: String { localized("Screen recording or optimized video parts") }
+    var includedAudio: String { localized("Audio recording") }
+    var includedTimeline: String { localized("Timestamp-aligned transcript") }
+    var includedPrompt: String { localized("Direct implementation instructions") }
+    var fullPrompt: String { localized("Full Review Instructions") }
+    var noTimeline: String { localized("No Timeline") }
     func jumpToSource(for sourceKind: ReviewSourceKind) -> String {
         switch sourceKind {
         case .screenRecording:
-            return language == .korean ? "영상으로 이동" : "Jump to video"
+            return localized("Jump to video")
         case .audioFile:
-            return language == .korean ? "음성으로 이동" : "Jump to audio"
+            return localized("Jump to audio")
         }
     }
-    var copied: String { language == .korean ? "복사됨" : "Copied" }
-    var copyCodexPrompt: String { language == .korean ? "리뷰 지시문 복사" : "Copy Review Instructions" }
-    var shareToChatGPT: String { language == .korean ? "ChatGPT에 단일 문서 공유" : "Share Single Document with ChatGPT" }
-    var shareVideoAndReview: String { language == .korean ? "Codex로 리뷰 전달" : "Share Review with Codex" }
+    var copied: String { localized("Copied") }
+    var copyCodexPrompt: String { localized("Copy Review Instructions") }
+    var shareToChatGPT: String { localized("Share Single Document with ChatGPT") }
+    var shareVideoAndReview: String { localized("Share Review with Codex") }
     func shareMediaOnly(for sourceKind: ReviewSourceKind, partCount: Int) -> String {
         switch sourceKind {
         case .screenRecording:
-            if language == .korean {
-                return partCount > 1 ? "분할 영상만 공유" : "영상만 공유"
-            }
-            return partCount > 1 ? "Share Video Parts Only" : "Share Video Only"
+            return partCount > 1
+                ? localized("Share Video Parts Only")
+                : localized("Share Video Only")
         case .audioFile:
-            return language == .korean ? "음성만 공유" : "Share Audio Only"
+            return localized("Share Audio Only")
         }
     }
-    var makeOptimizedVideo: String { language == .korean ? "Codex용 작은 영상 만들기" : "Make Optimized Codex Video" }
-    var makingOptimizedVideo: String { language == .korean ? "작은 영상 만드는 중..." : "Making optimized video..." }
+    var makeOptimizedVideo: String { localized("Make Optimized Codex Video") }
+    var makingOptimizedVideo: String { localized("Making optimized video...") }
     var optimizedVideoRequired: String {
-        language == .korean
-            ? "전체 패키지를 공유하려면 먼저 작은 영상을 준비하세요. 전사 결과는 이미 사용할 수 있습니다."
-            : "Prepare smaller video files before sharing the full package. The transcript is already available."
+        localized("Prepare smaller video files before sharing the full package. The transcript is already available.")
     }
-    var cancelVideoCompression: String { language == .korean ? "영상 준비 취소" : "Cancel Video Preparation" }
-    var retryVideoCompression: String { language == .korean ? "영상 준비 재시도" : "Retry Video Preparation" }
-    var videoCompressionFailed: String { language == .korean ? "작은 영상 준비 실패" : "Video Preparation Failed" }
-    var videoCompressionCancelled: String { language == .korean ? "영상 준비 취소됨" : "Video Preparation Cancelled" }
+    var cancelVideoCompression: String { localized("Cancel Video Preparation") }
+    var retryVideoCompression: String { localized("Retry Video Preparation") }
+    var videoCompressionFailed: String { localized("Video Preparation Failed") }
+    var videoCompressionCancelled: String { localized("Video Preparation Cancelled") }
     func videoCompressionTitle(_ snapshot: VideoCompressionSnapshot) -> String {
         switch snapshot.stage {
         case .preparing:
-            return language == .korean ? "압축 준비 중" : "Preparing Video"
+            return localized("Preparing Video")
         case .compressing:
             if let current = snapshot.currentPartDisplayIndex, snapshot.plannedPartCount > 0 {
-                return language == .korean
-                    ? "총 \(snapshot.plannedPartCount)개 구간 중 \(current)번째 압축 중"
-                    : "Compressing part \(current) of \(snapshot.plannedPartCount)"
+                return formatted(
+                    "Compressing part %1$@ of %2$@",
+                    String(current),
+                    String(snapshot.plannedPartCount)
+                )
             }
             return makingOptimizedVideo
         case .installing:
-            return language == .korean ? "작은 영상 저장 중" : "Saving Optimized Videos"
+            return localized("Saving Optimized Videos")
         case .completed:
             return optimizedVideoReady(partCount: snapshot.producedPartCount)
         case .failed:
@@ -1261,99 +1241,83 @@ struct AppCopy {
     }
     func videoCompressionDetail(_ snapshot: VideoCompressionSnapshot) -> String? {
         guard snapshot.plannedPartCount > 0 else { return nil }
-        return language == .korean
-            ? "계획 \(snapshot.plannedPartCount)개 · 완료 \(snapshot.completedPartCount)개 · 생성 \(snapshot.producedPartCount)개"
-            : "Planned \(snapshot.plannedPartCount) · completed \(snapshot.completedPartCount) · produced \(snapshot.producedPartCount)"
+        return formatted(
+            "Planned %1$@ · completed %2$@ · produced %3$@",
+            String(snapshot.plannedPartCount),
+            String(snapshot.completedPartCount),
+            String(snapshot.producedPartCount)
+        )
     }
     func optimizedVideoReady(partCount: Int) -> String {
-        if language == .korean {
-            return partCount > 1 ? "압축본 \(partCount)개 준비 완료" : "압축본 준비 완료"
-        }
-        return partCount > 1 ? "\(partCount) optimized videos ready" : "Optimized video ready"
+        partCount > 1
+            ? formatted("%@ optimized videos ready", String(partCount))
+            : localized("Optimized video ready")
     }
     var optimizedVideoDescription: String {
-        language == .korean
-            ? "540p·30fps로 줄이고 파일당 280MB를 넘으면 타임스탬프 구간별로 자동 분할합니다. 전사는 원본 오디오를 사용합니다."
-            : "Creates 540p, 30 fps copies and splits them by timestamp when a file would exceed 280 MB. Transcription still uses the original audio."
+        localized("Creates 540p, 30 fps copies and splits them by timestamp when a file would exceed 280 MB. Transcription still uses the original audio.")
     }
     var exportJSONDescription: String {
-        language == .korean
-            ? "타임스탬프, 전사, 처리 정보를 담은 자동화/개발자용 데이터"
-            : "Developer/automation data with timestamps, transcript rows, and processing metadata."
+        localized("Developer/automation data with timestamps, transcript rows, and processing metadata.")
     }
     var exportReadableTimelineDescription: String {
-        language == .korean
-            ? "짧은 행을 자연스럽게 묶은 사람이 읽기 좋은 타임라인"
-            : "Human-readable timeline with short rows grouped naturally."
+        localized("Human-readable timeline with short rows grouped naturally.")
     }
     var exportOriginalTimelineDescription: String {
-        language == .korean
-            ? "자막, 시간 검증, 정확한 근거 확인용 원문 타임라인"
-            : "Original transcript timeline for subtitles, timestamp checks, and evidence."
+        localized("Original transcript timeline for subtitles, timestamp checks, and evidence.")
     }
     var exportSRTDescription: String {
-        language == .korean
-            ? "일반 영상 편집기나 플레이어에 붙이는 표준 자막"
-            : "Standard subtitles for video editors and players."
+        localized("Standard subtitles for video editors and players.")
     }
     var exportVTTDescription: String {
-        language == .korean
-            ? "웹 플레이어와 브라우저 자막에 쓰는 형식"
-            : "Subtitle format for web players and browsers."
+        localized("Subtitle format for web players and browsers.")
     }
-    var cancel: String { language == .korean ? "취소" : "Cancel" }
-    var delete: String { language == .korean ? "삭제" : "Delete" }
-    var save: String { language == .korean ? "저장" : "Save" }
-    var ok: String { language == .korean ? "확인" : "OK" }
-    var editReviewTitle: String { language == .korean ? "리뷰 제목 수정" : "Edit Review Title" }
-    var reviewTitle: String { language == .korean ? "리뷰 제목" : "Review Title" }
+    var readableTimelineMarkdown: String { localized("Readable Timeline (.md)") }
+    var originalTimelineMarkdown: String { localized("Original Timeline (.md)") }
+    var jsonExport: String { localized("JSON (.json)") }
+    var srtSubtitles: String { localized("SRT Subtitles (.srt)") }
+    var vttWebSubtitles: String { localized("VTT Web Subtitles (.vtt)") }
+
+    var cancel: String { localized("Cancel") }
+    var delete: String { localized("Delete") }
+    var save: String { localized("Save") }
+    var ok: String { localized("OK") }
+    var editReviewTitle: String { localized("Edit Review Title") }
+    var reviewTitle: String { localized("Review Title") }
     var reviewTitleHelp: String {
-        language == .korean
-            ? "ReviewTrace는 영상만으로 어떤 앱을 리뷰했는지 자동으로 알 수 없어요. 알아보기 쉬운 이름으로 직접 적어주세요."
-            : "ReviewTrace cannot reliably detect which app was reviewed from the video alone. Name it so you can recognize it later."
+        localized("ReviewTrace cannot reliably detect which app was reviewed from the video alone. Name it so you can recognize it later.")
     }
-    var deleteReview: String { language == .korean ? "리뷰 삭제" : "Delete Review" }
-    var deleteReviewConfirmTitle: String { language == .korean ? "이 리뷰를 삭제할까요?" : "Delete this review?" }
+    var deleteReview: String { localized("Delete Review") }
+    var deleteReviewConfirmTitle: String { localized("Delete this review?") }
     var deleteReviewConfirmMessage: String {
-        language == .korean
-            ? "삭제하면 이 리뷰의 원본 파일, 전사, 내보내기 파일을 복구할 수 없습니다."
-            : "This will permanently delete the source file, transcript, and export files for this review."
+        localized("This will permanently delete the source file, transcript, and export files for this review.")
     }
-    var deleteCompletedTitle: String { language == .korean ? "삭제 완료" : "Deleted" }
+    var deleteCompletedTitle: String { localized("Deleted") }
     func deleteReviewCompletedMessage(_ title: String) -> String {
-        language == .korean
-            ? "\(title) 삭제가 완료되었습니다."
-            : "\(title) has been deleted."
+        formatted("%@ has been deleted.", title)
     }
 
-    var settingsTitle: String { language == .korean ? "설정" : "Settings" }
-    var general: String { language == .korean ? "일반" : "General" }
-    var appLanguage: String { language == .korean ? "앱 언어" : "App Language" }
-    var defaultTranscriptionLanguage: String { language == .korean ? "기본 전사 언어" : "Default Transcription Language" }
-    var exportDefaultFormat: String { language == .korean ? "내보내기 기본 형식" : "Default export format" }
-    var privacy: String { language == .korean ? "개인정보" : "Privacy" }
-    var localFileStorage: String { language == .korean ? "파일은 앱 내부에 저장" : "Files Stay in the App" }
-    var speechRecognitionPrivacy: String { language == .korean ? "Apple 음성 인식" : "Apple Speech Recognition" }
+    var settingsTitle: String { localized("Settings") }
+    var general: String { localized("General") }
+    var appLanguage: String { localized("App Language") }
+    var defaultTranscriptionLanguage: String { localized("Default Transcription Language") }
+    var exportDefaultFormat: String { localized("Default export format") }
+    var privacy: String { localized("Privacy") }
+    var localFileStorage: String { localized("Files Stay in the App") }
+    var speechRecognitionPrivacy: String { localized("Apple Speech Recognition") }
     var privacyExplanation: String {
-        language == .korean
-            ? "가져온 원본, 전사, 내보내기 파일은 ReviewTrace의 앱 저장 공간에 보관되며 사용자가 공유할 때만 다른 앱으로 전달됩니다."
-            : "Imported sources, transcripts, and exports are stored in ReviewTrace and leave the app only when you choose to share them."
+        localized("Imported sources, transcripts, and exports are stored in ReviewTrace and leave the app only when you choose to share them.")
     }
     var speechRecognitionPrivacyExplanation: String {
-        language == .korean
-            ? "음성 인식은 기기, 언어, 네트워크 상태에 따라 Apple 서버를 사용할 수 있습니다. ReviewTrace는 온디바이스 전용 처리를 보장하지 않습니다."
-            : "Speech recognition may use Apple servers depending on the device, language, and network. ReviewTrace does not guarantee on-device-only recognition."
+        localized("Speech recognition may use Apple servers depending on the device, language, and network. ReviewTrace does not guarantee on-device-only recognition.")
     }
-    var exportStyle: String { language == .korean ? "내보내기 형식" : "Export Style" }
-    var structuredJSON: String { language == .korean ? "구조화 데이터 JSON" : "Structured JSON Data" }
-    var subtitleExports: String { language == .korean ? "SRT/VTT 자막" : "SRT/VTT Subtitles" }
-    var dataManagement: String { language == .korean ? "데이터 관리" : "Data Management" }
-    var deleteAllRecordings: String { language == .korean ? "모든 리뷰 삭제" : "Delete all recordings" }
-    var deleteAllConfirmTitle: String { language == .korean ? "모든 리뷰를 삭제할까요?" : "Delete all reviews?" }
+    var exportStyle: String { localized("Export Style") }
+    var structuredJSON: String { localized("Structured JSON Data") }
+    var subtitleExports: String { localized("SRT/VTT Subtitles") }
+    var dataManagement: String { localized("Data Management") }
+    var deleteAllRecordings: String { localized("Delete all recordings") }
+    var deleteAllConfirmTitle: String { localized("Delete all reviews?") }
     var deleteAllConfirmMessage: String {
-        language == .korean
-            ? "삭제하면 모든 리뷰 원본 파일과 전사, 내보내기 파일을 복구할 수 없습니다."
-            : "This will permanently delete every review source file, transcript, and export file."
+        localized("This will permanently delete every review source file, transcript, and export file.")
     }
-    var deleteAllCompletedMessage: String { language == .korean ? "모든 리뷰가 삭제되었습니다." : "All reviews have been deleted." }
+    var deleteAllCompletedMessage: String { localized("All reviews have been deleted.") }
 }

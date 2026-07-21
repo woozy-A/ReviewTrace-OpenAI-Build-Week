@@ -1,0 +1,2140 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%@ has been deleted.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 삭제가 완료되었습니다."
+          }
+        }
+      }
+    },
+    "%@ optimized videos ready": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "압축본 %@개 준비 완료"
+          }
+        }
+      }
+    },
+    "%@ Recent Reviews": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "최근 리뷰 %@개"
+          }
+        }
+      }
+    },
+    "%@ seconds": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@초"
+          }
+        }
+      }
+    },
+    "%@ transcript segments": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "전사 %@개"
+          }
+        }
+      }
+    },
+    "%1$@ (%2$@)": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ (%2$@)"
+          }
+        }
+      }
+    },
+    "%1$@ chunks · %2$@ complete": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "총 %1$@개 구간 · 완료 %2$@개"
+          }
+        }
+      }
+    },
+    "Accessibility": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "접근성"
+          }
+        }
+      }
+    },
+    "All reviews have been deleted.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "모든 리뷰가 삭제되었습니다."
+          }
+        }
+      }
+    },
+    "Another import or video preparation task is running. Finish or cancel it before trying again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다른 가져오기 또는 영상 준비 작업이 진행 중입니다. 완료하거나 취소한 뒤 다시 시도해 주세요."
+          }
+        }
+      }
+    },
+    "App Language": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "앱 언어"
+          }
+        }
+      }
+    },
+    "Apple Speech Recognition": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple 음성 인식"
+          }
+        }
+      }
+    },
+    "Audio": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성"
+          }
+        }
+      }
+    },
+    "Audio File": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성 파일"
+          }
+        }
+      }
+    },
+    "Audio file could not be loaded. The transcript is still available.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성 파일을 불러오지 못했습니다. 전사 결과는 계속 사용할 수 있습니다."
+          }
+        }
+      }
+    },
+    "Audio length": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성 길이"
+          }
+        }
+      }
+    },
+    "audio processing": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성 처리 중"
+          }
+        }
+      }
+    },
+    "Audio recording": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성 녹음"
+          }
+        }
+      }
+    },
+    "Audio Review": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성 리뷰"
+          }
+        }
+      }
+    },
+    "Bug": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "버그"
+          }
+        }
+      }
+    },
+    "Building timeline": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "타임라인 생성"
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "취소"
+          }
+        }
+      }
+    },
+    "Cancel Video Preparation": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영상 준비 취소"
+          }
+        }
+      }
+    },
+    "Checking pending broadcasts": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "대기 중인 방송 확인"
+          }
+        }
+      }
+    },
+    "Choose a screen recording with microphone audio. The video timeline becomes the review timeline.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "마이크를 켠 상태로 녹화한 영상을 선택하세요. 영상 시간이 타임라인 기준이 됩니다."
+          }
+        }
+      }
+    },
+    "Choose the language actually spoken in the video or audio. This is separate from the app language.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "가져올 영상이나 음성에서 실제로 말한 언어를 선택하세요. 앱 표시 언어와는 별개입니다."
+          }
+        }
+      }
+    },
+    "Chunk %1$@ of %2$@ · %3$@%% complete": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "총 %2$@개 구간 중 %1$@번째 전사 중 · 완료 %3$@%%"
+          }
+        }
+      }
+    },
+    "Close": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "닫기"
+          }
+        }
+      }
+    },
+    "Close and Choose Another File": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "닫고 다른 파일 선택"
+          }
+        }
+      }
+    },
+    "Codex": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Codex"
+          }
+        }
+      }
+    },
+    "Completed chunks": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "완료 구간"
+          }
+        }
+      }
+    },
+    "Completed chunks are preserved. Retry the failed chunk or close this and choose another video.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "완료된 구간은 보존됩니다. 실패 구간만 다시 시도하거나 닫고 다른 영상을 선택할 수 있습니다."
+          }
+        }
+      }
+    },
+    "Compressing part %1$@ of %2$@": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "총 %2$@개 구간 중 %1$@번째 압축 중"
+          }
+        }
+      }
+    },
+    "Copied": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "복사됨"
+          }
+        }
+      }
+    },
+    "Copy Review Instructions": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "리뷰 지시문 복사"
+          }
+        }
+      }
+    },
+    "Copywriting": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "문구"
+          }
+        }
+      }
+    },
+    "Creates 540p, 30 fps copies and splits them by timestamp when a file would exceed 280 MB. Transcription still uses the original audio.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "540p·30fps로 줄이고 파일당 280MB를 넘으면 타임스탬프 구간별로 자동 분할합니다. 전사는 원본 오디오를 사용합니다."
+          }
+        }
+      }
+    },
+    "Creating exports": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "내보내기 파일 생성"
+          }
+        }
+      }
+    },
+    "Current chunk": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "현재 구간"
+          }
+        }
+      }
+    },
+    "Data Management": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "데이터 관리"
+          }
+        }
+      }
+    },
+    "Default export format": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "내보내기 기본 형식"
+          }
+        }
+      }
+    },
+    "Default Transcription Language": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기본 전사 언어"
+          }
+        }
+      }
+    },
+    "Delete": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "삭제"
+          }
+        }
+      }
+    },
+    "Delete all recordings": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "모든 리뷰 삭제"
+          }
+        }
+      }
+    },
+    "Delete all reviews?": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "모든 리뷰를 삭제할까요?"
+          }
+        }
+      }
+    },
+    "Delete Review": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "리뷰 삭제"
+          }
+        }
+      }
+    },
+    "Delete this review?": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 리뷰를 삭제할까요?"
+          }
+        }
+      }
+    },
+    "Deleted": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "삭제 완료"
+          }
+        }
+      }
+    },
+    "Developer/automation data with timestamps, transcript rows, and processing metadata.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "타임스탬프, 전사, 처리 정보를 담은 자동화/개발자용 데이터"
+          }
+        }
+      }
+    },
+    "Direct implementation instructions": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "직접 구현 지시문"
+          }
+        }
+      }
+    },
+    "Direct Review Handoff": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "직접 리뷰 전달"
+          }
+        }
+      }
+    },
+    "Edit Review Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "리뷰 제목 수정"
+          }
+        }
+      }
+    },
+    "English": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "English"
+          }
+        }
+      }
+    },
+    "Error": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오류"
+          }
+        }
+      }
+    },
+    "Export": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "내보내기"
+          }
+        }
+      }
+    },
+    "Export Style": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "내보내기 형식"
+          }
+        }
+      }
+    },
+    "Extracted audio": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "추출된 오디오"
+          }
+        }
+      }
+    },
+    "Extracting audio": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영상 오디오 추출 중"
+          }
+        }
+      }
+    },
+    "Failed": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "실패"
+          }
+        }
+      }
+    },
+    "Failed chunk": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "실패한 구간"
+          }
+        }
+      }
+    },
+    "Failure reason": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "실패 이유"
+          }
+        }
+      }
+    },
+    "Files Stay in the App": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "파일은 앱 내부에 저장"
+          }
+        }
+      }
+    },
+    "Full Review Instructions": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "리뷰 지시문 전문"
+          }
+        }
+      }
+    },
+    "General": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "일반"
+          }
+        }
+      }
+    },
+    "High": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "높음"
+          }
+        }
+      }
+    },
+    "Home": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "홈"
+          }
+        }
+      }
+    },
+    "Home shows the latest %@ reviews.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "최신순 최대 %@개만 홈에 보여줍니다."
+          }
+        }
+      }
+    },
+    "How to record": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "녹화 방법 안내"
+          }
+        }
+      }
+    },
+    "Human-readable timeline with short rows grouped naturally.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "짧은 행을 자연스럽게 묶은 사람이 읽기 좋은 타임라인"
+          }
+        }
+      }
+    },
+    "Import a screen recording with microphone audio or a development meeting audio file.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "마이크를 켠 화면 녹화 영상이나 개발 회의 음성 파일을 가져오세요."
+          }
+        }
+      }
+    },
+    "Import after recording": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "녹화 종료 후 가져오기"
+          }
+        }
+      }
+    },
+    "Import Audio File": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성 파일 가져오기"
+          }
+        }
+      }
+    },
+    "Import Screen Recording": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 녹화 가져오기"
+          }
+        }
+      }
+    },
+    "Import the video here after recording": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "녹화 종료 후 이 앱에서 가져오기"
+          }
+        }
+      }
+    },
+    "Imported sources, transcripts, and exports are stored in ReviewTrace and leave the app only when you choose to share them.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "가져온 원본, 전사, 내보내기 파일은 ReviewTrace의 앱 저장 공간에 보관되며 사용자가 공유할 때만 다른 앱으로 전달됩니다."
+          }
+        }
+      }
+    },
+    "Importing audio file": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성 파일 가져오는 중"
+          }
+        }
+      }
+    },
+    "Importing recording": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "녹화 파일 가져오는 중"
+          }
+        }
+      }
+    },
+    "Importing...": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "가져오는 중..."
+          }
+        }
+      }
+    },
+    "Included": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "포함 내용"
+          }
+        }
+      }
+    },
+    "JSON (.json)": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "JSON (.json)"
+          }
+        }
+      }
+    },
+    "Jump to audio": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성으로 이동"
+          }
+        }
+      }
+    },
+    "Jump to video": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영상으로 이동"
+          }
+        }
+      }
+    },
+    "Keeps transcript rows closer to the original timing. This is better for subtitles and verification.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "전사 결과를 시간순으로 최대한 보존한 보기입니다. 자막/검증에는 이 기준이 더 가깝습니다."
+          }
+        }
+      }
+    },
+    "Korean": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "한국어"
+          }
+        }
+      }
+    },
+    "Language Spoken in This Review": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이번 리뷰에서 말한 언어"
+          }
+        }
+      }
+    },
+    "Long press Screen Recording": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 녹화 길게 누르기"
+          }
+        }
+      }
+    },
+    "Long review mode. Keeping the app open during processing is recommended.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "긴 리뷰 모드입니다. 처리 중 앱을 열어두는 것을 권장합니다."
+          }
+        }
+      }
+    },
+    "Low": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "낮음"
+          }
+        }
+      }
+    },
+    "Make Optimized Codex Video": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Codex용 작은 영상 만들기"
+          }
+        }
+      }
+    },
+    "Making optimized video...": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "작은 영상 만드는 중..."
+          }
+        }
+      }
+    },
+    "Medium": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "중간"
+          }
+        }
+      }
+    },
+    "Navigation": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 이동"
+          }
+        }
+      }
+    },
+    "No Reviews Yet": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "아직 리뷰가 없어요"
+          }
+        }
+      }
+    },
+    "No Timeline": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "타임라인 없음"
+          }
+        }
+      }
+    },
+    "OK": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "확인"
+          }
+        }
+      }
+    },
+    "Onboarding": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "온보딩"
+          }
+        }
+      }
+    },
+    "Open Broadcast Picker": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "방송 선택기 열기"
+          }
+        }
+      }
+    },
+    "Open Control Center": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "제어 센터 열기"
+          }
+        }
+      }
+    },
+    "Optimized video ready": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "압축본 준비 완료"
+          }
+        }
+      }
+    },
+    "Original": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "원문"
+          }
+        }
+      }
+    },
+    "Original Timeline (.md)": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "원문 타임라인 (.md)"
+          }
+        }
+      }
+    },
+    "Original transcript timeline for subtitles, timestamp checks, and evidence.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "자막, 시간 검증, 정확한 근거 확인용 원문 타임라인"
+          }
+        }
+      }
+    },
+    "Other Formats": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다른 형식"
+          }
+        }
+      }
+    },
+    "Pending": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "처리 대기"
+          }
+        }
+      }
+    },
+    "Performance": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "성능"
+          }
+        }
+      }
+    },
+    "Planned %1$@ · completed %2$@ · produced %3$@": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "계획 %1$@개 · 완료 %2$@개 · 생성 %3$@개"
+          }
+        }
+      }
+    },
+    "Prepare smaller video files before sharing the full package. The transcript is already available.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "전체 패키지를 공유하려면 먼저 작은 영상을 준비하세요. 전사 결과는 이미 사용할 수 있습니다."
+          }
+        }
+      }
+    },
+    "Preparing Video": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "압축 준비 중"
+          }
+        }
+      }
+    },
+    "Privacy": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "개인정보"
+          }
+        }
+      }
+    },
+    "Processing": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "처리 중"
+          }
+        }
+      }
+    },
+    "Processing Failed": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "처리 실패"
+          }
+        }
+      }
+    },
+    "Processing...": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "처리 중..."
+          }
+        }
+      }
+    },
+    "Progress": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "진행률"
+          }
+        }
+      }
+    },
+    "Raw segments": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "원본 전사 조각"
+          }
+        }
+      }
+    },
+    "Readable": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "읽기용"
+          }
+        }
+      }
+    },
+    "Readable Timeline (.md)": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "읽기용 타임라인 (.md)"
+          }
+        }
+      }
+    },
+    "Reading audio": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오디오 읽는 중"
+          }
+        }
+      }
+    },
+    "Ready": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "완료"
+          }
+        }
+      }
+    },
+    "Recent Reviews": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "최근 리뷰"
+          }
+        }
+      }
+    },
+    "Recommended": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "추천"
+          }
+        }
+      }
+    },
+    "Record with microphone on": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "마이크 켜고 화면 녹화"
+          }
+        }
+      }
+    },
+    "Recording": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "녹화 중"
+          }
+        }
+      }
+    },
+    "Retry Failed Chunk": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "실패 구간 재시도"
+          }
+        }
+      }
+    },
+    "Retry Video Preparation": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영상 준비 재시도"
+          }
+        }
+      }
+    },
+    "Review": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "리뷰"
+          }
+        }
+      }
+    },
+    "Review Language": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "언어 설정"
+          }
+        }
+      }
+    },
+    "Review Not Found": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "리뷰를 찾을 수 없어요"
+          }
+        }
+      }
+    },
+    "Review Title": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "리뷰 제목"
+          }
+        }
+      }
+    },
+    "Reviews": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "리뷰"
+          }
+        }
+      }
+    },
+    "ReviewTrace cannot reliably detect which app was reviewed from the video alone. Name it so you can recognize it later.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ReviewTrace는 영상만으로 어떤 앱을 리뷰했는지 자동으로 알 수 없어요. 알아보기 쉬운 이름으로 직접 적어주세요."
+          }
+        }
+      }
+    },
+    "ReviewTrace processes imported screen recordings locally. Only import recordings you intend to review.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ReviewTrace는 가져온 화면 녹화를 로컬에서 처리합니다. 민감한 정보가 포함된 영상은 신중하게 가져오세요."
+          }
+        }
+      }
+    },
+    "Save": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "저장"
+          }
+        }
+      }
+    },
+    "Saving Optimized Videos": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "작은 영상 저장 중"
+          }
+        }
+      }
+    },
+    "Screen recording or optimized video parts": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 녹화 또는 최적화 분할 영상"
+          }
+        }
+      }
+    },
+    "Screen Recording Review": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 녹화 리뷰"
+          }
+        }
+      }
+    },
+    "Screen recordings may include sensitive information. Start and stop recording only through the visible iOS system controls.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 녹화에는 민감한 정보가 포함될 수 있어요. 녹화 시작과 중지는 항상 iOS 시스템 화면에서 직접 확인하세요."
+          }
+        }
+      }
+    },
+    "Select ReviewTrace": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ReviewTrace 선택"
+          }
+        }
+      }
+    },
+    "Select Screen Recording": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 녹화 선택"
+          }
+        }
+      }
+    },
+    "Select Video": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "비디오 선택하기"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "설정"
+          }
+        }
+      }
+    },
+    "Share Audio Only": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성만 공유"
+          }
+        }
+      }
+    },
+    "Share Review with Codex": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Codex로 리뷰 전달"
+          }
+        }
+      }
+    },
+    "Share Single Document with ChatGPT": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ChatGPT에 단일 문서 공유"
+          }
+        }
+      }
+    },
+    "Share the audio, timestamped transcript, and implementation instructions with Codex.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성, 타임스탬프 전사, 구현 지시문을 Codex에 전달합니다."
+          }
+        }
+      }
+    },
+    "Share the recording or audio, timestamp-aligned transcript, and direct implementation instructions as one package.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 녹화 또는 음성, 타임스탬프 정렬 전사, 직접 구현 지시문을 하나의 패키지로 전달합니다."
+          }
+        }
+      }
+    },
+    "Share the video, timestamped transcript, and implementation instructions with Codex.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영상, 타임스탬프 전사, 구현 지시문을 Codex에 전달합니다."
+          }
+        }
+      }
+    },
+    "Share Video Only": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영상만 공유"
+          }
+        }
+      }
+    },
+    "Share Video Parts Only": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "분할 영상만 공유"
+          }
+        }
+      }
+    },
+    "Short rows are grouped for readability, and punctuation-only noise is hidden.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "짧은 전사 행을 자연스럽게 묶고, 점 하나 같은 잡음은 제외한 보기입니다."
+          }
+        }
+      }
+    },
+    "Speech recognition may use Apple servers depending on the device, language, and network. ReviewTrace does not guarantee on-device-only recognition.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성 인식은 기기, 언어, 네트워크 상태에 따라 Apple 서버를 사용할 수 있습니다. ReviewTrace는 온디바이스 전용 처리를 보장하지 않습니다."
+          }
+        }
+      }
+    },
+    "Splitting audio": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "오디오 구간 나누는 중"
+          }
+        }
+      }
+    },
+    "SRT Subtitles (.srt)": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SRT 자막 (.srt)"
+          }
+        }
+      }
+    },
+    "SRT/VTT Subtitles": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SRT/VTT 자막"
+          }
+        }
+      }
+    },
+    "Standard subtitles for video editors and players.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "일반 영상 편집기나 플레이어에 붙이는 표준 자막"
+          }
+        }
+      }
+    },
+    "Start Screen Recording": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면 기록 시작"
+          }
+        }
+      }
+    },
+    "Structured JSON Data": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "구조화 데이터 JSON"
+          }
+        }
+      }
+    },
+    "Subtitle format for web players and browsers.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "웹 플레이어와 브라우저 자막에 쓰는 형식"
+          }
+        }
+      }
+    },
+    "Tap Start Broadcast": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "방송 시작"
+          }
+        }
+      }
+    },
+    "Test your app while speaking feedback": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "앱을 사용하며 말로 피드백 남기기"
+          }
+        }
+      }
+    },
+    "The selected review may have been deleted.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "선택한 리뷰가 삭제되었을 수 있어요."
+          }
+        }
+      }
+    },
+    "The transcript and Codex work package are ready. Share the recommended package from the review detail screen.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "전사와 Codex 작업 패키지가 준비되었습니다. 리뷰 상세 화면에서 추천 패키지를 공유하세요."
+          }
+        }
+      }
+    },
+    "This is a long review. Processing may take a while.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "긴 리뷰입니다. 처리 시간이 조금 걸릴 수 있습니다."
+          }
+        }
+      }
+    },
+    "This review is longer than 1 hour. Splitting it into multiple files is recommended for accuracy and speed.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1시간이 넘는 리뷰입니다. 정확도와 처리 속도를 위해 여러 파일로 나누는 것을 권장합니다."
+          }
+        }
+      }
+    },
+    "This will permanently delete every review source file, transcript, and export file.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "삭제하면 모든 리뷰 원본 파일과 전사, 내보내기 파일을 복구할 수 없습니다."
+          }
+        }
+      }
+    },
+    "This will permanently delete the source file, transcript, and export files for this review.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "삭제하면 이 리뷰의 원본 파일, 전사, 내보내기 파일을 복구할 수 없습니다."
+          }
+        }
+      }
+    },
+    "Timeline": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "타임라인"
+          }
+        }
+      }
+    },
+    "Timeline rows": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "타임라인 행"
+          }
+        }
+      }
+    },
+    "Timestamp-aligned transcript": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "타임스탬프 정렬 전사"
+          }
+        }
+      }
+    },
+    "Total chunks": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "총 구간"
+          }
+        }
+      }
+    },
+    "Transcribe spoken feedback against the video timeline.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "말하면서 남긴 피드백을 영상 타임라인에 맞춰 전사합니다."
+          }
+        }
+      }
+    },
+    "Transcribing %@ speech...": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성 인식 중 (%@)"
+          }
+        }
+      }
+    },
+    "Transcribing %1$@ chunk %2$@ of %3$@": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "총 %3$@개 구간 중 %2$@번째 %1$@ 전사 중"
+          }
+        }
+      }
+    },
+    "Transcript package ready": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "전사 패키지 준비 완료"
+          }
+        }
+      }
+    },
+    "Turn app review videos\ninto Codex work documents": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "앱 리뷰 영상을\nCodex 작업 문서로"
+          }
+        }
+      }
+    },
+    "Turn development meeting recordings or voice notes into a timeline transcript.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "개발 회의 녹음이나 음성 메모를 타임라인 전사로 바꿉니다."
+          }
+        }
+      }
+    },
+    "Turn Microphone On": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "마이크 오디오 켜기"
+          }
+        }
+      }
+    },
+    "UI": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UI"
+          }
+        }
+      }
+    },
+    "Unknown": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "미분류"
+          }
+        }
+      }
+    },
+    "Use the app while speaking feedback": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "앱을 사용하며 말로 리뷰"
+          }
+        }
+      }
+    },
+    "Use the audio recording and timestamp-aligned transcript to implement the reviewer's explicit requests directly in code.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "음성 녹음과 타임스탬프 정렬 전사를 사용해 리뷰어가 명시한 요청을 코드에 직접 구현하도록 안내합니다."
+          }
+        }
+      }
+    },
+    "Use the recording and timeline to implement the reviewer's explicit requests directly in code.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "녹화와 타임라인을 사용해 리뷰어가 명시한 요청을 코드에 직접 구현하도록 안내합니다."
+          }
+        }
+      }
+    },
+    "UX": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UX"
+          }
+        }
+      }
+    },
+    "Video": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영상"
+          }
+        }
+      }
+    },
+    "Video imported": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영상 가져오기 완료"
+          }
+        }
+      }
+    },
+    "Video length": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영상 길이"
+          }
+        }
+      }
+    },
+    "Video Preparation Cancelled": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영상 준비 취소됨"
+          }
+        }
+      }
+    },
+    "Video Preparation Failed": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "작은 영상 준비 실패"
+          }
+        }
+      }
+    },
+    "Video Preview": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영상 미리보기"
+          }
+        }
+      }
+    },
+    "Video preview could not be loaded. The transcript is still available.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영상 미리보기를 불러오지 못했습니다. 전사 결과는 계속 사용할 수 있습니다."
+          }
+        }
+      }
+    },
+    "video processing": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "영상 처리 중"
+          }
+        }
+      }
+    },
+    "VTT Web Subtitles (.vtt)": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VTT 웹 자막 (.vtt)"
+          }
+        }
+      }
+    },
+    "Warm-up Delay": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "웜업 시간 설정"
+          }
+        }
+      }
+    },
+    "When recording starts": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "녹화가 시작되면"
+          }
+        }
+      }
+    },
+    "When recording starts, the review timeline begins after %@ seconds. Then switch to the app you want to test and speak naturally.": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "녹화가 시작되면 %@초 뒤부터 리뷰 타임라인이 시작됩니다. 그 후 테스트할 앱으로 이동해서 말하면서 사용하세요."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

@@ -251,8 +251,8 @@ private struct ProcessingBanner: View {
                     if snapshot.videoDuration > 0 {
                         let sourceKind = snapshot.sourceKind ?? .screenRecording
                         let processingLabel = sourceKind == .audioFile
-                            ? (copy.language == .korean ? "음성 처리 중" : "audio")
-                            : (copy.language == .korean ? "영상 처리 중" : "video")
+                            ? copy.audioProcessing
+                            : copy.videoProcessing
                         Text("\(ReviewTimeFormatter.clock(snapshot.videoDuration)) \(processingLabel)")
                     }
                     if let warning = copy.lengthWarning(for: snapshot.videoDuration) {

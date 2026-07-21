@@ -692,35 +692,35 @@ private struct ExportTabView: View {
 
                 VStack(spacing: 8) {
                     ExportOptionRow(
-                        title: copy.language == .korean ? "읽기용 타임라인 (.md)" : "Readable Timeline (.md)",
+                        title: copy.readableTimelineMarkdown,
                         description: copy.exportReadableTimelineDescription,
                         systemImage: "text.alignleft",
                         color: .indigo,
                         url: session.readableTimelineURL
                     )
                     ExportOptionRow(
-                        title: copy.language == .korean ? "원문 타임라인 (.md)" : "Original Timeline (.md)",
+                        title: copy.originalTimelineMarkdown,
                         description: copy.exportOriginalTimelineDescription,
                         systemImage: "text.badge.checkmark",
                         color: .green,
                         url: session.originalTimelineURL
                     )
                     ExportOptionRow(
-                        title: copy.language == .korean ? "JSON (.json)" : "JSON (.json)",
+                        title: copy.jsonExport,
                         description: copy.exportJSONDescription,
                         systemImage: "curlybraces",
                         color: .orange,
                         url: session.jsonURL
                     )
                     ExportOptionRow(
-                        title: "SRT \((copy.language == .korean) ? "자막" : "Subtitles") (.srt)",
+                        title: copy.srtSubtitles,
                         description: copy.exportSRTDescription,
                         systemImage: "captions.bubble",
                         color: .purple,
                         url: session.srtURL
                     )
                     ExportOptionRow(
-                        title: "VTT \((copy.language == .korean) ? "웹 자막" : "Web Subtitles") (.vtt)",
+                        title: copy.vttWebSubtitles,
                         description: copy.exportVTTDescription,
                         systemImage: "captions.bubble.fill",
                         color: .blue,
